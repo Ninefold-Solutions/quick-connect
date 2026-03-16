@@ -3,8 +3,8 @@ class User < ApplicationRecord
   require "securerandom"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable,
-         :rememberable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
+  devise :database_authenticatable, :registerable,
+         :rememberable, :timeoutable, timeout_in: 5.days
   validates :jti, presence: true, on: :update
 
   normalizes :first_name, :last_name, :email, with: ->(value) { value&.strip }
@@ -15,7 +15,6 @@ class User < ApplicationRecord
   end
 
   scope :available, -> { where(archived: false) }
-  before_create :set_invitation_limit
   scope :for_current_account, -> { where(account: Current.account) }
   enum :permission, [:true, :false]
   enum :admin, [:false, :true], prefix: :true
@@ -34,22 +33,10 @@ class User < ApplicationRecord
   has_many :debts, dependent: :destroy
   has_many :conversations, dependent: :destroy
   has_many :gifts, dependent: :destroy
-  belongs_to :invited_by, :class_name => "User", optional: true
   has_many :reminders, dependent: :destroy
 
   def add_jti
     self.jti ||= SecureRandom.uuid
-  end
-
-  def generate_password_token!
-    begin
-      self.reset_password_token = SecureRandom.urlsafe_base64
-    end while User.exists?(reset_password_token: self.reset_password_token)
-    save!
-  end
-
-  def set_invitation_limit
-    self.invitation_limit = 5
   end
 
   def upcoming_tasks

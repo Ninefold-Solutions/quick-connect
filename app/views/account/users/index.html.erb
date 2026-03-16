@@ -2,11 +2,11 @@
   <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
     <%= render "shared/account_menu" %>
     <main class="max-w-3xl  pb-12 lg:col-span-6">
-      <div id="invitations_form">
-        <%= render "form", invitation: @invitation %>
+      <div id="users_form">
+        <%= render "form", user: @user %>
       </div>
-      <div id="invitations">
-        <%= render @invitations %>
+      <div id="users">
+        <%= render partial: "user", collection: @users %>
       </div>
     </main>
   </div>

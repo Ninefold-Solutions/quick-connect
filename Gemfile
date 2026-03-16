@@ -41,7 +41,6 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
 gem "devise"
-gem "devise_invitable"
 
 gem "pagy", "8.4.0"
 

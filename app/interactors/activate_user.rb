@@ -1,19 +1,17 @@
 class ActivateUser < Patterns::Service
-  def initialize(actor, invitation)
+  def initialize(actor, user)
     @actor = actor
-    @invitation = invitation
-    @user = invitation.user
+    @user = user
   end
 
   def call
     begin
       activate
-      invite_user
       add_event
     rescue
-      invitation
+      user
     end
-    invitation
+    user
   end
 
   private
@@ -22,13 +20,9 @@ class ActivateUser < Patterns::Service
     user.update(permission: "true")
   end
 
-  def invite_user
-    user.invite!
-  end
-
   def add_event
-    Event.create(user: actor, action: "activated", action_for_context: "activated a user", eventable: invitation)
+    Event.create(user: actor, action: "activated", action_for_context: "activated a user", eventable: user)
   end
 
-  attr_reader :actor, :invitation, :user
+  attr_reader :actor, :user
 end

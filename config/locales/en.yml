@@ -111,9 +111,6 @@ en:
           one: Activity name
         group: 
           one: Group
-      invitation:
-         email:
-          one:  E-mail  
       link:
          link_type:
           one:  Profile      

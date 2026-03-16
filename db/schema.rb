@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_16_140000) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_16_140001) do
   create_table "abouts", force: :cascade do |t|
     t.string "address", default: ""
     t.string "breif", default: ""
@@ -221,21 +221,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_140000) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "invitations", force: :cascade do |t|
-    t.integer "account_id"
-    t.datetime "created_at", null: false
-    t.string "email"
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "sender_id"
-    t.datetime "sent_at"
-    t.string "token"
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["account_id"], name: "index_invitations_on_account_id"
-    t.index ["user_id"], name: "index_invitations_on_user_id"
-  end
-
   create_table "labels", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "color", default: "gray", null: false
@@ -372,14 +357,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_140000) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "first_name", default: "", null: false
-    t.datetime "invitation_accepted_at", precision: nil
-    t.datetime "invitation_created_at", precision: nil
-    t.integer "invitation_limit"
-    t.datetime "invitation_sent_at", precision: nil
-    t.string "invitation_token"
-    t.integer "invitations_count", default: 0
-    t.integer "invited_by_id"
-    t.string "invited_by_type"
     t.string "jti", null: false
     t.string "last_name", default: "", null: false
     t.datetime "last_sign_in_at", precision: nil
@@ -394,9 +371,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_140000) do
     t.integer "user_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_id"], name: "index_users_on_user_id"
@@ -428,8 +402,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_140000) do
   add_foreign_key "fields", "accounts"
   add_foreign_key "gifts", "contacts"
   add_foreign_key "gifts", "users"
-  add_foreign_key "invitations", "accounts"
-  add_foreign_key "invitations", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "life_events", "accounts"
   add_foreign_key "life_events", "groups"

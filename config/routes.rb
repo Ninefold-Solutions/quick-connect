@@ -80,9 +80,9 @@ Rails.application.routes.draw do
     match "/contact-sample.csv" => "import#export", via: :get, defaults: { format: :csv }
     get "/export", to: "export#index", as: "export_contacts"
     get "/import", to: "import#index", as: "import_contacts"
-    resources :invitations, except: [:show, :new] do
-      get "/deactivate", to: "invitations#deactivate", as: "deactivate"
-      get "/activate", to: "invitations#activate", as: "activate"
+    resources :users, except: [:show, :new] do
+      get "/deactivate", to: "users#deactivate", as: "deactivate"
+      get "/activate", to: "users#activate", as: "activate"
     end
   end
   scope "archive" do

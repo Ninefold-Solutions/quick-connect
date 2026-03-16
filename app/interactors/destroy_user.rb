@@ -14,7 +14,6 @@ class DestroyUser < Patterns::Service
       delete_life_events
       delete_relations
       delete_groups
-      delete_invitations
       user.destroy
     rescue Exception => e
       return false
@@ -58,11 +57,6 @@ class DestroyUser < Patterns::Service
 
   def delete_groups
     Batch.where(account_id: user.account.id).delete_all
-  end
-
-  def delete_invitations
-    Invitation.where(account_id: user.account.id).delete_all
-    User.where(invited_by: user).delete_all
   end
 
   attr_reader :user

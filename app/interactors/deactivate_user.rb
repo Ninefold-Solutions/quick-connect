@@ -1,7 +1,7 @@
 class DeactivateUser < Patterns::Service
-  def initialize(actor, invitation)
+  def initialize(actor, user)
     @actor = actor
-    @invitation = invitation
+    @user = user
   end
 
   def call
@@ -9,21 +9,20 @@ class DeactivateUser < Patterns::Service
       deactivate
       add_event
     rescue
-      invitation
+      user
     end
-    invitation
+    user
   end
 
   private
 
   def deactivate
-    user = invitation.user
     user.update(permission: "false")
   end
 
   def add_event
-    Event.create(user: actor, action: "deactivated", action_for_context: "deactivated an user", eventable: invitation)
+    Event.create(user: actor, action: "deactivated", action_for_context: "deactivated an user", eventable: user)
   end
 
-  attr_reader :actor, :invitation
+  attr_reader :actor, :user
 end
