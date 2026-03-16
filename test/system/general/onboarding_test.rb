@@ -4,7 +4,7 @@ class OnboardingTest < ApplicationSystemTestCase
 
   test "user can login" do
     regular = users(:regular)
-    visit new_user_session_path
+    visit login_path
     fill_in "user_email", with: regular.email
     fill_in "user_password", with: "password"
     take_screenshot
@@ -15,7 +15,7 @@ class OnboardingTest < ApplicationSystemTestCase
   end
 
   test "user can signup" do
-    visit new_user_registration_path
+    visit signup_path
     fill_in "user_first_name", with: "Aashish"
     fill_in "user_last_name", with: "Dhawan"
     fill_in "user_email", with: "awesome1@crownstack.com"
@@ -28,7 +28,7 @@ class OnboardingTest < ApplicationSystemTestCase
   end
 
   test "user can not signup with invalid params" do
-    visit new_user_registration_path
+    visit signup_path
     within "#sign_up_form" do
       click_on "Sign Up"
     end
@@ -41,7 +41,7 @@ class OnboardingTest < ApplicationSystemTestCase
   end
 
   test "user can not signup with duplicate email" do
-    visit new_user_registration_path
+    visit signup_path
     fill_in "user_email", with: users(:regular).email
     within "#sign_up_form" do
       click_on "Sign Up"

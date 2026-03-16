@@ -1,24 +1,26 @@
-class RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < ApplicationController
+  layout "auth"
+
   before_action :build_form
 
   def new
-    super
   end
 
   def create
     resource = @form.submit(registration_params)
-    if resource.nil? or !resource.persisted?
+    if resource.nil? || !resource.persisted?
       show_errors
     else
-      sign_in(resource)
-      set_flash_message! :notice, :signed_up
+      reset_session
+      session[:user_id] = resource.id
+      flash[:notice] = "Welcome! You have signed up successfully."
       redirect_to root_path
     end
   end
 
   def show_errors
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("sign_up_form", partial: "devise/registrations/form", locals: { resource: @form }) }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("sign_up_form", partial: "registrations/form", locals: { resource: @form }) }
     end
   end
 

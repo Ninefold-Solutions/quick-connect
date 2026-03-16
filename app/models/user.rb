@@ -1,13 +1,11 @@
 class User < ApplicationRecord
-  # Include default devise modules.
   require "securerandom"
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :rememberable, :timeoutable, timeout_in: 5.days
-  validates :jti, presence: true, on: :update
+
+  has_secure_password
 
   normalizes :first_name, :last_name, :email, with: ->(value) { value&.strip }
+  normalizes :email, with: ->(value) { value&.downcase }
+  validates :password, length: { minimum: 6 }, if: -> { password.present? }
   validates_confirmation_of :password, if: :password_confirmation_given?, on: :update
 
   def password_confirmation_given?
@@ -28,16 +26,11 @@ class User < ApplicationRecord
   has_many :phone_calls, dependent: :destroy
   has_many :tasks, dependent: :destroy
 
-  before_create :add_jti
   has_many :comments
   has_many :debts, dependent: :destroy
   has_many :conversations, dependent: :destroy
   has_many :gifts, dependent: :destroy
   has_many :reminders, dependent: :destroy
-
-  def add_jti
-    self.jti ||= SecureRandom.uuid
-  end
 
   def upcoming_tasks
     self.tasks.joins(:contact).where("contacts.archived=?", false).order(created_at: :desc).limit(10)

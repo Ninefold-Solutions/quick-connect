@@ -15,7 +15,7 @@ class AccountMiddleware
         Current.account = account
         ActsAsTenant.current_tenant = account
 
-        if account.expired? && request_path != "expired" && !env["REQUEST_PATH"].include?("sign_out")
+        if account.expired? && request_path != "expired" && !env["REQUEST_PATH"].include?("logout")
           return redirect_to("/#{account.id}/expired")
         end
       else

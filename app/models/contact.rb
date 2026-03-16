@@ -1,6 +1,4 @@
 class Contact < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   attr_accessor :relation_name
   acts_as_tenant :account
   enum :touch_back_after, ["30_days", "60_days", "90_days", "100_days", "do_not_track"]

@@ -68,8 +68,6 @@ Relation.insert_all([{ name: "significant other", default: "TRUE" }, { name: "Hu
   def create_user
     ActsAsTenant.with_tenant(account) do
       user.account = account
-      user.jti ||= SecureRandom.uuid
-      user.skip_confirmation! if user.respond_to?(:skip_confirmation!)
       user.save!
     end
     account.update!(owner_id: user.id)

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
-  post "/register", to: "registrations#create"
+  # Authentication routes
+  get    "login",  to: "sessions#new",     as: :login
+  post   "login",  to: "sessions#create"
+  delete "logout", to: "sessions#destroy", as: :logout
+  get    "signup", to: "registrations#new", as: :signup
+  post   "signup", to: "registrations#create"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # Almost every application defines a route for the root path ("/") at the top of this file.

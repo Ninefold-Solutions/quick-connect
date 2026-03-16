@@ -3,9 +3,7 @@ regular:
   last_name: Dhawan
   email: hansika.kalra171@gmail.com
   account: hansika
-  confirmed_at: 2021-03-18
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
-  jti: 70105030-d9c8-11ec-9d64-0242ac120006
+  password_digest: <%= BCrypt::Password.create('password') %>
   admin: true
 
 actor:
@@ -13,8 +11,7 @@ actor:
   last_name: Agnihotri
   email: rachita@crownstack.com
   account: hansika
-  confirmed_at: 2021-03-18
-  jti: 81643806-d9c8-11ec-9d64-0242ac120005
+  password_digest: <%= BCrypt::Password.create('password') %>
   admin: false
   
 unconfirmed:
@@ -22,8 +19,7 @@ unconfirmed:
   last_name: C. Dhawan (Member)
   email: unconfirmed@crownstack.com
   account: hansika
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
-  jti: 87044b98-d9c8-11ec-9d64-0242ac120004
+  password_digest: <%= BCrypt::Password.create('password') %>
   admin: false
 
 active:
@@ -31,9 +27,7 @@ active:
   last_name: activated
   email: activated@gmail.com
   account: hansika
-  confirmed_at: 2021-03-18
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
-  jti: 70105030-d9c8-11ec-9d64-0242ac120003
+  password_digest: <%= BCrypt::Password.create('password') %>
   admin: false
 
 
@@ -43,9 +37,7 @@ deactivated:
   last_name: deactivated
   email: deactivated@gmail.com
   account: hansika
-  confirmed_at: 2021-03-18
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
-  jti: 70105030-d9c8-11ec-9d64-0242ac120001
+  password_digest: <%= BCrypt::Password.create('password') %>
   admin: false
   permission: 1
   

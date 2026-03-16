@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   include Pagy::Backend
 
-  respond_to :html
   protect_from_forgery with: :null_session
   protect_from_forgery with: :exception, unless: :json_request?
 
@@ -20,6 +19,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
   rescue_from Pagy::OverflowError, with: :record_not_found
   before_action :set_redirect_path, unless: :user_signed_in?
+
+  helper_method :current_user, :user_signed_in?
 
   etag {
     if Rails.env == "production" or Rails.env == "staging"
@@ -79,20 +80,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_in_path_for(resource)
-    if http_request?
-      if params[:redirect_to].present?
-        store_location_for(resource, params[:redirect_to])
-      else
-        landing_path
-      end
-    end
-  end
-
-  def after_sign_out_path_for(resource)
-    root_path(script_name: "")
-  end
-
   def user_not_authorized
     if http_request?
       redirect_to(request.referrer || landing_path)
@@ -122,8 +109,9 @@ class ApplicationController < ActionController::Base
   end
 
   def invalid_token
-    sign_out(current_user) if current_user
-    redirect_to new_user_session_path, alert: "Your session has expired. Please login again."
+    reset_session
+    cookies.delete(:remember_token)
+    redirect_to login_path, alert: "Your session has expired. Please login again."
   end
 
   def render_timeline(partial, collection:, cached: true)
@@ -138,6 +126,32 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_user
+    @current_user ||= if session[:user_id]
+      User.find_by(id: session[:user_id])
+    elsif cookies.signed[:remember_token]
+      user = User.find_by(id: cookies.signed[:remember_token])
+      if user
+        session[:user_id] = user.id
+        user
+      end
+    end
+  end
+
+  def user_signed_in?
+    current_user.present?
+  end
+
+  def authenticate_user!
+    unless user_signed_in?
+      if json_request?
+        head 401
+      else
+        redirect_to login_path, alert: "You need to sign in to continue."
+      end
+    end
+  end
+
   def json_request?
     request.format.json? and request.url.include?("api")
   end
@@ -146,16 +160,10 @@ class ApplicationController < ActionController::Base
     !json_request?
   end
 
-  # Use api_user Devise scope for JSON access
-  def authenticate_user!(*args)
-    super and return unless args.blank?
-    json_request? ? authenticate_api_user! : super
-  end
-
   def invalid_auth_token
     respond_to do |format|
       format.html {
-        redirect_to new_user_session_path,
+        redirect_to login_path,
                     error: "Login invalid or expired"
       }
       format.json { head 401 }

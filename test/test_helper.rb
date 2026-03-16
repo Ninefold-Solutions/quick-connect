@@ -11,6 +11,13 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  include Devise::Test::IntegrationHelpers
   ActiveRecord::Migration.maintain_test_schema!
+
+  def sign_in(user)
+    post login_path, params: { user: { email: user.email, password: "password" } }
+  end
+
+  def sign_out
+    delete logout_path
+  end
 end

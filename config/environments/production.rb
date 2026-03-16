@@ -71,10 +71,6 @@ Rails.application.configure do
 
   config.default_url_options = { host: "connect.quicklabs.in" }
 
-  # Disable email delivery
-  config.action_mailer.perform_deliveries = false
-  config.action_mailer.default_url_options = { host: "connect.quicklabs.in" }
-
   # Use a different cache store in production.
   config.cache_store = :solid_cache_store
 

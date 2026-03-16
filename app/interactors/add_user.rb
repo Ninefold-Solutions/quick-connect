@@ -25,7 +25,6 @@ class AddUser < Patterns::Service
       account: actor.account,
       permission: "true"
     )
-    user.skip_confirmation! if user.respond_to?(:skip_confirmation!)
     user.save!
   end
 
