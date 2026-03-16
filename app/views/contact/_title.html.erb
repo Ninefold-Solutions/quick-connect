@@ -16,16 +16,15 @@
 
       <div class="flex mt-4 sm:mt-0 ml-4">
         <% if policy(contact).edit? %>
-          <div class="relative pr-4 inline-block text-left" x-data="{ open: false }" data-controller="followup-after">
+          <div class="relative pr-4 inline-block text-left" data-controller="dropdown followup-after">
             <div data-followup-after-target="touched" id="touch-back">
               <%= render partial: "contact/touch_back", locals: { contact: contact }, formats: [:turbo_stream] %>
             </div>
 
             <div
-              x-show="open"
-              @click.outside="open = false"
+              data-dropdown-target="menu"
               class="
-                absolute right-0 z-10 mt-2 w-56 origin-top-right rounded bg-white shadow-lg
+                hidden absolute right-0 z-10 mt-2 w-56 origin-top-right rounded bg-white shadow-lg
                 focus:outline-none
               "
               role="menu"

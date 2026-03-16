@@ -61,13 +61,13 @@
               <!-- This example requires Tailwind CSS v2.0+ -->
               <div class="absolute inset-y-0 right-0 items-center flex-shrink-0  pl-2 sm:static sm:inset-auto ">
                 <!-- Profile dropdown -->
-                <div @click.away="open = false" class="relative z-20 ml-3" x-data="{ open: false }">
+                <div class="relative z-20 ml-3" data-controller="dropdown">
                   <div>
-                    <button @click="open = !open" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                    <button data-action="click->dropdown#toggle" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
                       <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
                     </button>
                   </div>
-                  <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg">
+                  <div data-dropdown-target="menu" class="hidden absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg">
                     <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded shadow-lg w-60 " role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                       <div class= "px-4 py-3">
                         <p class="text-sm">Signed in as</p>
