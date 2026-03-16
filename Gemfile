@@ -73,9 +73,6 @@ end
 
 gem "tailwindcss-rails"
 
-# Database-backed Active Job backend [https://github.com/basecamp/solid_queue]
-gem "solid_queue"
-
 # A database-backed ActiveSupport::Cache::Store [https://github.com/rails/solid_cache]
 gem "solid_cache"
 

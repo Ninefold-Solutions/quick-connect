@@ -60,6 +60,4 @@ Rails.application.configure do
   # Disable email delivery
   config.action_mailer.perform_deliveries = false
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-
-  config.active_job.queue_adapter = :solid_queue
 end
