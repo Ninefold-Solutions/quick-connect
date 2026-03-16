@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@link) do %>
   <%= form_with(model: @link, id: dom_id(@link), url: contact_social_path(@contact)) do |form| %>
-    <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-8">
+    <main class="max-w-lg px-4 pt-4 pb-12 mx-auto space-y-4 lg:pb-8">
       <%= render "shared/form_messages", resource: @link, message: local_assigns[:message] %>
 
       <div>

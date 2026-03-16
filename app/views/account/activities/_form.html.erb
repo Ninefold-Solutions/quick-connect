@@ -1,5 +1,5 @@
 <%= tailwind_form_with(model: activity, id: dom_id(activity), url: account_activities_path) do |form| %>
-  <div class="space-y-6">
+  <div class="space-y-4">
     <%= render "shared/form_messages", resource: activity, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Activity", subtitle: "You can define custom Activity which can be applied on contacts." %>
 

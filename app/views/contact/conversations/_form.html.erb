@@ -1,5 +1,5 @@
 <%= tailwind_form_with(model: conversation, id: dom_id(conversation), url: contact_conversations_path) do |form| %>
-  <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+  <main class="max-w-lg px-4 pt-4 pb-12 mx-auto space-y-4 lg:pb-16">
     <%= render "shared/form_messages", resource: conversation, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Conversation", subtitle: "A Conversation can be added to a contact which can help you remember important calls. " %>
 

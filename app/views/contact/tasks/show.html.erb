@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <% @task = @task.decorate %>
 
-<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16">
+<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto space-y-4 lg:pb-16">
   <div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
     <div class="flex-1 min-w-0">
       <h3 class="text-2xl font-bold leading-tight text-gray-900"><%= @task.display_title %></h3>
@@ -43,9 +43,9 @@
   <% end %>
 
   <div id="task-show-container">
-    <% if @task.completed? %>
-      <div class="p-4 rounded bg-<%= @task.display_status %>-100">
-        <div class="flex">
+    <div class="p-4 rounded bg-<%= @task.display_status %>-100">
+      <div class="flex">
+        <% if @task.completed? %>
           <div class="flex-shrink-0">
             <!-- Heroicon name: solid/check-circle -->
             <svg
@@ -62,7 +62,6 @@
               />
             </svg>
           </div>
-
           <div class="flex-1 ml-3 sm:flex sm:justify-between">
             <p class="text-sm font-normal text-green-800">
               This task has been completed on <%= display_date(@task.updated_at) %>
@@ -83,12 +82,8 @@
               </p>
             <% end %>
           </div>
-        </div>
-      </div>
-    <% else %>
-      <!-- This example requires Tailwind CSS v2.0+ -->
-      <div class="p-4 rounded bg-<%= @task.display_status %>-100">
-        <div class="flex">
+        <% else %>
+          <!-- This example requires Tailwind CSS v2.0+ -->
           <div class="flex-shrink-0">
             <!-- Heroicon name: solid/information-circle -->
             <svg
@@ -105,7 +100,6 @@
               />
             </svg>
           </div>
-
           <div class="flex-1 ml-3 sm:flex sm:justify-between">
             <p class="text-sm text-blue-800">
               This task has not been completed.
@@ -126,8 +120,8 @@
               </p>
             <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </main>

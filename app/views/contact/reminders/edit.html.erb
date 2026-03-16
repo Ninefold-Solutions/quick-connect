@@ -8,7 +8,7 @@
 </script>
 
 <%= tailwind_form_with(model: @reminder, id: dom_id(@reminder), url: contact_reminder_path(@contact, @reminder)) do |form| %>
-  <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+  <main class="max-w-lg px-4 pt-4 pb-12 mx-auto space-y-4 lg:pb-16">
     <%= render "shared/form_messages", resource: @reminder, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Edit Reminder", subtitle: "Edit reminder for #{@reminder.contact.decorate.display_name}" %>
     <%= form.text_field :title, "Please remind me to…", class: " form-text-field " %>

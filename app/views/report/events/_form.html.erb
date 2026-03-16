@@ -8,7 +8,7 @@
           </h3>
 
           <%= form_with url: events_reports_path, method: :get do |form| %>
-            <main class="max-w-lg pt-6 pb-12 mx-auto space-y-4 lg:pb-16">
+            <main class="max-w-lg pt-4 pb-12 mx-auto space-y-4 lg:pb-16">
               <div>
                 <label for="date" class="block text-sm font-medium text-gray-700"> Contact </label>
                 <%= form.collection_select(:eventable_id, Contact.all.decorate, :id, :display_name, { :prompt => "Select Contact", :selected => (params["eventable_id"] if !params["eventable_id"].blank?) }, :class => "form-text-field mt-1") %>

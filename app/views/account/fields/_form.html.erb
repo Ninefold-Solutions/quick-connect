@@ -1,5 +1,5 @@
 <%= tailwind_form_with(model: field, id: dom_id(field), url: account_fields_path) do |form| %>
-  <div class="space-y-6">
+  <div class="space-y-4">
     <%= render "shared/form_messages", resource: field, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Conversation Type", subtitle: "You can define custom field which can be applied on contacts." %>
     <%= form.text_field :name, "Field Type", autocomplete: "off", class: "form-text-field" %>
