@@ -57,8 +57,6 @@ Rails.application.routes.draw do
     patch "/password", to: "user#update_password", as: "change_password"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
-  patch "/settings/preferences/toggle_email_notifications", to: "user#toggle_email_notifications", as: "toggle_email_notifications"
-
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
 
   patch "/contacts/:contact_id/tasks/:id/toggle" => "contact/tasks#toggle", as: "toggle_task"

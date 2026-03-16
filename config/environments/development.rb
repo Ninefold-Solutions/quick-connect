@@ -28,15 +28,6 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
-  # Make template changes take effect immediately.
-  config.action_mailer.perform_caching = false
-
-  # Set localhost to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -64,12 +55,11 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = false
 
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-
   config.default_url_options = { host: "localhost:3000" }
+
+  # Disable email delivery
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   config.active_job.queue_adapter = :solid_queue
 end

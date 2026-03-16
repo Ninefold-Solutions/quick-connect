@@ -10,8 +10,9 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.nil? or !resource.persisted?
       show_errors
     else
-      set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-      redirect_to new_user_registration_path
+      sign_in(resource)
+      set_flash_message! :notice, :signed_up
+      redirect_to root_path
     end
   end
 

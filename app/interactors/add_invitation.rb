@@ -38,7 +38,7 @@ class AddInvitation < Patterns::Service
   end
 
   def invite_user
-    invite.invite!
+    invite.invite!(nil, skip_invitation: true)
   end
 
   def random_password(length = 10)

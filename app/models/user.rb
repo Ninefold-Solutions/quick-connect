@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
+         :rememberable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
   validates :jti, presence: true, on: :update
 
   normalizes :first_name, :last_name, :email, with: ->(value) { value&.strip }

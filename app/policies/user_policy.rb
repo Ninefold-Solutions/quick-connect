@@ -39,7 +39,4 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
-  def toggle_email_notifications?
-    true
-  end
 end

@@ -44,15 +44,6 @@ class InvitationsTest < ApplicationSystemTestCase
     take_screenshot
     assert_text "Thank you, invitation sent."
     assert_selector "#invitations", text: "Invite Invite1"
-    sign_out(@user)
-    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
-    link = doc.css("a").first.values.first
-    visit link
-    fill_in "user_password", with: "password"
-    fill_in "user_password_confirmation", with: "password"
-    click_on "Set password and login"
-    take_screenshot
-    assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
   end
 
   test "can not add an empty invitation" do
@@ -112,14 +103,5 @@ class InvitationsTest < ApplicationSystemTestCase
     end
     sleep(1.0)
     sign_out(@user)
-    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
-
-    link = doc.css("a").first.values.first
-    visit link
-    fill_in "user_password", with: "password"
-    fill_in "user_password_confirmation", with: "password"
-    click_on "Set password and login"
-    take_screenshot
-    assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
   end
 end

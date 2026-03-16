@@ -56,7 +56,6 @@ group :development do
   gem "memory_profiler"
   gem "rack-mini-profiler", require: false
   gem "stackprof"
-  gem "letter_opener"
   gem "csv"
 
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]

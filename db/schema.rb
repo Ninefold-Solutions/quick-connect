@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_16_120838) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_16_130000) do
   create_table "abouts", force: :cascade do |t|
     t.string "address", default: ""
     t.string "breif", default: ""
@@ -491,7 +491,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_120838) do
     t.datetime "current_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "email", default: "", null: false
-    t.boolean "email_enabled", default: true
     t.string "encrypted_password", default: "", null: false
     t.string "first_name", default: "", null: false
     t.datetime "invitation_accepted_at", precision: nil
