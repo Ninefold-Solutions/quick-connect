@@ -43,10 +43,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise"
 gem "devise_invitable"
 
-# Payments
 gem "pagy", "8.4.0"
-gem "pay", "6.7.1"
-gem "stripe", "~> 8.6"
 
 gem "font-awesome-rails"
 

@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  pay_customer
-
   # Include default devise modules.
   require "securerandom"
   # Include default devise modules. Others available are:

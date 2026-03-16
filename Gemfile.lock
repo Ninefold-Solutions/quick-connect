@@ -235,8 +235,6 @@ GEM
     orm_adapter (0.5.0)
     ostruct (0.6.3)
     pagy (8.4.0)
-    pay (6.7.1)
-      rails (>= 6.0.0)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -345,7 +343,6 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.2.0)
-    stripe (8.7.0)
     tailwindcss-rails (4.4.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
@@ -405,7 +402,6 @@ DEPENDENCIES
   listen (~> 3.3)
   memory_profiler
   pagy (= 8.4.0)
-  pay (= 6.7.1)
   propshaft
   puma
   rack-cors
@@ -418,7 +414,6 @@ DEPENDENCIES
   sqlite3
   stackprof
   stimulus-rails
-  stripe (~> 8.6)
   tailwindcss-rails
   turbo-rails
   tzinfo-data
@@ -505,7 +500,6 @@ CHECKSUMS
   orm_adapter (0.5.0) sha256=aa5d0be5d540cbb46d3a93e88061f4ece6a25f6e97d6a47122beb84fe595e9b9
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   pagy (8.4.0) sha256=21dd68453d24e752a1bc81aef5b6f1346ff95e1c2e5b53448355f7856f3ef901
-  pay (6.7.1) sha256=aaa8c3f81fc495c322901a076c9f0f2c05284ab59f1ecd0181ea7bceaf82fc0c
   pp (0.6.3) sha256=2951d514450b93ccfeb1df7d021cae0da16e0a7f95ee1e2273719669d0ab9df6
   prettyprint (0.2.0) sha256=2bc9e15581a94742064a3cc8b0fb9d45aae3d03a1baa6ef80922627a0766f193
   prism (1.9.0) sha256=7b530c6a9f92c24300014919c9dcbc055bf4cdf51ec30aed099b06cd6674ef85
@@ -547,7 +541,6 @@ CHECKSUMS
   stackprof (0.2.28) sha256=4ec2ace02f386012b40ca20ef80c030ad711831f59511da12e83b34efb0f9a04
   stimulus-rails (1.3.4) sha256=765676ffa1f33af64ce026d26b48e8ffb2e0b94e0f50e9119e11d6107d67cb06
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
-  stripe (8.7.0) sha256=632e179ea15f06573fe3d9d9a9be62089c786596db716c4bfdd282ecd1878f13
   tailwindcss-rails (4.4.0) sha256=efa2961351a52acebe616e645a81a30bb4f27fde46cc06ce7688d1cd1131e916
   tailwindcss-ruby (4.2.0-arm64-darwin) sha256=809776c7b784327dc526e041e52341adb46b6416d59ba3d86886adc9a6baaad0
   tailwindcss-ruby (4.2.0-x86_64-linux-gnu) sha256=5d5822135ba81bbd81cb9a81c479bea9e5954e39d4a31f5f4dafbef952993baf

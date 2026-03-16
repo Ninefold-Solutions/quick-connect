@@ -87,9 +87,6 @@ Rails.application.routes.draw do
       get "/activate", to: "invitations#activate", as: "activate"
     end
   end
-  namespace :purchase do
-    resources :checkouts
-  end
   scope "archive" do
     get "/contacts", to: "contacts#archived", as: "archived_contacts"
     get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
@@ -104,17 +101,6 @@ Rails.application.routes.draw do
   end
   get "/contact/:id", to: "contacts#touched", as: "touched_contact"
   get "/contact/:id/update_touched", to: "contacts#update_touched", as: "update_touched_contact"
-  get "account/billing", to: "account/billing#index", as: "billing"
-
-  namespace :purchase do
-    resources :checkouts
-  end
-
-  # purchase routes
-  get "success", to: "purchase/checkouts#success", as: "success"
-  get "expired", to: "purchase/billings#expired", as: "expired"
-  post "billings", to: "purchase/billings#create", as: "billing_portal"
-
   resources :collections
   get "/search/collection", to: "search#collection"
   post "collections/:collection_id/add/:batch_id", to: "collections#add_group", as: "collection_add_batch"
