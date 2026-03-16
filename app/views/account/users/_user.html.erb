@@ -1,12 +1,22 @@
 <%= turbo_frame_tag dom_id(user) do %>
   <li class="flex py-4 border-b border-gray-200">
-    <div class="flex items-center w-full ml-3 ">
-      <p class=" text-sm font-normal text-gray-900 leading-none " style="width:50%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-bottom; ">
-        <%= "#{user.first_name} #{user.last_name}".titleize %></p>
-      <p class="text-sm font-normal text-gray-900 " style="width:40%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-top;  ">
-        <%= user.email.downcase %></p>
+    <div class="flex items-center w-full ml-3">
+      <p
+        class="text-sm font-normal text-gray-900 leading-none"
+        style="width:50%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-bottom; "
+      >
+        <%= "#{user.first_name} #{user.last_name}".titleize %>
+      </p>
+
+      <p
+        class="text-sm font-normal text-gray-900"
+        style="width:40%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-top;  "
+      >
+        <%= user.email.downcase %>
+      </p>
     </div>
-    <div class="flex justify-end " style="width:5%;">
+
+    <div class="flex justify-end" style="width:5%;">
       <% if user.permission == "true" %>
         <%= link_to "Deactivate", account_user_deactivate_path(user), class: "btn-inline-delete", data: {
                                                                                     controller: "confirmation-fetch",
