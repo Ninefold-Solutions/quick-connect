@@ -25,7 +25,7 @@
   }
 
   .svg-icon {
-    @apply text-gray-400 group-hover:text-gray-500 shrink-0 -ml-1 mr-3 h-6 w-6;
+    @apply text-gray-400 group-hover:text-gray-500 shrink-0 -ml-1 mr-3 h-6 w-6 content-center;
   }
 
   .selected {
