@@ -5,9 +5,7 @@
         <%= label.name.upcase_first %>
         <button id="remove"    data-action="contact#remove_label"
  data-id=<%= label.id %> data-contact-id=<%= contact.id %> type="button" class="ml-1 cursor-pointer flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-<%= label.color %>-400 hover:bg-<%= label.color %>-200 hover:text-<%= label.color %>-400 focus:outline-none focus:bg-<%= label.color %>-400 focus:text-white">
-          <svg class="w-2 h-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
-            <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
-          </svg>
+          <i class="fa-solid fa-xmark w-2 h-2"></i>
         </button>
       </span>
     </div>
@@ -17,9 +15,7 @@
   <div class=" flex-auto ml-1" data-controller="dropdown">
     <button id="add" data-action="click->dropdown#toggle" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <!-- Heroicon name: solid/plus -->
-      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-      </svg>
+      <i class="fa-solid fa-plus w-4 h-4" aria-hidden="true"></i>
     </button>
     <div data-dropdown-target="menu" id="labels-menu"
           class="hidden absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded shadow-lg focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
