@@ -1,15 +1,23 @@
-<div class="block xl:col-span-6 mt-1  ">
+<div class="block xl:col-span-6 mt-1">
   <% unless text.blank? %>
-    <dt class="text-sm  text-gray-700  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
-      <p data-target="show-more.truncate" class=" -mt-4 whitespace-pre-line">
-        <%=text.truncate(truncate_length).upcase_first %>
+    <dt class="text-sm text-gray-700" style="overflow-wrap: break-word;  " data-controller="show-more">
+      <p data-target="show-more.truncate" class="-mt-4 whitespace-pre-line">
+        <%= text.truncate(truncate_length).upcase_first %>
       </p>
-      <p  data-target="show-more.full" class="hidden mt-2 whitespace-pre-line"> <%= text.upcase_first %></p>
+
+      <p data-target="show-more.full" class="hidden mt-2 whitespace-pre-line"> <%= text.upcase_first %></p>
+
       <% if text.strip.length > truncate_length %>
-        <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+        <button
+          class="flex btn-inline-edit text-blue-800 hover:text-blue-600"
+          data-action="click->show-more#toggle"
+          data-target="show-more.button"
+        >
+          Show more
+        </button>
       <% end %>
     </dt>
   <% else %>
-    <dt class="text-xs  text-gray-600">-</dt>
+    <dt class="text-xs text-gray-600">-</dt>
   <% end %>
 </div>
