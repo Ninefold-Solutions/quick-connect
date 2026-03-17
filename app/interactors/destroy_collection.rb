@@ -1,4 +1,4 @@
-class DestroyCollection < Patterns::Service
+class DestroyCollection < ApplicationService
   def initialize(actor, collection)
     @collection = collection
     @actor = actor

@@ -1,4 +1,4 @@
-class TouchedContact < Patterns::Service
+class TouchedContact < ApplicationService
   def initialize(contact, actor)
     @contact = contact
     @actor = actor

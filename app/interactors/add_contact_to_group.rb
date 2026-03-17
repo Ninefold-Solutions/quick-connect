@@ -1,4 +1,4 @@
-class AddContactToGroup < Patterns::Service
+class AddContactToGroup < ApplicationService
   def initialize(batch, actor, contact)
     @batch = batch
     @actor = actor

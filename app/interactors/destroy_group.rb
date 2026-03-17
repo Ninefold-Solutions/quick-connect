@@ -1,4 +1,4 @@
-class DestroyGroup < Patterns::Service
+class DestroyGroup < ApplicationService
   def initialize(actor, group)
     @group = group
     @actor = actor

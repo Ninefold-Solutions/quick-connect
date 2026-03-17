@@ -1,4 +1,4 @@
-class AddReminder < Patterns::Service
+class AddReminder < ApplicationService
   def initialize(params, actor, contact)
     @reminder = Reminder.new params
     @actor = actor

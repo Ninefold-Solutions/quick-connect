@@ -1,4 +1,4 @@
-class AddGift < Patterns::Service
+class AddGift < ApplicationService
   def initialize(params, actor, contact)
     @gift = Gift.new params
     @actor = actor

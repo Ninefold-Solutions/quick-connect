@@ -1,4 +1,4 @@
-class AddUser < Patterns::Service
+class AddUser < ApplicationService
   def initialize(params, actor)
     @params = params
     @actor = actor

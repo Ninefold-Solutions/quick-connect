@@ -1,4 +1,4 @@
-class SignUp < Patterns::Service
+class SignUp < ApplicationService
   require "securerandom"
 
   def initialize(user)

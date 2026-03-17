@@ -1,4 +1,4 @@
-class AddConversation < Patterns::Service
+class AddConversation < ApplicationService
   def initialize(params, actor, contact)
     @conversation = Conversation.new params
     @actor = actor

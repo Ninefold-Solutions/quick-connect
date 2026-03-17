@@ -1,4 +1,4 @@
-class DestroyContactDetail < Patterns::Service
+class DestroyContactDetail < ApplicationService
   def initialize(contact, actor, detail)
     @detail = detail
     @contact = contact

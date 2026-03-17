@@ -1,4 +1,4 @@
-class ActivateUser < Patterns::Service
+class ActivateUser < ApplicationService
   def initialize(actor, user)
     @actor = actor
     @user = user

@@ -1,4 +1,4 @@
-class RemoveContactFromGroup < Patterns::Service
+class RemoveContactFromGroup < ApplicationService
   def initialize(batch, actor, contact)
     @batch = batch
     @actor = actor

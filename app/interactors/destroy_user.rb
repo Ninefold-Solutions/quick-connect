@@ -1,4 +1,4 @@
-class DestroyUser < Patterns::Service
+class DestroyUser < ApplicationService
   def initialize(user)
     @user = user
   end

@@ -1,4 +1,4 @@
-class CreateContact < Patterns::Service
+class CreateContact < ApplicationService
   CHARS = ("0".."9").to_a + ("A".."Z").to_a + ("a".."z").to_a
 
   def initialize(params, actor, groups)

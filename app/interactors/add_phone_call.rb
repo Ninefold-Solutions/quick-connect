@@ -1,4 +1,4 @@
-class AddPhoneCall < Patterns::Service
+class AddPhoneCall < ApplicationService
   def initialize(params, actor, contact)
     @phone_call = PhoneCall.new params
     @actor = actor

@@ -1,4 +1,4 @@
-class ResetUser < Patterns::Service
+class ResetUser < ApplicationService
   def initialize(user)
     @user = user
   end

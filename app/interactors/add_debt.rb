@@ -1,4 +1,4 @@
-class AddDebt < Patterns::Service
+class AddDebt < ApplicationService
   def initialize(params, actor, contact)
     @debt = Debt.new params
     @actor = actor

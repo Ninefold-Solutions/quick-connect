@@ -1,4 +1,4 @@
-class AddTask < Patterns::Service
+class AddTask < ApplicationService
   def initialize(params, actor, contact)
     @task = Task.new params
     @actor = actor

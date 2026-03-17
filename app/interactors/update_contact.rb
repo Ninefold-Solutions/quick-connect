@@ -1,4 +1,4 @@
-class UpdateContact < Patterns::Service
+class UpdateContact < ApplicationService
   CHARS = ("0".."9").to_a + ("A".."Z").to_a + ("a".."z").to_a
 
   def initialize(params, contact, groups)

@@ -1,4 +1,4 @@
-class UpdateContactEvent < Patterns::Service
+class UpdateContactEvent < ApplicationService
   def initialize(contact_event, actor, params, reminder, contact)
     @contact_event = contact_event
     @actor = actor

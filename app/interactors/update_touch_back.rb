@@ -1,4 +1,4 @@
-class UpdateTouchBack < Patterns::Service
+class UpdateTouchBack < ApplicationService
   def initialize(contact, actor, touch_back_after)
     @contact = contact
     @actor = actor

@@ -1,4 +1,4 @@
-class ToggleTask < Patterns::Service
+class ToggleTask < ApplicationService
   def initialize(task, actor, contact)
     @task = task
     @actor = actor

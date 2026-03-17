@@ -1,4 +1,4 @@
-class AddDocument < Patterns::Service
+class AddDocument < ApplicationService
   def initialize(contact, params, actor)
     @contact = contact
     @document = @contact.documents.new params

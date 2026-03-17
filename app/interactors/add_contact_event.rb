@@ -1,4 +1,4 @@
-class AddContactEvent < Patterns::Service
+class AddContactEvent < ApplicationService
   def initialize(params, actor, contact, reminder)
     @contact_event = ContactEvent.new params
     @actor = actor

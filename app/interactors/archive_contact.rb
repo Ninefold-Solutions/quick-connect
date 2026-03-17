@@ -1,4 +1,4 @@
-class ArchiveContact < Patterns::Service
+class ArchiveContact < ApplicationService
   def initialize(contact, actor)
     @contact = contact
     @actor = actor

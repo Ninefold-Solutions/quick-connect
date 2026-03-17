@@ -1,4 +1,4 @@
-class AddContactActivity < Patterns::Service
+class AddContactActivity < ApplicationService
   def initialize(params, actor, contact)
     @contact_activity = ContactActivity.new params
     @actor = actor
