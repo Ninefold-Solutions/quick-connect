@@ -1,26 +1,35 @@
 <tr id="<%= dom_id document %>">
   <% document = document.decorate %>
+
   <td class="table-cell">
     <div class="text-sm text-gray-900 font-medium">
-      <a href="<%= ensure_protocol(document.link) %>" target="_blank"  class="line-clamp-2 font-medium text-gray-900 block hover:underline mt-2" target="_top">
+      <a
+        href="<%= ensure_protocol(document.link) %>"
+        target="_blank"
+        class="line-clamp-2 font-medium text-gray-900 block hover:underline mt-2"
+      >
         <%= document.decorate.display_filename %>
       </a>
     </div>
+
     <%= render partial: "shared/show_more", locals: { text: document.comments, truncate_length: 100 } %>
   </td>
+
   <td class="table-cell align-middle whitespace-nowrap">
     <% if document.contact.account.owner == document.user %>
-      You 
+      You
     <% else %>
       <a href="<%= account_invitations_path %>" class="block hover:underline" target="_top">
         <%= document.user.decorate.display_name %>
       </a>
     <% end %>
   </td>
-  <td class="table-cell whitespace-nowrap align-middle ">
+
+  <td class="table-cell whitespace-nowrap align-middle">
     <%= display_created_at(document) %>
   </td>
-  <td class="table-cell  align-middle">
+
+  <td class="table-cell align-middle">
     <% if policy([document.contact, document]).edit? %>
       <div class="flex justify-end items-center space-x-2">
         <%= edit_button(edit_contact_document_path(@contact, document)) %>

@@ -1,46 +1,55 @@
 <%= tailwind_form_with(model: contact_event, id: dom_id(contact_event), url: "/#{current_user.account.id}/contacts/#{contact.id}/contact_events") do |form| %>
-  <div class="space-y-4 px-4 pt-4  mx-auto pb-4">
+  <div class="space-y-4 px-4 pt-4 mx-auto pb-4">
     <%= render "shared/form_messages", resource: contact_event, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add Event", subtitle: "An event can be added to a contact which can help you remember important dates." %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
+
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700">
-        Date
-      </label>
+      <label for="date" class="block text-sm font-medium text-gray-700"> Date </label>
       <%= form.date_field :date, class: " cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
-    <div class="">
-      <label for="group" class="block  text-sm font-medium text-gray-700">
-        Select Group
-      </label>
-      <select  class="cursor-pointer form-text-field mt-1"   data-contact-id="<%= contact.id %>">
-        <option value="" > Select Event Category</option>
+
+    <div>
+      <label for="group" class="block text-sm font-medium text-gray-700"> Select Group </label>
+
+      <select class="cursor-pointer form-text-field mt-1" data-contact-id="<%= contact.id %>">
+        <option value="">Select Event Category</option>
+
         <% groups.decorate.each do |group| %>
-          <li > <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %>
-            <% end %>
-          </select>
-        </div>
-        <div>
-          <label for="group" class="block  text-sm font-medium text-gray-700">
-            Select Event
-          </label>
-          <div id="event">
-            <%= form.collection_select("life_event_id", events.decorate, :id, :display_name, { :prompt => "Select Event" }, :class => "cursor-pointer form-text-field mt-1") %>
-          </div>
-        </div>
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="reminder" name="reminder" value="true" type="checkbox" class="cursor-pointer focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-            <label for="remember_me" class="block ml-2 text-sm text-gray-900 cursor-pointer">
-              Add a yearly reminder for this event
-            </label>
-          </div>
-        </div>
-        <div class="flex justify-end ">
-          <%= form.submit "Add Event", class: "btn-primary" %>
-        </div>
+          <li>
+            <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %></option>
+          </li>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <label for="group" class="block text-sm font-medium text-gray-700"> Select Event </label>
+
+      <div id="event">
+        <%= form.collection_select("life_event_id", events.decorate, :id, :display_name, { :prompt => "Select Event" }, :class => "cursor-pointer form-text-field mt-1") %>
       </div>
-    <% end %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <input
+          id="reminder"
+          name="reminder"
+          value="true"
+          type="checkbox"
+          class="cursor-pointer focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        >
+
+        <label for="remember_me" class="block ml-2 text-sm text-gray-900 cursor-pointer">
+          Add a yearly reminder for this event
+        </label>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <%= form.submit "Add Event", class: "btn-primary" %>
+    </div>
   </div>
-</div>
+<% end %>

@@ -1,22 +1,29 @@
 <% batch = batches_contact.batch %>
+
 <tr id="<%= dom_id batch %>" class="h-12">
   <td class="table-cell w-full">
-    <div class="text-sm " >
-      <a href="<%= batches_path(:batch_id => batch.id, :contact_id => contact.id) %>" class="block hover:underline" target="_top">
-        <!--<a href="#" class="block hover:underline" target="_top" data-action="click->counter#increement" >-->
+    <div class="text-sm">
+      <a
+        href="<%= batches_path(:batch_id => batch.id, :contact_id => contact.id) %>"
+        class="block hover:underline"
+        target="_top"
+      >
         <%= batch.name.upcase_first %>
-      </div>
-    </td>
-    <td class="table-cell w-full">
-      <div class="text-sm  whitespace-nowrap" >
-        <%= display_date(batches_contact.created_at) %>
-      </td>
-      <td class="table-cell">
-        <div>
-          <% if policy([batches_contact.contact, batch]).destroy? %>
-            <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/groups/#{batch.id}") %>
-          <% end %>
-        </div>
-      </div>
-    </td>
-  </tr>
+      </a>
+    </div>
+  </td>
+
+  <td class="table-cell w-full">
+    <div class="text-sm whitespace-nowrap">
+      <%= display_date(batches_contact.created_at) %>
+    </div>
+  </td>
+
+  <td class="table-cell">
+    <div>
+      <% if policy([batches_contact.contact, batch]).destroy? %>
+        <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/groups/#{batch.id}") %>
+      <% end %>
+    </div>
+  </td>
+</tr>

@@ -1,6 +1,7 @@
 <main class="contact_activity z-0 flex-1 overflow-x-auto focus:outline-none">
   <%= render partial: "contact/title", locals: { contact: @contact, event: @event, labels: @labels, call: @call, contact_labels: @contact_labels } %>
-  <main class="">
+
+  <main>
     <div class="px-4 sm:px-6">
       <!-- Main 3 column grid -->
       <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
@@ -8,10 +9,11 @@
         <div class="grid grid-cols-1 gap-4 lg:col-span-2">
           <section aria-labelledby="participants_section">
             <h2 class="sr-only" id="section-1-title">About</h2>
+
             <div class="overflow-hidden bg-white">
               <div class="p-4 mt-2">
-                <!-- Description list-->
-                
+                <!-- Description list -->
+
                 <% if !@about.nil? %>
                   <%= render "about", { contact: @contact, about: @about } %>
                 <% end %>
@@ -19,16 +21,19 @@
             </div>
           </section>
         </div>
+
         <div class="grid grid-cols-1 gap-4 lg:col-span-1 xl:border-l xl:border-gray-200 h-full">
-          <section aria-labelledby="participants_section" >
-            <h2 class="sr-only" id="section-1-title">Add Social Profile Links</h2>
+          <section aria-labelledby="participants_section">
+            <h2 class="sr-only">Add Social Profile Links</h2>
+
             <div class="overflow-hidden bg-white">
               <div class="px-8">
                 <div class="items-center flex">
                   <%= render partial: "contact/links/form", locals: { contact: @contact, link: @link }, cached: true %>
                 </div>
+
                 <div class="mt-1 items-center">
-                  <ul class="space-y-4" id="contact_links" >
+                  <ul class="space-y-4" id="contact_links">
                     <%= render partial: "contact/links/link", collection: @links, as: :social, cached: false %>
                   </ul>
                 </div>
@@ -39,5 +44,4 @@
       </div>
     </div>
   </main>
-</div>
 </main>

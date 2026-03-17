@@ -1,4 +1,4 @@
-  <%= turbo_frame_tag "user_form" do %>
+<%= turbo_frame_tag "user_form" do %>
   <%= tailwind_form_with(model: user, id: dom_id(user), url: account_users_path) do |f| %>
     <div class="space-y-4">
       <%= render "shared/form_messages", resource: user, message: local_assigns[:message] %>
@@ -7,9 +7,10 @@
       <%= f.text_field :last_name, " Last Name", autocomplete: "off", class: "form-text-field" %>
       <%= f.text_field :email, "Email Address", autocomplete: "off", class: "form-text-field" %>
       <%= f.password_field :password, "Password", autocomplete: "new-password", class: "form-text-field" %>
+
       <div class="flex justify-end pb-8">
         <%= f.submit "Save", class: "btn-primary" %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>

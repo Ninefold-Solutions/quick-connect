@@ -4,20 +4,26 @@
       <div class="flex-shrink-0">
         <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
       </div>
+
       <div>
         <div class="text-sm">
           <%= conversation.user.decorate.display_name %>
+
           <span class="inline-flex items-center ml-2 px-2 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-800">
             <%= conversation.field.name.upcase_first %>
           </span>
         </div>
+
         <%= render partial: "shared/show_more", locals: { text: conversation.body, truncate_length: 500 } %>
+
         <div class="mt-2 space-x-2 text-sm inline-flex">
-         <span class="text-gray-500"><%= display_date(conversation.date) %></span>
+          <span class="text-gray-500"><%= display_date(conversation.date) %></span>
+
           <div class="space-x-1 pl-4">
             <% if policy([conversation.contact, conversation]).edit? %>
               <%= edit_button(edit_contact_conversation_path(@contact, conversation)) %>
             <% end %>
+
             <% if policy([conversation.contact, conversation]).destroy? %>
               <%= delete_button(contact_conversation_path(@contact, conversation)) %>
             <% end %>

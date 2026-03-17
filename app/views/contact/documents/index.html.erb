@@ -1,10 +1,11 @@
 <main class="relative z-0 flex-1 overflow-x-auto focus:outline-none">
   <%= render partial: "contact/title", locals: { contact: @contact, labels: @labels, event: @event, call: @call, contact_labels: @contact_labels } %>
+
   <main class="pb-8">
     <!-- Main 3 column grid -->
-    <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
+    <div class="grid items-start grid-cols-1 lg:grid-cols-3">
       <!-- Left column -->
-      <div class="grid grid-cols-1  lg:col-span-2">
+      <div class="grid grid-cols-1 lg:col-span-2">
         <section aria-labelledby="participants_section">
           <div class="overflow-hidden bg-white">
             <div class="w-full overflow-hidden" data-controller="infinite-scroll">
@@ -14,21 +15,26 @@
                     <th scope="col" class="w-full table-head">
                       Document
                     </th>
-                    <th scope="col" class="table-head ">
+
+                    <th scope="col" class="table-head">
                       Added by
                     </th>
+
                     <th scope="col" class="table-head">
                       Added at
                     </th>
+
                     <th scope="col" class="table-head">
                       Action
                     </th>
                   </tr>
                 </thead>
+
                 <tbody class="table-body" id="documents" data-infinite-scroll-target="entries">
                   <%= render partial: "document", collection: @documents, as: :document, cached: false %>
                 </tbody>
               </table>
+
               <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
                 <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
               </div>
@@ -36,6 +42,7 @@
           </div>
         </section>
       </div>
+
       <% if policy([@contact, Document]).create? %>
         <!-- Right column -->
         <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
@@ -50,6 +57,6 @@
       <% end %>
     </div>
   </main>
-  <div class="pt-4 pl-16 pr-16">
-  </div>
+
+  <div class="pt-4 pl-16 pr-16"></div>
 </main>

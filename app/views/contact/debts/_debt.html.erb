@@ -2,30 +2,36 @@
   <td class="table-cell w-full">
     <%= render partial: "shared/show_more", locals: { text: debt.title, truncate_length: 100 } %>
   </td>
+
   <td class="table-cell w-full">
-    <div class="text-sm  whitespace-nowrap">
-      <% if debt.owed_by === "contact" %>
-        <span class="font-normal "><%= debt.contact.decorate.display_name %></span>
-      <% else %>
-        <span class="font-normal ">You</span>
-      <% end %>
+    <div class="text-sm whitespace-nowrap">
+      <span class="font-normal">
+        <% if debt.owed_by === "contact" %>
+          <%= debt.contact.decorate.display_name %>
+        <% else %>
+          You
+        <% end %>
+      </span>
     </div>
   </td>
+
   <td class="table-cell w-full">
     <span><%= debt.amount.upcase_first %></span>
-  </div>
-</td>
-<td class="table-cell whitespace-nowrap">
-  <div class=" space-x-2 text-sm">
-   <span class=""><%= display_date(debt.due_date) %></span>
   </td>
+
+  <td class="table-cell whitespace-nowrap">
+    <div class="space-x-2 text-sm">
+      <span><%= display_date(debt.due_date) %></span>
+    </div>
+  </td>
+
   <td class="table-cell whitespace-nowrap space-x-1">
     <% if policy([debt.contact, debt]).edit? %>
       <%= edit_button(edit_contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
     <% end %>
+
     <% if policy([debt.contact, debt]).destroy? %>
       <%= delete_button(contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
     <% end %>
-  </div>
-</td>
+  </td>
 </tr>
