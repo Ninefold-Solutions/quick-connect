@@ -27,9 +27,6 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem "rack-cors"
-gem "valid_url"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
 gem "bootsnap", require: false
@@ -39,29 +36,23 @@ gem "rails-patterns"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
+gem "tailwindcss-rails"
+
+# A database-backed ActiveSupport::Cache::Store [https://github.com/rails/solid_cache]
+gem "solid_cache"
+
 # authentication
 gem "bcrypt"
-
 gem "pagy", "8.4.0"
-
 gem "font-awesome-rails"
+gem "csv"
+
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "listen", "~> 3.3"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  gem "memory_profiler"
   gem "rack-mini-profiler", require: false
-  gem "stackprof"
-  gem "csv"
-
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-  gem "derailed_benchmarks"
 end
 
 group :test do
@@ -70,8 +61,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "tailwindcss-rails"
-
-# A database-backed ActiveSupport::Cache::Store [https://github.com/rails/solid_cache]
-gem "solid_cache"
 
