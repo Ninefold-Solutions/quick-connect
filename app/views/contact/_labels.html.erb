@@ -1,11 +1,11 @@
 <% if contact_labels.load.size > 0 %>
   <% contact_labels.uniq.each do |label| %>
-    <% badge_classes = "inline-flex items-center rounded-sm px-1.5 py-0.5 text-xs border font-medium ml-2 border-#{label.color}-200 bg-#{label.color}-100 text-#{label.color}-800" %>
-    <% remove_button_classes = "ml-1 cursor-pointer flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-#{label.color}-400 hover:bg-#{label.color}-200 hover:text-#{label.color}-400 focus:outline-none focus:bg-#{label.color}-400 focus:text-white" %>
+    <% badge_classes = "inline-flex items-center gap-0.5 rounded-sm px-1.5 py-0.5 text-xs border font-medium ml-2 border-#{label.color}-200 bg-#{label.color}-100 text-#{label.color}-800" %>
+    <% remove_button_classes = "ml-0.5 cursor-pointer flex-shrink-0 h-4 w-4 rounded-full inline-flex items-center justify-center leading-none text-#{label.color}-400 hover:bg-#{label.color}-200 hover:text-#{label.color}-400 focus:outline-none focus:bg-#{label.color}-400 focus:text-white" %>
 
     <div id="<%= dom_id(label) %>">
       <span class="<%= badge_classes %>">
-        <%= label.name.upcase_first %>
+        <span class="leading-none"><%= label.name.upcase_first %></span>
 
         <button
           id="remove"
@@ -15,7 +15,7 @@
           type="button"
           class="<%= remove_button_classes %>"
         >
-          <i class="fa-solid fa-xmark w-2 h-2"></i>
+          <i class="fa-solid fa-xmark fa-xs leading-none" aria-hidden="true"></i>
         </button>
       </span>
     </div>
