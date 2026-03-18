@@ -19,7 +19,7 @@
                 </div>
 
                 <ul class="space-y-4" id="conversations" data-infinite-scroll-target="entries">
-                  <%= render partial: "conversation", collection: @conversations, as: :conversation, cached: false %>
+                  <%= render partial: "conversation", collection: @conversations, as: :conversation, cached: false, locals: { contact: @contact } %>
                 </ul>
               </div>
             </div>
@@ -38,7 +38,7 @@
 
               <div class="overflow-hidden bg-white">
                 <div class="px-4">
-                  <%= render partial: "form", locals: { conversation: @conversation, fields: @fields } %>
+                  <%= render partial: "form", locals: { conversation: @conversation, fields: @fields} %>
                 </div>
               </div>
             </section>

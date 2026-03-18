@@ -9,7 +9,12 @@
         <div class="text-sm">
           <%= conversation.user.decorate.display_name %>
 
-          <span class="inline-flex items-center ml-2 px-2 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-800">
+          <span
+            class="
+              inline-flex items-center rounded-sm px-1.5 py-0.5 text-xs border font-medium ml-2 border-gray-200
+              bg-gray-100 text-gray-800
+            "
+          >
             <%= conversation.field.name.upcase_first %>
           </span>
         </div>
@@ -21,11 +26,11 @@
 
           <div class="space-x-1 pl-4">
             <% if policy([conversation.contact, conversation]).edit? %>
-              <%= edit_button(edit_contact_conversation_path(@contact, conversation)) %>
+              <%= edit_button(edit_contact_conversation_path(contact, conversation)) %>
             <% end %>
 
             <% if policy([conversation.contact, conversation]).destroy? %>
-              <%= delete_button(contact_conversation_path(@contact, conversation)) %>
+              <%= delete_button(contact_conversation_path(contact, conversation)) %>
             <% end %>
           </div>
         </div>
