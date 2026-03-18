@@ -1,10 +1,10 @@
 <% contact = contact.decorate %>
 
 <div class="px-4 py-4 sm:flex sm:justify-between sm:px-6" id="contact-header" data-turbo-prefetch="false">
-  <div class="flex flex-wrap items-baseline">
+  <div class="flex inline-flex items-baseline">
     <h1 class="text-3xl font-bold leading-tight text-gray-900"><%= contact.display_name %></h1>
 
-    <div class="flex mt-2 z-10">
+    <div class="flex mt-2 z-10 items-start justify-between gap-4">
       <div
         class="inline-flex"
         id="contact_labels"
@@ -84,17 +84,16 @@
             </label>
 
             <div>
-              <% archive = "<span class='icon-span'>
-                                                                                                                                           <!-- Heroicon name: outline/check-badge -->
-                                                                                                                                                                                                                                                                                                            <i class='fa-solid fa-box-archive h-4 w-4' aria-hidden='true'></i>
-                                                                                                                                                                                                                                                                                                            </span>" %>
-
-              <%= link_to archive.html_safe, "/#{contact.account.id}/archive/contact/#{contact.id}", class: "", data: {
-                                                                                                       controller: "confirmation tooltip",
-                                                                                                       "confirmation-message-value": "Are you sure you want to archive this contact?",
-                                                                                                       action: "confirmation#confirm",
-                                                                                                       tooltip_content: "Archive Contact",
-                                                                                                     }, title: "Archive" %>
+              <%= link_to "/#{contact.account.id}/archive/contact/#{contact.id}", class: "", data: {
+                                                                                              controller: "confirmation tooltip",
+                                                                                              "confirmation-message-value": "Are you sure you want to archive this contact?",
+                                                                                              action: "confirmation#confirm",
+                                                                                              tooltip_content: "Archive Contact",
+                                                                                            }, title: "Archive" do %>
+                <span class="icon-span">
+                  <i class="fa-solid fa-box-archive h-4 w-4" aria-hidden="true"></i>
+                </span>
+              <% end %>
             </div>
 
             <div data-controller="contact" data-contact-target="favorite" id="contact_favorite">
@@ -103,16 +102,15 @@
           </div>
         <% else %>
           <div class="inline-block flex" id="contact-relation">
-            <% restore = "<span class='icon-span'>
-                                                                                                                 <!-- Heroicon name: outline/check-badge -->
-                                                                                               <i class='fa-solid fa-box-archive h-4 w-4' aria-hidden='true'></i>
-                                                                                               </span>" %>
-
-            <%= link_to restore.html_safe, unarchive_contact_path(contact), class: "ml-4", data: {
-                                                                    controller: "confirmation",
-                                                                    "confirmation-message-value": "Are you sure you want to restore this contact?",
-                                                                    action: "confirmation#confirm",
-                                                                  }, title: "Restore" %>
+            <%= link_to unarchive_contact_path(contact), class: "ml-4", data: {
+                                                                     controller: "confirmation",
+                                                                     "confirmation-message-value": "Are you sure you want to restore this contact?",
+                                                                     action: "confirmation#confirm",
+                                                                   }, title: "Restore" do %>
+              <span class="icon-span">
+                <i class="fa-solid fa-box-archive h-4 w-4" aria-hidden="true"></i>
+              </span>
+            <% end %>
           </div>
         <% end %>
       </div>

@@ -53,7 +53,7 @@ module ApplicationHelper
   end
 
   def remove_button(path)
-    out = link_to "Remove", path, class: "btn-inline-delete", data: {
+    out = button_to "Remove", path, class: "btn-inline-delete", data: {
                                     controller: "confirmation",
                                     "turbo-method": :delete,
                                     "confirmation-message-value": "Are you sure you want to remove this?",
@@ -64,7 +64,7 @@ module ApplicationHelper
   end
 
   def clear_button(path)
-    out = link_to "Clear", path, class: "btn-inline-delete", data: {
+    out = button_to "Clear", path, class: "btn-inline-delete", data: {
                                    controller: "confirmation",
                                    "turbo-method": :delete,
                                    "confirmation-message-value": "Are you sure you want to clear it?",
@@ -75,7 +75,7 @@ module ApplicationHelper
   end
 
   def styled_delete_button(path, style)
-    out = link_to "Delete", path, class: style, data: {
+    out = button_to "Delete", path, class: style, data: {
                                     controller: "confirmation",
                                     "turbo-method": :delete,
                                     "confirmation-message-value": "Are you sure you want to delete this?",
@@ -86,7 +86,7 @@ module ApplicationHelper
   end
 
   def confirm_button(path, title, message, style)
-    out = link_to title, path, class: style, data: {
+    out = button_to title, path, class: style, data: {
                                  controller: "confirmation",
                                  "confirmation-message-value": message,
                                  action: "confirmation#confirm",
@@ -96,7 +96,7 @@ module ApplicationHelper
   end
 
   def confirm_post_button(path, title, message, style)
-    out = link_to title, path, class: style, data: {
+    out = button_to title, path, class: style, data: {
                                  controller: "confirmation",
                                  "turbo-method": :post,
                                  "confirmation-message-value": message,

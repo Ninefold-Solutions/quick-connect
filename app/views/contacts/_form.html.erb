@@ -1,81 +1,128 @@
-   <main class="max-w-xl px-4 pt-10 pb-12 mx-auto space-y-4 lg:pb-16 " >
+<main class="max-w-xl px-4 pt-10 pb-12 mx-auto space-y-4 lg:pb-16">
   <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
   <%= render "shared/form_header", title: title, subtitle: subtitle %>
+
   <%= tailwind_form_with(model: contact, id: dom_id(contact), class: "space-y-4") do |form| %>
     <div class="grid grid-cols-2 gap-4">
       <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
       <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
     </div>
-        <div class="grid grid-cols-2 gap-4">
 
-    <%= form.text_field :email, "Email", autocomplete: "off" %>
-    <%= form.text_field :phone, "Phone", autocomplete: "off" %>
-        </div>
-    <div class="">
-      <label for="group" class="block  text-sm font-medium text-gray-700">
-        Select Relation
-      </label>
+    <div class="grid grid-cols-2 gap-4">
+      <%= form.text_field :email, "Email", autocomplete: "off" %>
+      <%= form.text_field :phone, "Phone", autocomplete: "off" %>
+    </div>
+
+    <div>
+      <label for="group" class="block text-sm font-medium text-gray-700"> Select Relation </label>
+
       <select name="contact[relation_id]" class="form-text-field mt-1">
         <% if contact.relation_id.nil? %>
-          <option value="" selected="selected">None</option>
+          <option value="" selected>None</option>
         <% else %>
           <option value="">None</option>
         <% end %>
+
         <% Relation.all.order(:name).decorate.each do |relation| %>
           <% if contact.relation_id == relation.id %>
-            <option selected= "selected" value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
+            <option selected value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
           <% else %>
             <option value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
           <% end %>
         <% end %>
       </select>
     </div>
-    <div class="" data-controller="counter"  >
-      <label for="group" class="block  text-sm font-medium text-gray-700">
-        Select Group
-      </label>
+
+    <div data-controller="counter">
+      <label for="group" class="block text-sm font-medium text-gray-700"> Select Group </label>
+
       <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-2 sm:static sm:inset-auto sm:pr-0">
         <!-- Profile dropdown -->
-        <div class="flex-auto space-x-2 "  data-target="counter.groups" >
-          <div class="pb-2 space-y-2" >
+        <div class="flex-auto space-x-2" data-target="counter.groups">
+          <div class="pb-2 space-y-2">
             <% if !contact_batches.blank? %>
               <% contact_batches.decorate.each do |contact_batch| %>
-                <span class='items-center whitespace-nowrap px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-800 '><%= contact_batch.display_name %></span>
+                <span class="items-center whitespace-nowrap px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                  <%= contact_batch.display_name %>
+                </span>
               <% end %>
             <% end %>
           </div>
         </div>
-        <div class="relative z-10 " data-controller="dropdown">
+
+        <div class="relative z-10" data-controller="dropdown">
           <div>
-            <button data-action="click->dropdown#toggle" type="button" class="relative w-full form-text-field text-left" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
-              <span class="block truncate">  Select Group</span>
+            <button
+              data-action="click->dropdown#toggle"
+              type="button"
+              class="relative w-full form-text-field text-left"
+              aria-haspopup="listbox"
+              aria-expanded="true"
+              aria-labelledby="listbox-label"
+            >
+              <span class="block truncate"> Select Group</span>
+
               <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <!-- Heroicon name: mini/chevron-up-down -->
                 <i class="fa-solid fa-sort h-5 w-5 text-gray-400" aria-hidden="true"></i>
               </span>
             </button>
-            <ul data-dropdown-target="menu" class="hidden absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg  focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+
+            <ul
+              data-dropdown-target="menu"
+              class="
+                hidden absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded bg-white py-1 text-base shadow-lg
+                focus:outline-none sm:text-sm
+              "
+              tabindex="-1"
+              role="listbox"
+              aria-labelledby="listbox-label"
+              aria-activedescendant="listbox-option-3"
+            >
               <% if !batches.nil? %>
                 <% batches.decorate.each do |batch| %>
-                  <li class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+                  <li
+                    class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9"
+                    id="listbox-option-0"
+                    role="option"
+                  >
                     <% if !contact_batches.blank? && contact_batches.any? { |u| u.id == batch.id } %>
-                      <input id="<%= batch.display_name %>" checked name="groups[]" type="checkbox" value="<%= batch.id %>" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" data-action="counter#change">
+                      <input
+                        id="<%= batch.display_name %>"
+                        checked
+                        name="groups[]"
+                        type="checkbox"
+                        value="<%= batch.id %>"
+                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        data-action="counter#change"
+                      >
                     <% else %>
-                      <input id="<%= batch.display_name %>"  name="groups[]" type="checkbox" value="<%= batch.id %>" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" data-action="counter#change">
+                      <input
+                        id="<%= batch.display_name %>"
+                        name="groups[]"
+                        type="checkbox"
+                        value="<%= batch.id %>"
+                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        data-action="counter#change"
+                      >
                     <% end %>
+
                     <%= batch.name %>
                   </li>
                 <% end %>
               <% end %>
-              <ul> </div>
-            </div>
+            </ul>
           </div>
         </div>
-        <%= form.text_area :intro, "Quick Introduction", autocomplete: "off", class: "h-16 form-text-field" %>
-        <div class="flex justify-end space-x-2">
-          <%= link_to "Back", "javascript:history.back()", class: "btn-secondary " %>
-          <%= form.submit "Save And Add More", class: "btn-primary" %>
-          <%= form.submit "Save", class: "btn-primary " %>
-        </div>
-      </main>
-    <% end %>
+      </div>
+    </div>
+
+    <%= form.text_area :intro, "Quick Introduction", autocomplete: "off", class: "h-16 form-text-field" %>
+
+    <div class="flex justify-end space-x-2">
+      <%= link_to "Back", "javascript:history.back()", class: "btn-secondary " %>
+      <%= form.submit "Save And Add More", class: "btn-primary" %>
+      <%= form.submit "Save", class: "btn-primary " %>
+    </div>
+  <% end %>
+</main>

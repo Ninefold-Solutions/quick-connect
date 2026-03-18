@@ -1,73 +1,111 @@
 <main class="relative z-0 flex-1 overflow-hidden focus:outline-none">
-  <main class="">
+  <main>
     <!-- Main 3 column grid -->
-    <div class="grid items-start grid-cols-1  lg:grid-cols-4"  data-controller="show-contact">
+    <div class="grid items-start grid-cols-1 lg:grid-cols-4" data-controller="show-contact">
       <!-- Left column -->
-      <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200  "   >
+      <div class="grid grid-cols-1 col-span-1 border-r lg:gap-4 border-gray-200">
         <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white" >
-            <div class="sm:px-4  py-4">
-              <div class="flex items-center justify-evenly ">
-                <div class="flex flex-wrap items-baseline  flex-none">
+          <div class="overflow-hidden bg-white">
+            <div class="sm:px-4 py-4">
+              <div class="flex items-center justify-evenly">
+                <div class="flex flex-wrap items-baseline flex-none">
                   <h1 class="text-3xl font-bold leading-tight text-gray-900">Contacts</h1>
                   <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @pagy.count.to_s %>)</p>
                 </div>
-                <div class="flex sm:mt-0    whitespace-nowrap flex-auto justify-end">
+
+                <div class="flex sm:mt-0 whitespace-nowrap flex-auto justify-end">
                   <%= link_to "Add", new_contact_path, class: "btn-primary " %>
                 </div>
               </div>
-              <div class=" flex space-x-4 pt-4">
-                <div class="flex-1 min-w-0 " data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/contacts" >
+
+              <div class="flex space-x-4 pt-4">
+                <div
+                  class="flex-1 min-w-0"
+                  data-behavior="autocomplete"
+                  data-controller="nav-search"
+                  data-nav-search-url-value="/search/contacts"
+                >
                   <label for="search" class="sr-only">Search</label>
-                  <div class="relative rounded shadow-sm"   >
+
+                  <div class="relative rounded shadow-sm">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <!-- Heroicon name: solid/search -->
                       <i class="fa-solid fa-magnifying-glass h-5 w-5 text-gray-400" aria-hidden="true"></i>
                     </div>
-                    <input type="search" name="search" id="search" class="block w-full  pl-10 form-text-field " placeholder="Search" data-nav-search-target="input" >
+
+                    <input
+                      type="search"
+                      name="search"
+                      id="search"
+                      class="block w-full pl-10 form-text-field"
+                      placeholder="Search"
+                      data-nav-search-target="input"
+                      autocomplete="off"
+                    >
                   </div>
-                  <div class="relative" >
-                    <div  class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                      <ul data-nav-search-target="results" >
-                      </ul>
+
+                  <div class="relative">
+                    <div
+                      class="
+                        absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded shadow-lg
+                        focus:outline-none
+                      "
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="options-menu"
+                    >
+                      <ul data-nav-search-target="results"></ul>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <% if @contacts.count > 0 %>
-              <nav class="flex-1 overflow-y-scroll  h-screen  max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll" >
-                <div class="relative px-4 h-max pb-40" >
-                  <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries" >
+              <nav
+                class="flex-1 overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full"
+                aria-label="Directory"
+                data-controller="infinite-scroll"
+              >
+                <div class="relative px-4 h-max pb-40">
+                  <ul
+                    role="list"
+                    class="relative z-0 divide-y divide-gray-200"
+                    id="contacts"
+                    data-infinite-scroll-target="entries"
+                  >
                     <%= render partial: "contact", collection: @contacts, cached: false %>
                   </ul>
+
                   <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
                     <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
                   </div>
                 </div>
-              <% else %>
-                <div class="w-full text-center sm:rounded-lg place-content-center">
-                  <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
-                      No result found
-                    </h3>
-                    <div class="mt-2 text-sm text-center text-gray-500">
-                      <p>We have not found any result. Please add contacts.</p>
-                    </div>
+              </nav>
+            <% else %>
+              <div class="w-full text-center sm:rounded-lg place-content-center">
+                <div class="px-4 py-5 sm:p-6">
+                  <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
+                    No result found
+                  </h3>
+
+                  <div class="mt-2 text-sm text-center text-gray-500">
+                    <p>We have not found any result. Please add contacts.</p>
                   </div>
                 </div>
-              </nav>
+              </div>
             <% end %>
           </div>
         </section>
       </div>
+
       <!-- Right column -->
       <div class="grid grid-cols-1 lg:col-span-3">
         <section aria-labelledby="participants_section">
           <div class="overflow-hidden bg-white" id="contact_details" data-target="show-contact.details">
-            <article class="h-screen min-h-full   max-content top-16 overflow-y-scroll overscroll-contain">
+            <article class="h-screen min-h-full max-content top-16 overflow-y-scroll overscroll-contain">
               <!-- contact header -->
-              <div  class="h-full"  >
+              <div class="h-full">
                 <% if defined?(@contact) %>
                   <%= render partial: "contacts/profile", locals: { contact: @contact } %>
                 <% end %>

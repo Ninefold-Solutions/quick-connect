@@ -1,79 +1,155 @@
-
-<script>
-  window.dropdowns = function() {
-      return {
-          show: false, // controls tabs menu dropdown
-          open: false, //controls contact menu dropdown
-          displayMobileDropdown() { return  this.show ? "block" : "hidden"},
-          hideMobileDropdown() { return  this.show ? "hidden" : "block" },
-          toggle() {this.show = !this.show} //toggles mobile dropdown menu
-      }
-  }
-</script>
-<div >
+<div>
   <nav class="bg-gray-800" id="memubar">
     <div class="px-2 mx-auto sm:px-6 lg:px-8">
-      <div class="relative flex items-center justify-between h-12">
+      <div class="relative flex h-12">
         <div class="flex items-center flex-shrink-0">
           <a href="<%= root_path %>">
             <h1 class="text-white font-extrabold font-mono">Quick Connect</h1>
           </a>
         </div>
-        <div class="flex items-center px-2 lg:px-0">
+
+        <div class="flex items-center px-2 lg:px-0 w-full">
           <% if user_signed_in? %>
             <div class="hidden sm:block pl-4">
               <div class="flex space-x-1">
-                <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Home</a>
-                <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Contacts</a>
-                <a href=<%= batches_path %> class= "<%= current_page?(batches_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Groups</a>
-                <a href=<%= collections_path %> class= "<%= current_page?(collections_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Collections</a>
-                <a href=<%= followups_path %> class= "<%= current_page?(followups_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Follow-ups</a>
-                <a href=<%= reports_path %> class= "<%= current_page?(reports_path) ? "nav-selected" : "nav-unselected" %>">Reports</a>
+                <a
+                  href="<%= dashboard_path %>"
+                  class="<%= current_page?(dashboard_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"
+                >
+                  Home
+                </a>
+
+                <a
+                  href="<%= contacts_path %>"
+                  class="<%= current_page?(contacts_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"
+                >
+                  Contacts
+                </a>
+
+                <a
+                  href="<%= batches_path %>"
+                  class="<%= current_page?(batches_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"
+                >
+                  Groups
+                </a>
+
+                <a
+                  href="<%= collections_path %>"
+                  class="<%= current_page?(collections_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"
+                >
+                  Collections
+                </a>
+
+                <a
+                  href="<%= followups_path %>"
+                  class="<%= current_page?(followups_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"
+                >
+                  Follow-ups
+                </a>
+
+                <a
+                  href="<%= reports_path %>"
+                  class="<%= current_page?(reports_path) ? "nav-selected" : "nav-unselected" %>"
+                >
+                  Reports
+                </a>
               </div>
             </div>
-          </div>
-          <div class="flex  flex-1 justify-center px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/nav">
-            <div class="w-full max-w-lg lg:max-w-sm " >
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 " >
-                  <!-- Heroicon name: solid/search -->
-                  <i class="fa-solid fa-magnifying-glass w-5 h-5 text-gray-400" aria-hidden="true"></i>
-                </div>
-                <input id="navbar" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Contacts or groups" type="search" data-nav-search-target="input">
-              </div>
-              <div class="relative ">
-                <div class="absolute  left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded shadow-lg ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                  <ul data-nav-search-target="results" >
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hidden lg:ml-4 lg:block">
-            <div class="flex items-center">
-              <a href="<%= new_contact_path %>" type="button" class=" mr-2 flex-shrink-0 bg-gray-800 text-gray-300 hover:text-white hover:bg-gray-500" target="_top">
-                <i class="fa-solid fa-user-plus w-6 h-6 bg-gray-800"></i>
-              </a>
-              
-              <div class="absolute inset-y-0 right-0 items-center flex-shrink-0  pl-2 sm:static sm:inset-auto ">
-                <!-- Profile dropdown -->
-                <div class="relative z-20 ml-3" data-controller="dropdown">
-                  <div>
-                    <button data-action="click->dropdown#toggle" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-                      <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
-                    </button>
+            <div
+              class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end"
+              data-behavior="autocomplete"
+              data-controller="nav-search"
+              data-nav-search-url-value="/search/nav"
+            >
+              <div class="w-full max-w-lg lg:max-w-sm">
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <!-- Heroicon name: solid/search -->
+                    <i class="fa-solid fa-magnifying-glass w-5 h-5 text-gray-400" aria-hidden="true"></i>
                   </div>
-                  <div data-dropdown-target="menu" class="hidden absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg">
-                    <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded shadow-lg w-60 " role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                      <div class= "px-4 py-3">
-                        <p class="text-sm">Signed in as</p>
-                        <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.decorate.display_email %></p>
-                      </div>
-                      <div class="border-t border-gray-100">
-                        <div>
-                          <a><%= link_to "Account", account_relations_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
-                          <a><%= link_to "Settings", user_profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
-                          <a><%= link_to "Sign Out", logout_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+
+                  <input
+                    id="navbar"
+                    name="search"
+                    class="
+                      block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border
+                      border-transparent rounded focus:outline-none focus:bg-white focus:border-white
+                      focus:ring-white focus:text-gray-900 sm:text-sm
+                    "
+                    placeholder="Search Contacts or groups"
+                    type="search"
+                    autocomplete="off"
+                    data-nav-search-target="input"
+                  >
+                </div>
+
+                <div class="relative">
+                  <div
+                    class="
+                      absolute left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded shadow-lg ring-black
+                      ring-opacity-5 focus:outline-none
+                    "
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="options-menu"
+                  >
+                    <ul data-nav-search-target="results"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hidden lg:ml-4 lg:block">
+              <div class="flex items-center">
+                <a
+                  href="<%= new_contact_path %>"
+                  type="button"
+                  class="mr-2 flex-shrink-0 bg-gray-800 text-gray-300 hover:text-white hover:bg-gray-500"
+                  target="_top"
+                >
+                  <i class="fa-solid fa-user-plus w-6 h-6 bg-gray-800"></i>
+                </a>
+
+                <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pl-2 sm:static sm:inset-auto">
+                  <!-- Profile dropdown -->
+                  <div class="relative z-20 ml-3" data-controller="dropdown">
+                    <div>
+                      <button
+                        data-action="click->dropdown#toggle"
+                        class="
+                          flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2
+                          focus:ring-offset-gray-800 focus:ring-white
+                        "
+                        id="user-menu"
+                        aria-haspopup="true"
+                      >
+                        <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
+                      </button>
+                    </div>
+
+                    <div
+                      data-dropdown-target="menu"
+                      class="hidden absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg"
+                    >
+                      <div
+                        class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded shadow-lg w-60"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="user-menu"
+                      >
+                        <div class="px-4 py-3">
+                          <p class="text-sm">Signed in as</p>
+
+                          <p class="text-xs text-gray-400 truncate font-small max-w-auto">
+                            <%= current_user.decorate.display_email %>
+                          </p>
+                        </div>
+
+                        <div class="border-t border-gray-100">
+                          <div>
+                            <%= link_to "Account", account_relations_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %>
+                            <%= link_to "Settings", user_profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %>
+                            <%= link_to "Sign Out", logout_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -81,13 +157,24 @@
                 </div>
               </div>
             </div>
-          </div>
-        <% else %>
-          <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a href=<%= signup_path %> class="<%= current_page?(signup_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Sign up </a>
-            <a href=<%= login_path %> class="<%= current_page?(login_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"  >Sign in</a>
-          </div>
-        <% end %>
+          <% else %>
+            <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+              <a
+                href="<%= signup_path %>"
+                class="<%= current_page?(signup_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"
+              >
+                Sign up
+              </a>
+
+              <a
+                href="<%= login_path %>"
+                class="<%= current_page?(login_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"
+              >
+                Sign in
+              </a>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </nav>

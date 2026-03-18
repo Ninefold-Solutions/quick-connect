@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
       reset_session
       session[:user_id] = resource.id
       flash[:notice] = "Welcome! You have signed up successfully."
-      redirect_to root_path
+      redirect_to login_path
     end
   end
 
