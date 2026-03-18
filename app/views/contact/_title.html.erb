@@ -4,116 +4,116 @@
   <div class="flex inline-flex items-baseline">
     <h1 class="text-3xl font-bold leading-tight text-gray-900"><%= contact.display_name %></h1>
 
-    <div class="flex mt-2 z-10 items-start justify-between gap-4">
-      <div
-        class="inline-flex"
-        id="contact_labels"
-        data-controller="contact"
-        data-contact-labels-target="labels"
-      >
-        <%= render partial: "contact/labels", locals: { contact: contact, contact_labels: contact_labels, labels: labels } %>
-      </div>
+    <div
+      class="inline-flex"
+      id="contact_labels"
+      data-controller="contact"
+      data-contact-labels-target="labels"
+    >
+      <%= render partial: "contact/labels", locals: { contact: contact, contact_labels: contact_labels, labels: labels } %>
+    </div>
+  </div>
 
-      <div class="flex mt-4 sm:mt-0 ml-4">
-        <% if policy(contact).edit? %>
-          <div class="relative pr-4 inline-block text-left" data-controller="dropdown followup-after">
-            <div data-followup-after-target="touched" id="touch-back">
-              <%= render partial: "contact/touch_back", locals: { contact: contact }, formats: [:turbo_stream] %>
-            </div>
+  <div class="flex mt-2 z-10 items-start justify-between gap-4">
+    <div class="flex mt-4 sm:mt-0 ml-4">
+      <% if policy(contact).edit? %>
+        <div class="relative pr-4 inline-block text-left" data-controller="dropdown followup-after">
+          <div data-followup-after-target="touched" id="touch-back">
+            <%= render partial: "contact/touch_back", locals: { contact: contact }, formats: [:turbo_stream] %>
+          </div>
 
-            <div
-              data-dropdown-target="menu"
-              class="
-                hidden absolute right-0 z-10 mt-2 w-56 origin-top-right rounded bg-white shadow-lg
-                focus:outline-none
-              "
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="touch-back-button-<%= contact.id %>"
-              tabindex="-1"
-            >
-              <div class="py-1" role="none">
-                <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
-                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                  <a
-                    href="<%= touch_back_contact_path(contact) + "?touch_back=#{touch[:id]}" %>"
-                    data-selected="false"
-                    data-followup-after-target="selected"
-                    data-title="<%= touch[:id] %>"
-                    data-action="click->followup-after#toggleSelected"
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="menu-item-0"
-                  >
-                    <%= touch[:name] %>
-                  </a>
-                <% end %>
-              </div>
+          <div
+            data-dropdown-target="menu"
+            class="
+              hidden absolute right-0 z-10 mt-2 w-56 origin-top-right rounded bg-white shadow-lg
+              focus:outline-none
+            "
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="touch-back-button-<%= contact.id %>"
+            tabindex="-1"
+          >
+            <div class="py-1" role="none">
+              <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
+                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                <a
+                  href="<%= touch_back_contact_path(contact) + "?touch_back=#{touch[:id]}" %>"
+                  data-selected="false"
+                  data-followup-after-target="selected"
+                  data-title="<%= touch[:id] %>"
+                  data-action="click->followup-after#toggleSelected"
+                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="menu-item-0"
+                >
+                  <%= touch[:name] %>
+                </a>
+              <% end %>
             </div>
           </div>
-          <div class="flex space-x-2">
-            <div>
-              <a
-                href="<%= update_touched_contact_path(contact) %>"
-                title="Mark As Touched"
-                id="profile"
-                data-controller="confirmation tooltip"
-                data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today."
-                data-action="confirmation#confirm"
-                data-tooltip-content="Mark As Touched"
-                class="cursor-pointer"
-              >
-                <span class="icon-span"><%= touched(4) %></span>
-              </a>
-            </div>
+        </div>
+        <div class="flex space-x-2">
+          <div>
+            <a
+              href="<%= update_touched_contact_path(contact) %>"
+              title="Mark As Touched"
+              id="profile"
+              data-controller="confirmation tooltip"
+              data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today."
+              data-action="confirmation#confirm"
+              data-tooltip-content="Mark As Touched"
+              class="cursor-pointer"
+            >
+              <span class="icon-span"><%= touched(4) %></span>
+            </a>
+          </div>
 
-            <label for="edit">
-              <a
-                href="<%= edit_contact_path(contact) %>"
-                title="Edit"
-                data-controller="tooltip"
-                data-tooltip-content="Edit Contact"
-                class="cursor-pointer"
-              >
-                <span class="icon-span">
-                  <!-- Heroicon name: outline/check-badge -->
-                  <i class="fa-solid fa-pen-to-square h-4 w-4" aria-hidden="true"></i>
-                </span>
-              </a>
-            </label>
+          <label for="edit">
+            <a
+              href="<%= edit_contact_path(contact) %>"
+              title="Edit"
+              data-controller="tooltip"
+              data-tooltip-content="Edit Contact"
+              class="cursor-pointer"
+            >
+              <span class="icon-span">
+                <!-- Heroicon name: outline/check-badge -->
+                <i class="fa-solid fa-pen-to-square h-4 w-4" aria-hidden="true"></i>
+              </span>
+            </a>
+          </label>
 
-            <div>
-              <%= link_to "/#{contact.account.id}/archive/contact/#{contact.id}", class: "", data: {
+          <div>
+            <%= link_to "/#{contact.account.id}/archive/contact/#{contact.id}", class: "", data: {
                                                                                               controller: "confirmation tooltip",
                                                                                               "confirmation-message-value": "Are you sure you want to archive this contact?",
                                                                                               action: "confirmation#confirm",
                                                                                               tooltip_content: "Archive Contact",
                                                                                             }, title: "Archive" do %>
-                <span class="icon-span">
-                  <i class="fa-solid fa-box-archive h-4 w-4" aria-hidden="true"></i>
-                </span>
-              <% end %>
-            </div>
-
-            <div data-controller="contact" data-contact-target="favorite" id="contact_favorite">
-              <%= render partial: "contact/favorite", locals: { contact: contact } %>
-            </div>
-          </div>
-        <% else %>
-          <div class="inline-block flex" id="contact-relation">
-            <%= link_to unarchive_contact_path(contact), class: "ml-4", data: {
-                                                                     controller: "confirmation",
-                                                                     "confirmation-message-value": "Are you sure you want to restore this contact?",
-                                                                     action: "confirmation#confirm",
-                                                                   }, title: "Restore" do %>
               <span class="icon-span">
                 <i class="fa-solid fa-box-archive h-4 w-4" aria-hidden="true"></i>
               </span>
             <% end %>
           </div>
-        <% end %>
-      </div>
+
+          <div data-controller="contact" data-contact-target="favorite" id="contact_favorite">
+            <%= render partial: "contact/favorite", locals: { contact: contact } %>
+          </div>
+        </div>
+      <% else %>
+        <div class="inline-block flex" id="contact-relation">
+          <%= link_to unarchive_contact_path(contact), class: "ml-4", data: {
+                                                                     controller: "confirmation",
+                                                                     "confirmation-message-value": "Are you sure you want to restore this contact?",
+                                                                     action: "confirmation#confirm",
+                                                                   }, title: "Restore" do %>
+            <span class="icon-span">
+              <i class="fa-solid fa-box-archive h-4 w-4" aria-hidden="true"></i>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
