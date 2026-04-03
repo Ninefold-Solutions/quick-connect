@@ -3,31 +3,39 @@
       display: none;
   }
 </style>
+
 <tr id="<%= dom_id gift %>">
   <td class="table-cell whitespace-nowrap w-2/5">
     <div class="text-sm">
       <%= gift.name.upcase_first %>
     </div>
   </td>
-  <td class="table-cell  w-3/5">
+
+  <td class="table-cell w-3/5">
     <%= render partial: "shared/show_more", locals: { text: gift.body, truncate_length: 100 } %>
   </td>
+
   <td class="table-cell whitespace-nowrap">
     <div class="mt-2 space-x-2 text-sm">
-      <span class="inline-flex items-center  px-2 py-0.5 rounded text-xs font-medium bg-<%= gift.decorate.display_status_color %>-100 text-<%= gift.decorate.display_status_color %>-800"><%= gift.status.upcase_first %></span>
-    </span>
-  </td>
-  <td class="table-cell whitespace-nowrap">
-    <div class=" space-x-2 text-sm">
-      <span ><%= display_date(gift.date) %></span>
-    </td>
-    <td class="table-cell whitespace-nowrap space-x-1">
-      <% if policy([gift.contact, gift]).edit? %>
-        <%= edit_button(edit_contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
-      <% end %>
-      <% if policy([gift.contact, gift]).destroy? %>
-        <%= delete_button(contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
-      <% end %>
+      <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-<%= gift.decorate.display_status_color %>-100 text-<%= gift.decorate.display_status_color %>-800">
+        <%= gift.status.upcase_first %>
+      </span>
     </div>
+  </td>
+
+  <td class="table-cell whitespace-nowrap">
+    <div class="space-x-2 text-sm">
+      <span><%= display_date(gift.date) %></span>
+    </div>
+  </td>
+
+  <td class="table-cell whitespace-nowrap space-x-1">
+    <% if policy([gift.contact, gift]).edit? %>
+      <%= edit_button(edit_contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
+    <% end %>
+
+    <% if policy([gift.contact, gift]).destroy? %>
+      <%= delete_button(contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
+    <% end %>
   </td>
 </tr>
