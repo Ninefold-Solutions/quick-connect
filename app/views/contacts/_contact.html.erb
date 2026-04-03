@@ -6,12 +6,12 @@
 >
   <a href="<%= contacts_path(id: contact) %>" class="block">
     <div
-      class="relative cursor-pointer px-2 py-3 flex items-center space-x-3"
+      class="relative cursor-pointer px-2 py-3 flex items-center space-x-2"
       id="show"
       data-contact-id="<%= contact.id %>"
     >
       <div class="flex-shrink-0">
-        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full", alt: "Contact avatar" %>
       </div>
 
       <div class="flex-1 min-w-0">
@@ -24,7 +24,9 @@
           <% if !contact.phone.blank? %>
             <i class="fa-solid fa-phone inline-flex" style="font-size: .8rem"></i>
             <%= contact.phone %>
-          <% else %>
+          <% end %>
+
+          <% if !contact.email.blank? %>
             <i class="fa-solid fa-envelope inline-flex" style="font-size: .8rem" aria-hidden="true"></i>
             <%= contact.display_email %>
           <% end %>

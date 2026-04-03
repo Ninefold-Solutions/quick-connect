@@ -22,12 +22,12 @@
           <%= image_tag "male-placeholder-image.png", class: "h-20 w-20 rounded-full ring-4 ring-white sm:h-32 sm:w-32" %>
         </div>
 
-        <div class="sm:flex-1 sm:min-w-0 sm:flex sm:items-center justify-end lg:space-x-3">
+        <div class="sm:flex-1 sm:min-w-0 sm:flex sm:items-center justify-end lg:space-x-2">
           <div class="sm:hidden 2xl:block mt-4 min-w-0 flex-1">
             <h1 class="text-2xl font-bold text-gray-900 truncate"><%= contact.display_name %></h1>
           </div>
 
-          <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-3">
+          <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-2">
             <%= render "shared/contact_follow_up_badge", follow_up_text: contact.display_follow_up_after %>
 
             <%= render "shared/contact_social_links", contact: contact, links: links, links_container_class: "inline-flex space-x-2 pl-1" %>
