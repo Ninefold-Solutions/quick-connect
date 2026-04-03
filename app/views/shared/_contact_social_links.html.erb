@@ -1,0 +1,28 @@
+<div class="<%= links_container_class %>">
+  <% if links.present? %>
+    <% links.each do |link| %>
+      <label for="links">
+        <a
+          href="<%= link.link %>"
+          data-contact-id="<%= contact.id %>"
+          target="_blank"
+          title="<%= link.link_type_label %>"
+          id="phone"
+        >
+          <div
+            class="
+              h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer
+              rounded-full w-9 grid place-content-center
+            "
+          >
+            <span>
+              <i class="<%= link.normalized_link_type %> font-medium fa-lg flex-auto"></i>
+            </span>
+          </div>
+        </a>
+
+        <span></span>
+      </label>
+    <% end %>
+  <% end %>
+</div>

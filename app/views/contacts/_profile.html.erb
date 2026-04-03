@@ -3,7 +3,6 @@
   <% contact = contact.decorate %>
   <div class="h-full">
     <div
-      class=""
       id="modal1"
       data-controller="click-outside"
       data-action="keyup@document->modal#escClose click:outside->modal#close "
@@ -29,80 +28,11 @@
           </div>
 
           <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-3">
-            <label
-              type="button"
-              class="
-                inline-flex w-full justify-center gap-x-1.5 rounded px-3 py-2 text-sm font-semibold shadow-sm ring-1
-                ring-inset ring-gray-300 bg-gray-100 text-gray-800 hover:bg-gray-50
-              "
-              id="menu-button"
-              aria-expanded="true"
-              aria-haspopup="true"
-            >
-              <%= contact.display_follow_up_after %>
-            </label>
+            <%= render "shared/contact_follow_up_badge", follow_up_text: contact.display_follow_up_after %>
 
-            <div class="inline-flex space-x-2 pl-1">
-              <% if !contact.links.empty? %>
-                <% contact.links.each do |link| %>
-                  <label for="links" class="">
-                    <a
-                      href="<%= link.link %>"
-                      data-contact-id="<%= contact.id %>"
-                      target="_blank"
-                      title="<%= link.link_type_label %>"
-                      id="phone"
-                    >
-                      <!-- Heroicon name: solid/mail -->
-                      <div
-                        class="
-                          h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer
-                          rounded-full w-9 grid place-content-center
-                        "
-                      >
-                        <span class="">
-                          <i class="<%= link.normalized_link_type %> font-medium fa-lg flex-auto"></i>
-                        </span>
-                      </div>
-                    </a>
+            <%= render "shared/contact_social_links", contact: contact, links: links, links_container_class: "inline-flex space-x-2 pl-1" %>
 
-                    <span></span>
-                  </label>
-                <% end %>
-              <% end %>
-            </div>
-
-            <% if !contact.phone.blank? %>
-              <label for="phone" class="">
-                <a title="Send Sms" id="phone">
-                  <!-- Heroicon name: solid/mail -->
-                  <span class="icon-span">
-                    <i class="fa-solid fa-comments h-5 w-5"></i>
-                  </span>
-                </a>
-
-                <span></span>
-              </label>
-            <% end %>
-
-            <% if !contact.email.blank? %>
-              <div>
-                <a href="mailto:<%= contact.email %>" title="Send Email">
-                  <!-- Heroicon name: solid/mail -->
-                  <span class="icon-span">
-                    <i class="fa-solid fa-envelope h-5 w-5"></i>
-                  </span>
-                </a>
-              </div>
-            <% end %>
-
-            <a
-              href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline"
-              type="button"
-              class="inline-flex btn-secondary whitespace-nowrap"
-            >
-              View Profile
-            </a>
+            <%= render "shared/contact_profile_actions", contact: contact, profile_button_class: "inline-flex btn-secondary whitespace-nowrap" %>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <% @contacts.each do |contact| %>
-  <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" target="_top" class="">
+  <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" target="_top">
     <li
       role="option"
       class="
@@ -26,7 +26,7 @@
 <% end %>
 
 <% @batches.each do |batch| %>
-  <a href="/<%= batch.account.id %>/groups?batch_id=<%= batch.id %>" target="_top" class="">
+  <a href="/<%= batch.account.id %>/groups?batch_id=<%= batch.id %>" target="_top">
     <li
       role="option"
       class="

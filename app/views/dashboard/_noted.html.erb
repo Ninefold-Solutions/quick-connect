@@ -11,7 +11,7 @@
         <div>
           <p class="text-sm text-gray-500"> <%= display_created_at(event) %></p>
           <div class="mt-1 text-sm text-gray-700">
-            <p class="">  <% if event.account.owner_id == event.user_id %>
+            <p >  <% if event.account.owner_id == event.user_id %>
                 You
               <% else %>
                 <%= event.user.decorate.display_name %>

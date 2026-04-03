@@ -1,0 +1,27 @@
+<% if !contact.phone.blank? %>
+  <div>
+    <button title="Send Sms" id="phone">
+      <span class="icon-span">
+        <i class="fa-solid fa-comments h-5 w-5"></i>
+      </span>
+    </button>
+  </div>
+<% end %>
+
+<% if !contact.email.blank? %>
+  <div>
+    <a href="mailto:<%= contact.email %>" title="Send Email">
+      <span class="icon-span">
+        <i class="fa-solid fa-envelope h-5 w-5"></i>
+      </span>
+    </a>
+  </div>
+<% end %>
+
+<a
+  href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline"
+  type="button"
+  class="<%= profile_button_class %>"
+>
+  View Profile
+</a>

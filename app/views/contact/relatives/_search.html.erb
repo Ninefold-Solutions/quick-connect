@@ -56,7 +56,7 @@
           </div>
         </main>
       <% else %>
-        <div id="contact_id" class="">
+        <div id="contact_id">
           <input
             id="contact_id"
             name="relative[contact_id]"
@@ -68,7 +68,7 @@
             Select <%= relation.decorate.display_name %>'s relation
           </label>
         </div>
-        <div class="">
+        <div>
           <%= form.hidden_field :first_contact_id, value: contact.id %>
           <label for="relation" class="block text-sm font-medium text-gray-700"> Select Relation </label>
           <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "cursor-pointer form-text-field mt-1") %>
