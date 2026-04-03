@@ -45,7 +45,7 @@
                         href="<%= link.link %>"
                         data-contact-id="<%= contact.id %>"
                         target="_blank"
-                        title="<%= link.link_type.split("-").last.upcase_first %>"
+                        title="<%= link.link_type_label %>"
                         id="phone"
                       >
                         <!-- Heroicon name: solid/mail -->
@@ -56,7 +56,7 @@
                           "
                         >
                           <span class="">
-                            <i class="<%= link.link_type %> font-medium fa-lg flex-auto"></i>
+                            <i class="<%= link.normalized_link_type %> font-medium fa-lg flex-auto"></i>
                           </span>
                         </div>
                       </a>

@@ -163,6 +163,10 @@ export default class extends Controller {
 
   onResultsClick(event) {
     if (!(event.target instanceof Element)) return;
+
+    // Let interactive controls inside an option (forms/buttons/links) handle their own click behavior.
+    if (event.target.closest("form, button, a, input, textarea, select")) return;
+
     const selected = event.target.closest('[role="option"]');
     if (selected) this.commit(selected);
   }

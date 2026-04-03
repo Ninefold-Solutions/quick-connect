@@ -26,13 +26,6 @@ class Contact < ApplicationRecord
   scope :favorites, -> { select { |c| c.favorite? } }
   scope :recent, -> { order(created_at: :desc) }
 
-  validate :validates
-
-  def validates
-    if email.blank? && phone.blank?
-      errors.add(:phone_number_or, "E-mail can't be blank")
-    end
-  end
 
   validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "is invalid", :multiline => true }, if: -> { !phone.blank? }
   validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }, if: -> { !email.blank? }
