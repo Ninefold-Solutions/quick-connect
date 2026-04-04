@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "4.0.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "8.1.1"
+gem "rails", "8.1.3"
 
 # The asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -33,7 +33,7 @@ gem "bootsnap", require: false
 gem "draper"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 gem "tailwindcss-rails"
 
@@ -51,7 +51,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "rack-mini-profiler", require: false
-  gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", ">= 1.0.0", platforms: %i[ mri windows]
 end
 
 group :test do
