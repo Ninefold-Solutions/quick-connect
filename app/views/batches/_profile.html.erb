@@ -20,10 +20,7 @@
               <h1 class="text-2xl font-bold text-gray-900 truncate"><%= contact.decorate.display_name %></h1>
             </div>
 
-            <div
-              id=""
-              class="flex flex-col whitespace-nowrap justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-4"
-            >
+            <div class="flex flex-col whitespace-nowrap justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-2">
               <%= render "shared/contact_follow_up_badge", follow_up_text: contact.decorate.display_follow_up_after %>
 
               <%= render "shared/contact_social_links", contact: contact, links: contact.links, links_container_class: "inline-flex space-x-2" %>

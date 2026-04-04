@@ -12,6 +12,7 @@ class Link < ApplicationRecord
     ["Twitter", "fa-brands fa-twitter"],
     ["Hubspot", "fa-brands fa-hubspot"],
     ["Website", "fa-solid fa-globe"],
+    ["Github", "fa-brands fa-github"],
   ]
   validates :link_type, uniqueness: { :scope => [:contact_id], message: "already exists" }
 
