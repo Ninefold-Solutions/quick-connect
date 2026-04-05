@@ -8,7 +8,7 @@ pin "@rails/request.js", to: "https://ga.jspm.io/npm:@rails/request.js@0.0.13/sr
 
 pin_all_from "app/javascript/controllers", under: "controllers"
 
-pin "date-fns", to: "https://ga.jspm.io/npm:date-fns@4.1.0/index.js"
+pin "date-utils", to: "date-utils.js"
 pin "themes", to: "themes.js"
 pin "github-canvas", to: "github-canvas.js"
 pin "github-canvas-rating", to: "github-canvas-rating.js"

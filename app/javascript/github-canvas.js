@@ -1,4 +1,4 @@
-import { addWeeks, format, getMonth, isAfter, isBefore, parseISO, setDay, startOfWeek } from "date-fns";
+import { addWeeks, format, getMonth, isAfter, isBefore, parseISO, setDay, startOfWeek } from "date-utils";
 import { themes } from "themes";
 
 function getPixelRatio() {
