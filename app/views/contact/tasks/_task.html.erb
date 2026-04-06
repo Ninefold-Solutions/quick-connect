@@ -3,32 +3,35 @@
     <div class="text-sm">
       <a href="<%= contact_task_path(task.contact, task) %>" class="block hover:underline" target="_top">
         <%= render partial: "shared/show_more", locals: { text: task.title, truncate_length: 100 } %>
-      </div>
-    </td>
-    <td class="table-cell whitespace-nowrap">
-      <div class=" space-x-2 text-sm">
-        <span class="text-gray-500"><%= display_date(task.due_date) %></span>
-      </div >
-    </td>
-    <td class="table-cell whitespace-nowrap">
-      <div class="flex items-center space-x-2">
-        <% if task.completed? %>
-          <span class="text-gray-500">Done</span>
+      </a>
+    </div>
+  </td>
 
-          <i class="fa-solid fa-circle-check w-5 h-5 text-green-500" aria-hidden="true"></i>
-        <% else %>
-          <span class="text-gray-500">Pending</span>
-          <i class="fa-solid fa-triangle-exclamation w-5 h-5 text-yellow-500" aria-hidden="true"></i>
-        <% end %>
-      </div>
-    </td>
-    <td class="table-cell whitespace-nowrap space-x-1 ">
-      <% if policy([task.contact, task]).edit? %>
-        <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
-      <% end %>
-      <% if policy([task.contact, task]).destroy? %>
-        <%= delete_button(contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
+  <td class="table-cell whitespace-nowrap">
+    <div class="space-x-2 text-sm">
+      <span class="text-gray-500"><%= display_date(task.due_date) %></span>
+    </div>
+  </td>
+
+  <td class="table-cell whitespace-nowrap">
+    <div class="flex items-center space-x-2">
+      <% if task.completed? %>
+        <span class="text-gray-500">Done</span>
+        <%= ui_icon(:circle_check, classes: "w-5 h-5 text-green-500") %>
+      <% else %>
+        <span class="text-gray-500">Pending</span>
+        <%= ui_icon(:triangle_exclamation, classes: "w-5 h-5 text-yellow-500") %>
       <% end %>
     </div>
+  </td>
+
+  <td class="table-cell whitespace-nowrap space-x-1">
+    <% if policy([task.contact, task]).edit? %>
+      <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
+    <% end %>
+
+    <% if policy([task.contact, task]).destroy? %>
+      <%= delete_button(contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
+    <% end %>
   </td>
 </tr>

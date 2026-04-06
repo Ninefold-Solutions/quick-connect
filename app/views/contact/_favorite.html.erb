@@ -1,19 +1,19 @@
 <ul class="flex list-none">
   <% if !contact.favorite? %>
     <li id="favorite">
-      <a title="Favourite" data-controller="tooltip" data-tooltip-content="Mark As Favorite">
+      <button title="Favourite" data-controller="tooltip" data-tooltip-content="Mark As Favorite">
         <span class="icon-span" data-action="click->contact#toggle_favorite" data-contact-id="<%= contact.id %>">
-          <i class="fa-regular fa-star h-4 w-4" aria-hidden="true"></i>
+          <%= ui_icon(:star_outline, classes: "h-4 w-4") %>
         </span>
-      </a>
+      </button>
     </li>
   <% else %>
     <li id="not-favorite">
-      <a title="not-favourite" data-controller="tooltip" data-tooltip-content="Remove As Favorite">
+      <button title="not-favourite" data-controller="tooltip" data-tooltip-content="Remove As Favorite">
         <span class="icon-span" data-action="click->contact#toggle_favorite" data-contact-id="<%= contact.id %>">
-          <i class="fa-solid fa-star h-4 w-4" aria-hidden="true"></i>
+          <%= ui_icon(:star_solid, classes: "h-4 w-4") %>
         </span>
-      </a>
+      </button>
     </li>
   <% end %>
 </ul>

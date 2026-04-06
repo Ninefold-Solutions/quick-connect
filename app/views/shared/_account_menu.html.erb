@@ -4,13 +4,13 @@
       href="<%= account_relations_path %>"
       class="<%= current_page?(account_relations_path) ? "selected" : "unselected" %>"
     >
-      <i class="fa-solid fa-id-card svg-icon"></i>
+      <%= ui_icon(:id_card, classes: "svg-icon") %>
 
       <span class="truncate"> Relations </span>
     </a>
 
     <a href="<%= account_labels_path %>" class="<%= current_page?(account_labels_path) ? "selected" : "unselected" %>">
-      <i class="fa-solid fa-tag svg-icon"></i>
+      <%= ui_icon(:tag, classes: "svg-icon") %>
 
       <span class="truncate"> Contact Labels </span>
     </a>
@@ -20,14 +20,14 @@
       class="<%= current_page?(archived_contacts_path) ? "selected" : "unselected" %>"
     >
       <!-- Heroicon name: outline/user-circle -->
-      <i class="fa-solid fa-box-archive svg-icon"></i>
+      <%= ui_icon(:box_archive, classes: "svg-icon") %>
 
       <span class="truncate"> Archived Contacts </span>
     </a>
 
     <a href="<%= account_fields_path %>" class="<%= current_page?(account_fields_path) ? "selected" : "unselected" %>">
       <!-- Heroicon name: outline/user-circle -->
-      <i class="fa-solid fa-circle-info svg-icon"></i>
+      <%= ui_icon(:circle_info, classes: "svg-icon") %>
 
       <span class="truncate"> Conversation Types </span>
     </a>
@@ -37,7 +37,7 @@
       class="<%= current_page?(account_activities_path) ? "selected" : "unselected" %>"
     >
       <!-- Heroicon name: outline/user-circle -->
-      <i class="fa-solid fa-graduation-cap svg-icon"></i>
+      <%= ui_icon(:graduation_cap, classes: "svg-icon") %>
 
       <span class="truncate"> Activities </span>
     </a>
@@ -47,7 +47,7 @@
       class="<%= current_page?(account_life_events_path) ? "selected" : "unselected" %>"
     >
       <!-- Heroicon name: outline/user-circle -->
-      <i class="fa-regular fa-calendar svg-icon"></i>
+      <%= ui_icon(:calendar, classes: "svg-icon") %>
 
       <span class="truncate"> Life Events </span>
     </a>
@@ -57,7 +57,7 @@
       class="<%= current_page?(untracked_contacts_path) ? "selected" : "unselected" %>"
     >
       <!-- Heroicon name: outline/user-circle -->
-      <i class="fa-solid fa-magnifying-glass-minus svg-icon"></i>
+      <%= ui_icon(:magnifying_glass_minus, classes: "svg-icon") %>
 
       <span class="truncate"> Untracked Contacts </span>
     </a>
@@ -65,7 +65,7 @@
     <% if current_user.account.owner_id == current_user.id %>
       <a href="<%= account_users_path %>" class="<%= current_page?(account_users_path) ? "selected" : "unselected" %>">
         <!-- Heroicon name: outline/user-circle -->
-        <i class="fa-solid fa-circle-user svg-icon" aria-hidden="true"></i>
+        <%= ui_icon(:circle_user, classes: "svg-icon") %>
 
         <span class="truncate"> Users </span>
       </a>
@@ -76,7 +76,7 @@
       class="<%= current_page?(account_import_contacts_path) ? "selected" : "unselected" %>"
     >
       <!-- Heroicon name: outline/user-circle -->
-      <i class="fa-solid fa-file-import svg-icon"></i>
+      <%= ui_icon(:file_import, classes: "svg-icon") %>
 
       <span class="truncate"> Import Contacts </span>
     </a>

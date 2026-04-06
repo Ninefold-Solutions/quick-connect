@@ -48,7 +48,7 @@
           <div class="flex-1 ml-3 sm:flex sm:justify-between">
             <% if @task.completed? %>
               <!-- Heroicon name: solid/check-circle -->
-              <i class="fa-solid fa-circle-check w-5 h-5 text-green-400" aria-hidden="true"></i>
+              <%= ui_icon(:circle_check, classes: "w-5 h-5 text-green-400") %>
               <p class="text-sm font-normal text-green-800">
                 This task has been completed on <%= display_date(@task.updated_at) %>
               </p>
@@ -68,7 +68,7 @@
               <% end %>
             <% else %>
               <!-- Heroicon name: solid/information-circle -->
-              <i class="fa-solid fa-circle-info w-5 h-5 text-blue-600" aria-hidden="true"></i>
+              <%= ui_icon(:circle_info, classes: "w-5 h-5 text-blue-600") %>
               <p class="text-sm text-blue-800">
                 This task has not been completed.
               </p>

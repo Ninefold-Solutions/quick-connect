@@ -14,7 +14,7 @@
           <div class="flex-1 w-full mt-2">
             <div class="flex items-center text-sm text-gray-500">
               <!-- Heroicon name: solid/calendar -->
-              <i class="fa-solid fa-calendar flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true"></i>
+              <%= ui_icon(:calendar, classes: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
 
               <p>
                 Untracked on <%= display_date(contact.followup_after_changed_on) %>

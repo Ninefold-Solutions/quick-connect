@@ -21,10 +21,10 @@
 
         <p class="text-sm text-gray-500 truncate">
           <% if !contact.phone.blank? %>
-            <i class="fa-solid fa-phone inline-flex" style="font-size: .8rem"></i>
+            <%= ui_icon(:phone, classes: "inline-flex h-4 w-4") %>
             <%= contact.phone %>
           <% else %>
-            <i class="fa-solid fa-envelope inline-flex" style="font-size: .8rem" aria-hidden="true"></i>
+            <%= ui_icon(:envelope, classes: "inline-flex h-4 w-4") %>
             <%= contact.display_email %>
           <% end %>
         </p>

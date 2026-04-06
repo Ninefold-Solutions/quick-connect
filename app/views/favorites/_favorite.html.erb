@@ -1,5 +1,5 @@
 <% favorite = favorite.decorate %>
-<% @event = favorite.events.first %>
+<% event = favorite.events.first %>
 
 <tr id="<%= dom_id(favorite) %>">
   <td class="table-cell" style="width: 20%;">
@@ -16,10 +16,10 @@
 
           <p class="text-sm text-gray-500 truncate">
             <% if !favorite.phone.blank? %>
-              <i class="fa-solid fa-phone inline-flex" style="font-size: .8rem"></i>
+              <%= ui_icon(:phone, classes: "inline-flex h-4 w-4") %>
               <%= favorite.phone %>
             <% else %>
-              <i class="fa-solid fa-envelope inline-flex" style="font-size: .8rem" aria-hidden="true"></i>
+              <%= ui_icon(:envelope, classes: "inline-flex h-4 w-4") %>
               <%= favorite.display_email %>
             <% end %>
           </p>
@@ -38,10 +38,10 @@
 
   <td class="table-cell whitespace-nowrap">
     <p class="text-sm font-normal text-gray-500 truncate">
-      <% if !@event.nil? %>
-        <%= @event.action_context.upcase_first %>
+      <% if !event.nil? %>
+        <%= event.action_context.upcase_first %>
         on
-        <%= display_created_at(@event) %>
+        <%= display_created_at(event) %>
       <% end %>
     </p>
   </td>

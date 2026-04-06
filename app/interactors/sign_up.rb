@@ -34,13 +34,13 @@ class SignUp < ApplicationService
     now = Time.now
     groups = Group.all.uniq.to_a
     ActsAsTenant.with_tenant(account) do
-      Field.insert_all([{ name: "Email", icon: "far fa-envelope-open", protocol: "mailto:", default: "TRUE" },
-                        { name: "Facebook", icon: "fa-brands fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
-                        { name: "Phone", icon: "fa-solid fa-phone-volume", protocol: "tel:", default: "TRUE" },
-                        { name: "Twitter", icon: "fa-brands fa-twitter-square", protocol: "", default: "TRUE" },
-                        { name: "Whatsapp", icon: "fa-brands fa-whatsapp", protocol: "https://wa.me", default: "TRUE" },
-                        { name: "Telegram", icon: "fa-brands fa-telegram", protocol: "telegram:", default: "TRUE" },
-                        { name: "LinkedIn", icon: "fa-brands fa-linkedin", protocol: "", default: "TRUE" }])
+      Field.insert_all([{ name: "Email", icon: "email", protocol: "mailto:", default: "TRUE" },
+            { name: "Facebook", icon: "facebook", protocol: "https://facebook.com", default: "TRUE" },
+            { name: "Phone", icon: "phone", protocol: "tel:", default: "TRUE" },
+            { name: "Twitter", icon: "twitter", protocol: "", default: "TRUE" },
+            { name: "Whatsapp", icon: "whatsapp", protocol: "https://wa.me", default: "TRUE" },
+            { name: "Telegram", icon: "telegram", protocol: "telegram:", default: "TRUE" },
+            { name: "LinkedIn", icon: "linkedin", protocol: "", default: "TRUE" }])
 Relation.insert_all([{ name: "significant other", default: "TRUE" }, { name: "Husband/Wife", default: "TRUE" }, { name: "date", default: "TRUE" }, { name: "lover", default: "TRUE" }, { name: "is in love with", default: "TRUE" },
                            { name: "secret lover", default: "TRUE" }, { name: "Ex-boyfriend/Ex-girlfriend", default: "TRUE" }, { name: "Ex-husband/Ex-wife", default: "TRUE" }, { name: "friend", default: "TRUE" }, { name: "Father/Mother", default: "TRUE" },
                            { name: "son/daughter", default: "TRUE" }, { name: "Brother/Sister", default: "TRUE" }, { name: "Grandfather/Grandmother", default: "TRUE" }, { name: "Grandson/Granddaughter", default: "TRUE" }, { name: "Uncle/Aunt", default: "TRUE" }, { name: "Nephew/Niece", default: "TRUE" }, { name: "cousin", default: "TRUE" },

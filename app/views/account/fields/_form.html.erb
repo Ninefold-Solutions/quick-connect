@@ -14,10 +14,11 @@
     </div>
 
     <div>
-      <%= form.text_field :icon, "Icon (optional)", autocomplete: "off", class: "form-text-field", placeholder: "fa fa-address-book-o" %>
+      <%= form.text_field :icon, "Icon (optional)", autocomplete: "off", class: "form-text-field", placeholder: "email, phone, website" %>
 
       <p class="mt-2 text-xs text-gray-500" id="question-explanation">
-        you can associate an icon with this contact field type. You need to add a reference to a font awesome icon.
+        You can associate an icon with this contact field type. Supported values include email, phone, website,
+        linkedin, twitter, whatsapp, telegram and facebook.
       </p>
     </div>
 

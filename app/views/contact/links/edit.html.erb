@@ -4,9 +4,7 @@
       <%= render "shared/form_messages", resource: @link, message: local_assigns[:message] %>
 
       <div>
-        <label for="date" class="text-sm font-normal text-gray-500">
-          Edit <%= @link.link_type.split("-").last.upcase_first %> Link
-        </label>
+        <label for="date" class="text-sm font-normal text-gray-500">Edit <%= @link.link_type_label %> Link</label>
 
         <%= form.text_field :link, class: "form-text-field mt-1" %>
         <%= form.text_field :user_id, value: current_user.id, class: "hidden" %>

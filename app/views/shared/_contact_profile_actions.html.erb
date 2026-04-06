@@ -1,9 +1,7 @@
 <% if !contact.phone.blank? %>
   <div>
     <button title="Send Sms" id="phone">
-      <span class="icon-span">
-        <i class="fa-solid fa-comments h-5 w-5"></i>
-      </span>
+      <span class="icon-span"><%= ui_icon(:comments, classes: "h-5 w-5") %></span>
     </button>
   </div>
 <% end %>
@@ -11,9 +9,7 @@
 <% if !contact.email.blank? %>
   <div>
     <a href="mailto:<%= contact.email %>" title="Send Email">
-      <span class="icon-span">
-        <i class="fa-solid fa-envelope h-5 w-5"></i>
-      </span>
+      <span class="icon-span"><%= ui_icon(:envelope, classes: "h-5 w-5") %></span>
     </a>
   </div>
 <% end %>

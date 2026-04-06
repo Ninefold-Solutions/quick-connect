@@ -5,7 +5,7 @@
 
     <div>
       <label for="date" class="text-sm font-normal text-gray-500"> Select Social Profile</label>
-      <%= form.select :link_type, options_for_select(Link::PROFILE_OPTIONS, link.link_type), {}, class: "form-text-field mt-1" %>
+      <%= form.select :link_type, options_for_select(Link::PROFILE_OPTIONS, link.normalized_link_type), {}, class: "form-text-field mt-1" %>
     </div>
 
     <div>

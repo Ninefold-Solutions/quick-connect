@@ -79,7 +79,7 @@
             >
               <span class="icon-span">
                 <!-- Heroicon name: outline/check-badge -->
-                <i class="fa-solid fa-pen-to-square h-4 w-4" aria-hidden="true"></i>
+                <%= ui_icon(:pen_to_square, classes: "h-4 w-4") %>
               </span>
             </a>
           </label>
@@ -91,9 +91,7 @@
                                                                                               action: "confirmation#confirm",
                                                                                               tooltip_content: "Archive Contact",
                                                                                             }, title: "Archive" do %>
-              <span class="icon-span">
-                <i class="fa-solid fa-box-archive h-4 w-4" aria-hidden="true"></i>
-              </span>
+              <span class="icon-span"><%= ui_icon(:box_archive, classes: "h-4 w-4") %></span>
             <% end %>
           </div>
 
@@ -108,9 +106,7 @@
                                                                      "confirmation-message-value": "Are you sure you want to restore this contact?",
                                                                      action: "confirmation#confirm",
                                                                    }, title: "Restore" do %>
-            <span class="icon-span">
-              <i class="fa-solid fa-box-archive h-4 w-4" aria-hidden="true"></i>
-            </span>
+            <span class="icon-span"><%= ui_icon(:box_archive, classes: "h-4 w-4") %></span>
           <% end %>
         </div>
       <% end %>

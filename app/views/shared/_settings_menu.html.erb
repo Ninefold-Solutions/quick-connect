@@ -2,7 +2,7 @@
   <nav class="space-y-1">
     <a href="<%= user_profile_path %>" class="<%= current_page?(user_profile_path) ? "selected" : "unselected" %>">
       <!-- Heroicon name: outline/user-circle -->
-      <i class="fa-solid fa-circle-user svg-icon h-6 inline-flex" aria-hidden="true"></i>
+      <%= ui_icon(:circle_user, classes: "svg-icon h-6 inline-flex") %>
 
       <span class="truncate"> Profile </span>
     </a>
@@ -12,7 +12,7 @@
       class="<%= current_page?(setting_password_path) ? "selected" : "unselected" %>"
     >
       <!-- Heroicon name: outline/key -->
-      <i class="fa-solid fa-key svg-icon h-6 inline-flex" aria-hidden="true"></i>
+      <%= ui_icon(:key, classes: "svg-icon h-6 inline-flex") %>
 
       <span class="truncate"> Password </span>
     </a>
@@ -21,7 +21,7 @@
       href="<%= user_preferences_path %>"
       class="<%= current_page?(user_preferences_path) ? "selected" : "unselected" %>"
     >
-      <i class="fa-solid fa-building svg-icon"></i>
+      <%= ui_icon(:building, classes: "svg-icon") %>
 
       <span class="truncate"> Preferences </span>
     </a>

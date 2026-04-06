@@ -1,11 +1,11 @@
 <%= turbo_frame_tag dom_id(field) do %>
   <li class="flex py-2 border-b border-gray-200">
     <div class="flex items-center w-full ml-4">
-      <p class="ml-3 font-light text-gray-600"><i class="<%= field.icon %>"></i></p>
-
-      <% if field.icon.nil? %>
-        <p class="ml-4"></p>
-      <% end %>
+      <p class="ml-3 font-light text-gray-600">
+        <% if (icon_name = field_icon_name(field.icon)) %>
+          <%= ui_icon(icon_name, classes: "h-4 w-4") %>
+        <% end %>
+      </p>
 
       <p class="w-full ml-2 text-sm font-normal text-gray-900">
         <%= field.name.upcase_first %>

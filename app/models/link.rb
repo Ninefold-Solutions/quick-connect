@@ -3,32 +3,41 @@ class Link < ApplicationRecord
   validates_presence_of :link
   belongs_to :contact
 
+  ICON_LABELS = {
+    "linkedin" => "LinkedIn",
+    "youtube" => "Youtube",
+    "facebook" => "Facebook",
+    "instagram" => "Instagram",
+    "whatsapp" => "Whatsapp",
+    "twitter" => "Twitter",
+    "hubspot" => "Hubspot",
+    "website" => "Website",
+    "github" => "Github",
+    "telegram" => "Telegram"
+  }.freeze
+
   PROFILE_OPTIONS = [
-    ["LinkedIn", "fa-brands fa-linkedin"],
-    ["Youtube", "fa-brands fa-youtube"],
-    ["Facebook", "fa-brands fa-facebook"],
-    ["Instagram", "fa-brands fa-instagram"],
-    ["Whatsapp", "fa-brands fa-whatsapp"],
-    ["Twitter", "fa-brands fa-twitter"],
-    ["Hubspot", "fa-brands fa-hubspot"],
-    ["Website", "fa-solid fa-globe"],
-    ["Github", "fa-brands fa-github"],
+    ["LinkedIn", "linkedin"],
+    ["Youtube", "youtube"],
+    ["Facebook", "facebook"],
+    ["Instagram", "instagram"],
+    ["Whatsapp", "whatsapp"],
+    ["Twitter", "twitter"],
+    ["Hubspot", "hubspot"],
+    ["Website", "website"],
+    ["Github", "github"],
   ]
   validates :link_type, uniqueness: { :scope => [:contact_id], message: "already exists" }
+  before_validation :normalize_link_type
 
   def normalized_link_type
     return if link_type.blank?
 
-    case link_type
-    when "fa-globle", "fa-brands fa-globle", "fa-solid fa-globle", "fa-brands fa-globe"
-      "fa-solid fa-globe"
-    else
-      link_type
-    end
+    link_type
   end
 
   def link_type_label
-    normalized_link_type.to_s.split("-").last.upcase_first
+    ICON_LABELS.fetch(normalized_link_type.to_s, normalized_link_type.to_s.upcase_first)
   end
 
   private

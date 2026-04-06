@@ -4,7 +4,7 @@
       <div class="flex">
         <div class="flex-shrink-0">
           <!-- Heroicon name: solid/x-circle -->
-          <i class="fa-solid fa-circle-xmark w-5 h-5 text-red-400" aria-hidden="true"></i>
+          <%= ui_icon(:circle_xmark, classes: "w-5 h-5 text-red-400") %>
         </div>
 
         <div class="ml-3">
@@ -54,7 +54,7 @@
 
         <%= form.file_field :picture, class: "hidden" %>
 
-        <i class="fa-solid fa-cloud-arrow-up w-9 h-9 text-gray-400 mx-auto"></i>
+        <%= ui_icon(:cloud_arrow_up, classes: "w-9 h-9 text-gray-400 mx-auto") %>
 
         <span class="text-gray-900" id="upload" data-file-input-target="label"> Custom Upload </span>
       </button>

@@ -19,7 +19,7 @@
           <div class="p-4 rounded bg-red-50">
             <div class="flex">
               <div class="flex-shrink-0">
-                <i class="fa-solid fa-circle-xmark w-5 h-5 text-red-400" aria-hidden="true"></i>
+                <%= ui_icon(:circle_xmark, classes: "w-5 h-5 text-red-400") %>
               </div>
 
               <div class="ml-3">
@@ -52,13 +52,15 @@
               >
             </div>
 
-            <i
-              class="cursor-pointer fa-regular fa-eye-slash"
+            <span
+              class="cursor-pointer text-gray-500"
               data-password-toggle-target="icon"
               data-action="click->password-toggle#toggle"
               id="togglePassword"
               style="margin-left:-30px; margin-top:12px"
-            ></i>
+            >
+              <%= ui_icon(:eye_slash, classes: "h-5 w-5") %>
+            </span>
           </div>
         </div>
 

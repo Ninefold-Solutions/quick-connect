@@ -15,9 +15,7 @@
               rounded-full w-9 grid place-content-center
             "
           >
-            <span>
-              <i class="<%= link.normalized_link_type %> font-medium fa-lg flex-auto"></i>
-            </span>
+            <span><%= social_icon_badge(link.normalized_link_type, classes: "font-semibold text-xs") %></span>
           </div>
         </a>
 
