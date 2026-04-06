@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-  include Pagy::Backend
+  include Pagy::Method
 
   protect_from_forgery with: :null_session
   protect_from_forgery with: :exception, unless: :json_request?
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
-  rescue_from Pagy::OverflowError, with: :record_not_found
+  rescue_from(Pagy::RangeError, with: :record_not_found) if defined?(Pagy::RangeError)
   before_action :set_redirect_path, unless: :user_signed_in?
 
   helper_method :current_user, :user_signed_in?

@@ -5,16 +5,18 @@ class BaseController < ApplicationController
   before_action :authenticate_account!, if: :http_request?
   after_action :verify_authorized
 
-  include Pagy::Backend
+  include Pagy::Method
 
   def authenticate_account!
     raise Pundit::NotAuthorizedError unless current_user.account == Current.account
   end
 
   def pagy_nil_safe(params, collection, vars = {})
-    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
-    return pagy, collection
+    options = vars.to_h.symbolize_keys
+    options[:page] = params[:page]
+    options[:limit] = options.delete(:items) if options.key?(:items) && !options.key?(:limit)
+
+    pagy(:offset, collection, **options)
   end
 
   LIMIT = 10

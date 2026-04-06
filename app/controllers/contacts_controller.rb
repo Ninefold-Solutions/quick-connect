@@ -1,5 +1,6 @@
 class ContactsController < BaseController
-  include Pagy::Backend
+    include Pagy::Method
+  include Pagy::Method
 
   before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track touched touch_back update_touched ]
 

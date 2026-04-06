@@ -3,7 +3,7 @@ class Contact::BaseController < BaseController
   after_action :add_count, only: %i[index]
   after_action :verify_authorized
   before_action :set_details
-  include Pagy::Backend
+  include Pagy::Method
 
   def toggle_favorite
     authorize @contact, :toggle_favorite?

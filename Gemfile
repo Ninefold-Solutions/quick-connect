@@ -42,7 +42,7 @@ gem "solid_cache"
 
 # authentication
 gem "bcrypt"
-gem "pagy", "8.4.0"
+gem "pagy"
 gem "font-awesome-rails"
 gem "csv"
 
