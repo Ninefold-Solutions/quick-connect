@@ -2,6 +2,7 @@
   <%= tailwind_form_with(model: @conversation, id: dom_id(@conversation), url: contact_conversation_path(@contact, @conversation)) do |form| %>
     <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @conversation, message: local_assigns[:message] %>
+
       <p class="block mt-2 text-sm font-bold text-gray-700">Edit Conversation</p>
 
       <div>

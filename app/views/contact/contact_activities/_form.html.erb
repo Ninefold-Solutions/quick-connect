@@ -13,7 +13,11 @@
     <div>
       <label for="contact_activity_group" class="block text-sm font-medium text-gray-700"> Select Group </label>
 
-      <select id="contact_activity_group" class="cursor-pointer form-text-field mt-1" data-contact-id="<%= contact.id %>">
+      <select
+        id="contact_activity_group"
+        class="cursor-pointer form-text-field mt-1"
+        data-contact-id="<%= contact.id %>"
+      >
         <option value="">Select Activity Category</option>
 
         <% groups.decorate.each do |group| %>
