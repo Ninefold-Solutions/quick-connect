@@ -13,13 +13,14 @@
             data-nav-search-url-value="/search/contact?profile=<%= contact.id %>"
           >
             <div class="w-full max-w-sm lg:max-w-sm">
-              <label for="contact" class="block text-sm font-medium text-gray-700">Search to add new Relation</label>
+              <label for="search-contacts" class="block text-sm font-medium text-gray-700">Search to add new Relation</label>
 
               <div class="mt-1">
                 <input
                   type="search"
                   name="search"
                   id="search-contacts"
+                  autocomplete="off"
                   class="form-text-field"
                   data-nav-search-target="input"
                 >
@@ -56,7 +57,7 @@
           </div>
         </main>
       <% else %>
-        <div id="contact_id">
+        <div id="contact_id_container">
           <input
             id="contact_id"
             name="relative[contact_id]"
@@ -70,7 +71,7 @@
         </div>
         <div>
           <%= form.hidden_field :first_contact_id, value: contact.id %>
-          <label for="relation" class="block text-sm font-medium text-gray-700"> Select Relation </label>
+          <%= form.label :relation_id, "Select Relation", class: "block text-sm font-medium text-gray-700" %>
           <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "cursor-pointer form-text-field mt-1") %>
         </div>
         <div class="flex justify-end space-x-2">

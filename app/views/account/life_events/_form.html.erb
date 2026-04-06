@@ -4,7 +4,7 @@
     <%= render "shared/form_header", title: "Add New Life Event", subtitle: "You can define custom life event which can be applied on contacts." %>
 
     <div>
-      <label for="group" class="block text-sm font-medium text-gray-700"> Select Group </label>
+      <%= form.label :group_id, "Select Group", class: "block text-sm font-medium text-gray-700" %>
       <%= form.collection_select("group_id", groups, :id, :display_name, { :prompt => "Select Group" }, :class => "cursor-pointer form-text-field mt-1") %>
     </div>
 

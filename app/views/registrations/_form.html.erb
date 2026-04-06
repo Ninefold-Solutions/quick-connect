@@ -6,7 +6,7 @@
       <div class="px-4 py-8 space-y-4 bg-white shadow sm:rounded-lg sm:px-10">
         <div class="flex">
           <div>
-            <label for="first_name" class="block text-sm font-medium text-gray-700"> First Name </label>
+            <label for="user_first_name" class="block text-sm font-medium text-gray-700"> First Name </label>
 
             <div class="mt-1">
               <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "form-text-field" %>
@@ -14,7 +14,7 @@
           </div>
 
           <div class="ml-2">
-            <label for="last_name" class="block text-sm font-medium text-gray-700"> Last Name </label>
+            <label for="user_last_name" class="block text-sm font-medium text-gray-700"> Last Name </label>
 
             <div class="mt-1">
               <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "form-text-field" %>
@@ -23,7 +23,7 @@
         </div>
 
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700"> Email Address </label>
+          <label for="user_email" class="block text-sm font-medium text-gray-700"> Email Address </label>
 
           <div class="mt-1">
             <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-text-field" %>
@@ -31,7 +31,7 @@
         </div>
 
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+          <label for="user_password" class="block text-sm font-medium text-gray-700"> Password </label>
           <em>(6 characters minimum)</em>
 
           <div class="mt-1 flex w-full" data-controller="password-toggle">
@@ -59,7 +59,7 @@
         </div>
 
         <div>
-          <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
+          <label for="user_password_confirmation" class="block text-sm font-medium text-gray-700">
             Password Confirmation
           </label>
 

@@ -6,7 +6,7 @@
     <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700"> Due Date </label>
+      <%= form.label :due_date, "Due Date", class: "block text-sm font-medium text-gray-700" %>
       <%= form.date_field :due_date, class: "cursor-pointer form-text-field mt-1" %>
     </div>
 

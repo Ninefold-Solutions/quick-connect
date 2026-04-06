@@ -19,7 +19,7 @@
     <div class="xl:px-8 md:px-6" id="contact-header">
       <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
         <div class="flex">
-          <%= image_tag "male-placeholder-image.png", class: "h-20 w-20 rounded-full ring-4 ring-white sm:h-32 sm:w-32" %>
+          <%= image_tag "male-placeholder-image.png", alt: "", class: "h-20 w-20 rounded-full ring-4 ring-white sm:h-32 sm:w-32" %>
         </div>
 
         <div class="sm:flex-1 sm:min-w-0 sm:flex sm:items-center justify-end lg:space-x-2">
@@ -27,7 +27,7 @@
             <h1 class="text-2xl font-bold text-gray-900 truncate"><%= contact.display_name %></h1>
           </div>
 
-          <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-2">
+          <div class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-2">
             <%= render "shared/contact_follow_up_badge", follow_up_text: contact.display_follow_up_after %>
 
             <%= render "shared/contact_social_links", contact: contact, links: links, links_container_class: "inline-flex space-x-2 pl-1" %>
@@ -56,13 +56,12 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav class="-mb-px flex space-x-8" aria-label="Tabs">
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
-            <a
-              href="#"
+            <span
               class="border-indigo-500 text-gray-900 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"
               aria-current="page"
             >
               Profile
-            </a>
+            </span>
           </nav>
         </div>
       </div>

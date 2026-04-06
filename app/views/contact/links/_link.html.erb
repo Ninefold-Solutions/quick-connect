@@ -21,11 +21,11 @@
 
           <div class="mt-2 space-x-2 text-sm inline-flex">
             <% if policy([social.contact, social]).edit? %>
-              <%= edit_button("/#{current_user.account.id}/contacts/#{@contact.id}/links/#{social.id}/edit") %>
+              <%= edit_button("/#{social.contact.account.id}/contacts/#{social.contact.id}/links/#{social.id}/edit") %>
             <% end %>
 
             <% if policy([social.contact, social]).destroy? %>
-              <%= delete_button("/#{current_user.account.id}/contacts/#{@contact.id}/links/#{social.id}") %>
+              <%= delete_button("/#{social.contact.account.id}/contacts/#{social.contact.id}/links/#{social.id}") %>
             <% end %>
           </div>
         </div>

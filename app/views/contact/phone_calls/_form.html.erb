@@ -1,15 +1,16 @@
 <%= tailwind_form_with(model: phone_call, id: dom_id(phone_call), url: contact_phone_calls_path) do |form| %>
+  <% contact_name = local_assigns[:contact]&.first_name || phone_call.contact&.first_name || "Contact" %>
   <main class="max-w-lg px-4 pt-4 pb-12 mx-auto space-y-4 lg:pb-16">
     <%= render "shared/form_messages", resource: phone_call, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Phone Call", subtitle: "A Phone Call can be added to a contact which can help you remember important calls. " %>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700"> The phone call happened on </label>
+      <%= form.label :date, "The phone call happened on", class: "block text-sm font-medium text-gray-700" %>
       <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db), max: Date.today %>
     </div>
 
     <div class="w-full">
-      <label for="status" class="block text-sm font-medium text-gray-700"> Who called? </label>
+      <%= form.label :status, "Who called?", class: "block text-sm font-medium text-gray-700" %>
 
       <div class="block max-w-lg space-x-2 flex">
         <div class="inline-flex space-x-2 whitespace-nowrap">
@@ -22,7 +23,7 @@
           style="word-break: break-all; overflow-wrap: break-word; "
         >
           <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer flex-auto", :checked => false %>
-          <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "  cursor-pointer text-sm font-medium text-gray-700 flex-none", style: "width: 19rem;" %>
+          <%= form.label :status_contact, contact_name.upcase_first + " called", class: "  cursor-pointer text-sm font-medium text-gray-700 flex-none", style: "width: 19rem;" %>
         </div>
       </div>
     </div>

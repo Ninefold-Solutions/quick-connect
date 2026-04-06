@@ -2,15 +2,15 @@
   <%= tailwind_form_with(model: @conversation, id: dom_id(@conversation), url: contact_conversation_path(@contact, @conversation)) do |form| %>
     <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @conversation, message: local_assigns[:message] %>
-      <label for="name" class="block mt-2 text-sm font-bold text-gray-700"><%= "Edit Conversation" %></label>
+      <p class="block mt-2 text-sm font-bold text-gray-700">Edit Conversation</p>
 
       <div>
-        <label for="date" class="block text-sm font-medium text-gray-700"> Select Date </label>
+        <%= form.label :date, "Select Date", class: "block text-sm font-medium text-gray-700" %>
         <%= form.date_field :date, class: " cursor-pointer form-text-field mt-1 " %>
       </div>
 
       <div>
-        <label for="date" class="block text-sm font-medium text-gray-700"> How did you communicate </label>
+        <%= form.label :field_id, "How did you communicate", class: "block text-sm font-medium text-gray-700" %>
         <%= form.collection_select("field_id", Field.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Contact Field Type" }, :class => "cursor-pointer form-text-field mt-1") %>
       </div>
 

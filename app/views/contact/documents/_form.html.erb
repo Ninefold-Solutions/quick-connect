@@ -1,20 +1,21 @@
-<%= form_with(model: document, id: dom_id(document), url: contact_documents_path(@contact)) do |form| %>
+<% document_contact = local_assigns[:contact] || document.contact %>
+<%= form_with(model: document, id: dom_id(document), url: contact_documents_path(document_contact)) do |form| %>
   <main class="max-w-lg px-4 pt-4 pb-12 mx-auto space-y-4 lg:pb-16">
     <%= render "shared/form_messages", resource: document, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Document", subtitle: "A contact document can be link to contact documentation, design files, contact report or something contact related" %>
 
     <div>
-      <label for="filename" class="block text-sm font-medium text-gray-700"> Filename </label>
+      <%= form.label :filename, "Filename", class: "block text-sm font-medium text-gray-700" %>
       <%= form.text_field :filename, class: "form-text-field mt-1", autocomplete: "off" %>
     </div>
 
     <div>
-      <label for="link" class="block text-sm font-medium text-gray-700"> Link </label>
+      <%= form.label :link, "Link", class: "block text-sm font-medium text-gray-700" %>
       <%= form.text_field :link, class: "form-text-field mt-1", autocomplete: "off" %>
     </div>
 
     <div>
-      <label for="comments" class="block text-sm font-medium text-gray-700"> Comments(optional) </label>
+      <%= form.label :comments, "Comments(optional)", class: "block text-sm font-medium text-gray-700" %>
       <%= form.text_area :comments, class: "form-text-field mt-1 h-32", autocomplete: "off" %>
     </div>
 

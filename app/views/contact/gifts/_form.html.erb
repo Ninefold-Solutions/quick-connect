@@ -6,7 +6,7 @@
     <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
 
     <div class="w-full">
-      <label for="status" class="block text-sm font-medium text-gray-700"> Status </label>
+      <%= form.label :status, "Status", class: "block text-sm font-medium text-gray-700" %>
 
       <div class="block max-w-lg space-x-8 flex">
         <div class="inline-flex space-x-2">
@@ -22,7 +22,7 @@
     </div>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700"> Date </label>
+      <%= form.label :date, "Date", class: "block text-sm font-medium text-gray-700" %>
       <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
 

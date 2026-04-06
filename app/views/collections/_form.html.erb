@@ -3,7 +3,7 @@
 
   <div class="flex">
     <div class="flex-1 min-w-0">
-      <label for="group" class="block text-sm font-medium text-gray-700 pt-2">Add New Collection</label>
+      <%= form.label :name, "Add New Collection", class: "block text-sm font-medium text-gray-700 pt-2" %>
 
       <div class="flex py-2">
         <div class="flex-1"><%= form.text_field :name, autocomplete: "off", class: "form-text-field" %></div>

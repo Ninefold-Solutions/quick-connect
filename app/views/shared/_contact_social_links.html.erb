@@ -1,7 +1,7 @@
 <div class="<%= links_container_class %>">
   <% if links.present? %>
     <% links.each do |link| %>
-      <label for="links">
+      <div>
         <a
           href="<%= link.link %>"
           data-contact-id="<%= contact.id %>"
@@ -18,9 +18,7 @@
             <span><%= social_icon_badge(link.normalized_link_type, classes: "font-semibold text-xs") %></span>
           </div>
         </a>
-
-        <span></span>
-      </label>
+      </div>
     <% end %>
   <% end %>
 </div>

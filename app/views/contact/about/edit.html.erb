@@ -5,7 +5,7 @@
     <%= form_with(model: @about, id: dom_id(@about), url: contact_about_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
       <main class="w-full mx-auto space-y-3 py-4">
         <div>
-          <label for="date" class="text-sm font-normal text-gray-500"> Address</label>
+          <%= form.label :address, "Address", class: "text-sm font-normal text-gray-500" %>
           <%= form.text_area :address, class: "form-text-field h-20 mt-1" %>
         </div>
 
@@ -23,9 +23,7 @@
     <%= form_with(model: @about, id: dom_id(@about), url: contact_about_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
       <main class="w-full mx-auto space-y-3 py-4">
         <div>
-          <label for="date" class="text-sm font-normal text-gray-500">
-            Brief about <%= @contact.decorate.display_name %>
-          </label>
+          <%= form.label :breif, "Brief about #{@contact.decorate.display_name}", class: "text-sm font-normal text-gray-500" %>
 
           <%= form.text_area :breif, class: "form-text-field h-20 mt-1" %>
         </div>
@@ -44,9 +42,7 @@
     <%= form_with(model: @about, id: dom_id(@about), url: contact_about_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
       <main class="w-full mx-auto space-y-3 py-4">
         <div>
-          <label for="date" class="text-sm font-normal text-gray-500">
-            How you met <%= @contact.decorate.display_name %>
-          </label>
+          <%= form.label :met, "How you met #{@contact.decorate.display_name}", class: "text-sm font-normal text-gray-500" %>
 
           <%= form.text_area :met, class: "form-text-field h-20 mt-1" %>
         </div>
@@ -65,7 +61,7 @@
     <%= form_with(model: @about, id: dom_id(@about), url: contact_about_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
       <main class="w-full mx-auto space-y-3 py-4">
         <div>
-          <label for="date" class="text-sm font-normal text-gray-500">Habits And Preferences</label>
+          <%= form.label :habit, "Habits And Preferences", class: "text-sm font-normal text-gray-500" %>
           <%= form.text_area :habit, class: "form-text-field h-20 mt-1" %>
         </div>
 
@@ -83,7 +79,7 @@
     <%= form_with(model: @about, id: dom_id(@about), url: contact_about_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
       <main class="w-full mx-auto space-y-3 py-4">
         <div>
-          <label for="date" class="text-sm font-normal text-gray-500">Work Information</label>
+          <%= form.label :work, "Work Information", class: "text-sm font-normal text-gray-500" %>
           <%= form.text_area :work, class: "form-text-field h-20 mt-1" %>
         </div>
 
@@ -101,7 +97,7 @@
     <%= form_with(model: @about, id: dom_id(@about), url: contact_about_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
       <main class="w-full mx-auto space-y-3 py-4">
         <div>
-          <label for="date" class="text-sm font-normal text-gray-500">Other</label>
+          <%= form.label :other, "Other", class: "text-sm font-normal text-gray-500" %>
           <%= form.text_area :other, class: "form-text-field h-20 mt-1" %>
         </div>
 

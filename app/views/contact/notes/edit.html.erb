@@ -2,7 +2,7 @@
   <%= tailwind_form_with(model: @note, id: dom_id(@note), url: contact_note_path(@contact, @note)) do |form| %>
     <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @note, message: local_assigns[:message] %>
-      <label for="name" class="block mt-1 text-sm font-bold text-gray-700"><%= "Edit Note" %></label>
+      <p class="block mt-1 text-sm font-bold text-gray-700">Edit Note</p>
       <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
 
       <div class="flex justify-end space-x-2">

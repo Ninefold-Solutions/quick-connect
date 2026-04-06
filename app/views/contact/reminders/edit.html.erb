@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script nonce="<%= request.content_security_policy_nonce %>" type="text/javascript">
   function show(str){
       document.getElementById('remind_after').style.display = 'none';
   }
@@ -14,9 +14,9 @@
     <%= form.text_field :title, "Please remind me to…", class: " form-text-field " %>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700">
+      <%= form.label :reminder_date, class: "block text-sm font-medium text-gray-700" do %>
         When is the next time you would like to be reminded about this?
-      </label>
+      <% end %>
 
       <%= form.date_field :reminder_date, class: "cursor-pointer form-text-field mt-1", min: Date.today %>
     </div>

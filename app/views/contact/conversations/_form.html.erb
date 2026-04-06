@@ -4,12 +4,12 @@
     <%= render "shared/form_header", title: "Add New Conversation", subtitle: "A Conversation can be added to a contact which can help you remember important calls. " %>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700"> Select Date </label>
+      <%= form.label :date, "Select Date", class: "block text-sm font-medium text-gray-700" %>
       <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700"> How did you communicate </label>
+      <%= form.label :field_id, "How did you communicate", class: "block text-sm font-medium text-gray-700" %>
       <%= form.collection_select("field_id", fields, :id, :display_name, { :prompt => "Select Contact Field Type" }, :class => "cursor-pointer form-text-field mt-1") %>
     </div>
 

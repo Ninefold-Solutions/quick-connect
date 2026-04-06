@@ -1,6 +1,6 @@
 <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8" id="login-form">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <a href="https://connect.quicklabs.in/"><%= image_tag "icon.png", class: "block w-auto h-16 mx-auto" %></a>
+    <a href="https://connect.quicklabs.in/"><%= image_tag "icon.png", alt: "Quick Connect", class: "block w-auto h-16 mx-auto" %></a>
 
     <h1 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
       Sign in to your account
@@ -30,7 +30,7 @@
         <% end %>
 
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700"> Email Address </label>
+          <label for="user_email" class="block text-sm font-medium text-gray-700"> Email Address </label>
 
           <div class="mt-1">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-text-field" %>
@@ -38,7 +38,7 @@
         </div>
 
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+          <label for="user_password" class="block text-sm font-medium text-gray-700"> Password </label>
 
           <div class="mt-1 flex w-full" data-controller="password-toggle">
             <div class="mt-1 flex-auto w-full">

@@ -1,4 +1,6 @@
 <%= tailwind_form_with(model: debt, id: dom_id(debt), url: contact_debts_path) do |form| %>
+  <% debt_contact = local_assigns[:contact] || debt.contact %>
+  <% debt_contact_name = debt_contact&.decorate&.display_name || "Contact" %>
   <main class="max-w-lg px-4 pt-4 pb-12 mx-auto space-y-4 lg:pb-16">
     <%= render "shared/form_messages", resource: debt, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Debt", subtitle: "A debt can be added to keep track of money given or received from your contacts. " %>
@@ -6,7 +8,7 @@
     <%= form.text_field :amount, "Amount", class: "form-text-field" %>
 
     <div class="w-full">
-      <label for="owned_by" class="block text-sm font-medium text-gray-700"> Owed by </label>
+      <%= form.label :owed_by, "Owed by", class: "block text-sm font-medium text-gray-700" %>
 
       <div class="block max-w-lg space-x-8">
         <div class="inline-flex space-x-2">
@@ -16,13 +18,13 @@
 
         <div class="inline-flex space-x-2 pl-4">
           <%= form.radio_button :owed_by, "contact", class: "mt-1 cursor-pointer flex-auto" %>
-          <%= form.label :owed_by_contact, @contact.decorate.display_name, class: "break-words w-60 cursor-pointer text-sm font-medium text-gray-700 flex-none", style: "width: auto;" %>
+          <%= form.label :owed_by_contact, debt_contact_name, class: "break-words w-60 cursor-pointer text-sm font-medium text-gray-700 flex-none", style: "width: auto;" %>
         </div>
       </div>
     </div>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700"> Due Date </label>
+      <%= form.label :due_date, "Due Date", class: "block text-sm font-medium text-gray-700" %>
       <%= form.date_field :due_date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
 

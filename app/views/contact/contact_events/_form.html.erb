@@ -6,14 +6,14 @@
     <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700"> Date </label>
+      <%= form.label :date, "Date", class: "block text-sm font-medium text-gray-700" %>
       <%= form.date_field :date, class: " cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
 
     <div>
-      <label for="group" class="block text-sm font-medium text-gray-700"> Select Group </label>
+      <label for="contact_event_group" class="block text-sm font-medium text-gray-700"> Select Group </label>
 
-      <select class="cursor-pointer form-text-field mt-1" data-contact-id="<%= contact.id %>">
+      <select id="contact_event_group" class="cursor-pointer form-text-field mt-1" data-contact-id="<%= contact.id %>">
         <option value="">Select Event Category</option>
 
         <% groups.decorate.each do |group| %>
@@ -25,7 +25,7 @@
     </div>
 
     <div>
-      <label for="group" class="block text-sm font-medium text-gray-700"> Select Event </label>
+      <%= form.label :life_event_id, "Select Event", class: "block text-sm font-medium text-gray-700" %>
 
       <div id="event">
         <%= form.collection_select("life_event_id", events.decorate, :id, :display_name, { :prompt => "Select Event" }, :class => "cursor-pointer form-text-field mt-1") %>
@@ -42,7 +42,7 @@
           class="cursor-pointer focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
         >
 
-        <label for="remember_me" class="block ml-2 text-sm text-gray-900 cursor-pointer">
+        <label for="reminder" class="block ml-2 text-sm text-gray-900 cursor-pointer">
           Add a yearly reminder for this event
         </label>
       </div>

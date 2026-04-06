@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import { get } from "@rails/request.js";
+import { get } from "request";
 import { drawContributions } from "github-canvas-rating";
 
 export default class extends Controller {

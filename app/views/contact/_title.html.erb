@@ -69,7 +69,7 @@
             </a>
           </div>
 
-          <label for="edit">
+          <div>
             <a
               href="<%= edit_contact_path(contact) %>"
               title="Edit"
@@ -82,7 +82,7 @@
                 <%= ui_icon(:pen_to_square, classes: "h-4 w-4") %>
               </span>
             </a>
-          </label>
+          </div>
 
           <div>
             <%= link_to "/#{contact.account.id}/archive/contact/#{contact.id}", class: "", data: {

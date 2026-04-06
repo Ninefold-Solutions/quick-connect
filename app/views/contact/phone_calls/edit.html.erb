@@ -2,15 +2,15 @@
   <%= form_with(model: @phone_call, id: dom_id(@phone_call), url: contact_phone_call_path(@contact, @phone_call), data: { turbo_frame: dom_id(@phone_call) }) do |form| %>
     <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @phone_call, message: local_assigns[:message] %>
-      <label for="name" class="block mt-2 text-sm font-bold text-gray-700"><%= "Edit Phone Call" %></label>
+      <p class="block mt-2 text-sm font-bold text-gray-700">Edit Phone Call</p>
 
       <div>
-        <label for="date" class="block text-sm font-medium text-gray-700"> The phone call happened on </label>
+        <%= form.label :date, "The phone call happened on", class: "block text-sm font-medium text-gray-700" %>
         <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1 ", max: Date.today %>
       </div>
 
       <div class="w-full">
-        <label for="status" class="block text-sm font-medium text-gray-700"> Who called? </label>
+        <%= form.label :status, "Who called?", class: "block text-sm font-medium text-gray-700" %>
 
         <div class="block max-w-lg space-x-8">
           <div class="inline-flex space-x-2">

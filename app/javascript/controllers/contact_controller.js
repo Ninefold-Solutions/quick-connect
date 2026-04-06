@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { FetchRequest } from "@rails/request.js"
+import { FetchRequest } from "request"
 
 export default class extends Controller {
     static targets = ["labels", "favorite"]
