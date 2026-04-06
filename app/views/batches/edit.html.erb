@@ -14,8 +14,13 @@
       <div class="flex-1 min-w-0 w-full">
         <label for="group" class="block text-sm font-medium text-gray-700">Edit Group</label>
 
-        <div class="flex py-2">
+        <div class="flex flex-col py-2 space-y-2">
           <div class="flex-1"><%= form.text_field :name, autocomplete: "off", class: "form-text-field" %></div>
+
+          <div>
+            <%= form.url_field :website, autocomplete: "off", class: "form-text-field", placeholder: "Website (optional)" %>
+          </div>
+
           <div class="flex justify-end space-x-2"><%= form.submit "Save", class: "btn-primary ml-2" %></div>
         </div>
       </div>

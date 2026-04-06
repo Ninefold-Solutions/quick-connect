@@ -87,6 +87,6 @@ class BatchesController < BaseController
   end
 
   def batch_params
-    params.require(:batch).permit(:name)
+    params.require(:batch).permit(:name, :website)
   end
 end
