@@ -18,7 +18,7 @@
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "tippy", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tippy", preload: false, "data-turbo-track": "reload" %>
 
     <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
