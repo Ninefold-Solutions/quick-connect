@@ -44,3 +44,7 @@
 /config/credentials/development.key
 
 /config/credentials/staging.key
+
+# Ignore key files for decrypting credentials and more.
+/config/credentials/*.key
+
