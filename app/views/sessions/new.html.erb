@@ -7,11 +7,6 @@
     <h1 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
       Sign in to your account
     </h1>
-
-    <p class="mt-2 text-sm text-center text-gray-600 max-w">
-      Or
-      <a href="<%= signup_path %>" class="font-medium text-indigo-600 hover:text-indigo-500 hover:underline"> create an account </a>
-    </p>
   </div>
 
   <%= form_with(url: login_path, method: :post, scope: :user) do |f| %>
