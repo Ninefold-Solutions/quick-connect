@@ -24,9 +24,7 @@
           <% if !contact.phone.blank? %>
             <%= ui_icon(:phone, classes: "inline-flex h-4 w-4") %>
             <%= contact.phone %>
-          <% end %>
-
-          <% if !contact.email.blank? %>
+          <% else %>
             <%= ui_icon(:envelope, classes: "inline-flex h-4 w-4") %>
             <%= contact.display_email %>
           <% end %>
