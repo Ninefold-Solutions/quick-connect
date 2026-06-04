@@ -3,7 +3,7 @@ services:
     name: quick-connect
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    startCommand: "bundle exec puma -C config/puma.rb; bin/rails db:prepare"
     envVars:
       - key: RAILS_ENV
         value: production
