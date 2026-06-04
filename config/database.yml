@@ -10,5 +10,5 @@ test:
 
 production:
   adapter: sqlite3
-  database: storage/production.sqlite3
+  database: <%= ENV.fetch("SQLITE_DATABASE_PATH", "/var/data/production.sqlite3") %>
   pool: 3

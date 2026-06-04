@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: quick-connect
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false # Set this manually in Render dashboard
+    disk:
+      name: sqlite-data
+      mountPath: /var/data
+      sizeGB: 1
