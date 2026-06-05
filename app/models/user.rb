@@ -48,11 +48,13 @@ class User < ApplicationRecord
   def follow_ups
     follows = Contact.available.tracked.includes(:contacts_labels).where("contacts.touched_at <= ?", Date.today - 30.days)
     if follows.present?
-      fourths = follows.over_100_days.where("contacts.touched_at <= ?", Date.today - 100.days)
-      thirds = follows.ninety_days.where("contacts.touched_at <= ?", Date.today - 90.days) - fourths
-      seconds = follows.sixty_days.where("contacts.touched_at <= ?", Date.today - 60.days) - thirds - fourths
-      firsts = follows.thirty_days.where("contacts.touched_at <= ?", Date.today - 30.days) - seconds - thirds - fourths
+      sixth = follows.over_100_days.where("contacts.touched_at <= ?", Date.today - 100.days)
+      fifth = follows.ninety_days.where("contacts.touched_at <= ?", Date.today - 90.days) - sixth
+      fourth = follows.sixty_days.where("contacts.touched_at <= ?", Date.today - 60.days) - fifth - sixth
+      third = follows.thirty_days.where("contacts.touched_at <= ?", Date.today - 30.days) - fourth - fifth - sixth
+      second = follows.fifteen_days.where("contacts.touched_at <= ?", Date.today - 15.days) - third - fourth - fifth - sixth
+      first = follows.seven_days.where("contacts.touched_at <= ?", Date.today - 7.days) - second - third - fourth - fifth - sixth
     end
-    return firsts, seconds, thirds, fourths, follows
+    return first, second, third, fourth, fifth, sixth, follows
   end
 end
