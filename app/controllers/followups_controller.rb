@@ -1,10 +1,6 @@
 class FollowupsController < BaseController
   def index
     authorize :followup
-    follow_ups = current_user.follow_ups
-    @firsts = follow_ups.first
-    @seconds = follow_ups.second
-    @thirds = follow_ups.third
-    @fourths = follow_ups.fourth
+    @first, @second, @third, @fourth, @fifth, @sixth = current_user.follow_ups
   end
 end

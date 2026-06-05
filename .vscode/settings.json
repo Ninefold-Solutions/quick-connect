@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "\"*.html.erb\"": "\"erb\""
-    }
+    },
+    "diffEditor.renderSideBySide": false
 }

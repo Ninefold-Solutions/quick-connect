@@ -2,22 +2,19 @@
   <% contact = contact.decorate %>
 
   <li class="my-1 col-span-1 bg-white rounded border border-gray-200 divide-gray-200 shadow-xs">
-    <div class="flex w-full items-center justify-between space-x-6 p-3">
+    <div class="flex w-full items-center justify-between space-x-6 p-2">
       <div class="flex-1 space-y-1">
         <div class="flex items-center space-x-2">
           <div class="grid grid-cols-1 gap-4 w-full">
             <div class="relative flex items-center space-x-2">
-              <div class="flex-shrink-0">
-                <%= image_tag "male-placeholder-image.png", alt: "", class: "w-10 h-10 rounded-full inline-flex" %>
-              </div>
+              
 
               <div class="min-w-0 flex-1">
                 <div class="flex items-center space-x-2">
                   <a
                     href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline"
                     class="
-                      w-full bg-white cursor-pointer hover:underline text-sm font-medium text-gray-900
-                      whitespace-nowrap
+                      block w-full min-w-0 truncate bg-white cursor-pointer hover:underline text-sm font-medium text-gray-900
                     "
                     target="_top"
                   >
@@ -51,13 +48,13 @@
                   </div>
                 </div>
 
-                <p class="mt-1 text-sm text-gray-500 inline-flex space-x-1">
+                <p class="mt-1 text-sm text-gray-500 flex min-w-0 items-start space-x-1">
                   <% if !contact.phone.blank? %>
                     <%= ui_icon(:phone, classes: "inline-flex h-4 w-4") %>
-                    <span class="text-sm text-gray-500 inline-flex w-56 -mt-1"><%= contact.phone %></span>
+                    <span class="text-sm text-gray-500 -mt-1 min-w-0 truncate"><%= contact.phone %></span>
                   <% else %>
                     <%= ui_icon(:envelope, classes: "inline-flex h-4 w-4") %>
-                    <span class="text-sm text-gray-500 inline-flex -mt-1 break-all"><%= contact.display_email %></span>
+                    <span class="text-sm text-gray-500 -mt-1 min-w-0 truncate"><%= contact.display_email %></span>
                   <% end %>
                 </p>
               </div>
