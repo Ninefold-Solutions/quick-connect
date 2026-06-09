@@ -18,15 +18,15 @@ Rails.application.routes.draw do
     get "/activities", to: "report/activities#index", as: "activities_reports"
   end
   resources :contacts do
-    resources :notes, module: "contact", except: [:show]
-    resources :phone_calls, module: "contact", except: [:show]
-    resources :reminders, module: "contact", except: [:show]
-    resources :tasks, module: "contact"
-    resources :relatives, module: "contact", except: [:show]
-    resources :contact_activities, module: "contact", except: [:show]
-    resources :contact_events, module: "contact", except: [:show]
-    resources :about, module: "contact", except: [:show]
-    resources :documents, module: "contact", except: [:show]
+    resources :notes, module: "contact", except: [:show, :new]
+    resources :phone_calls, module: "contact", except: [:show, :new]
+    resources :reminders, module: "contact", except: [:show, :new]
+    resources :tasks, module: "contact", except: [ :new]
+    resources :relatives, module: "contact", except: [:show, :new]
+    resources :contact_activities, module: "contact", except: [:show, :new]
+    resources :contact_events, module: "contact", except: [:show, :new]
+    resources :about, module: "contact", except: [:show, :new]
+    resources :documents, module: "contact", except: [:show, :new]
     resources :links, module: "contact", except: [:show, :new, :index], as: "social"
     resources :labels, module: "contact", controller: "contact_labels", only: [:create, :destroy]
 
@@ -34,10 +34,10 @@ Rails.application.routes.draw do
       get :form
       post :import
     end
-    resources :gifts, module: "contact", except: [:show]
+    resources :gifts, module: "contact", except: [:show, :new]
     resources :batches, module: "contact", path: "groups", except: [:show, :new, :update]
-    resources :debts, module: "contact", except: [:show]
-    resources :conversations, module: "contact", except: [:show]
+    resources :debts, module: "contact", except: [:show, :new]
+    resources :conversations, module: "contact", except: [:show, :new]
     resources :timeline, module: "contact", only: [:index]
   end
   get "favorites", to: "favorites#index", as: "favorites"
@@ -102,7 +102,7 @@ Rails.application.routes.draw do
   end
   get "/contact/:id", to: "contacts#touched", as: "touched_contact"
   get "/contact/:id/update_touched", to: "contacts#update_touched", as: "update_touched_contact"
-  resources :collections
+  resources :collections, except: [:new, :show]
   get "/search/collection", to: "search#collection"
   post "collections/:collection_id/add/:batch_id", to: "collections#add_group", as: "collection_add_batch"
   delete "/collection/:id/group/:batch_id", to: "collections#remove_group", as: "delete_collection_group"
