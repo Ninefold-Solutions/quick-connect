@@ -4,28 +4,33 @@ class AccountMiddleware
   end
 
   def call(env)
-    request = ActionDispatch::Request.new(env)
-    path_segments = env["REQUEST_PATH"].to_s.split("/", 3)
-    _, account_id, request_path = path_segments
+    begin
+      request = ActionDispatch::Request.new(env)
+      path_segments = env["REQUEST_PATH"].to_s.split("/", 3)
+      _, account_id, request_path = path_segments
 
-    if account_id&.match?(/^\d+$/)
-      account = Account.find(account_id)
-      if account
-        # Set the current account for ActsAsTenant and Current
-        Current.account = account
-        ActsAsTenant.current_tenant = account
+      if account_id&.match?(/^\d+$/)
+        account = Account.find(account_id)
+        if account
+          # Set the current account for ActsAsTenant and Current
+          Current.account = account
+          ActsAsTenant.current_tenant = account
 
-        if account.expired? && request_path != "expired" && !env["REQUEST_PATH"].include?("logout")
-          return redirect_to("/#{account.id}/expired")
+          if account.expired? && request_path != "expired" && !env["REQUEST_PATH"].include?("logout")
+            return redirect_to("/#{account.id}/expired")
+          end
+        else
+          return redirect_to("/")
         end
-      else
-        return redirect_to("/")
+
+        update_env_for_account(env, account_id, request_path)
       end
 
-      update_env_for_account(env, account_id, request_path)
+      @app.call(env)
+    ensure
+      Current.reset
+      ActsAsTenant.current_tenant = nil
     end
-
-    @app.call(env)
   end
 
   private

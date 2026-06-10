@@ -12,9 +12,9 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  # Full error reports are disabled and caching is turned on.
+  # Full error reports are disabled.
   config.consider_all_requests_local = false
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
 
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
@@ -64,8 +64,8 @@ Rails.application.configure do
   # want to log everything, set the level to "debug".
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
-  # Use a different cache store in production.
-  config.cache_store = :solid_cache_store
+  # Minimize memory usage on small instances by avoiding in-process cache growth.
+  config.cache_store = :null_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter = :solid_queue
