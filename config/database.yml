@@ -11,4 +11,4 @@ test:
 production:
   adapter: sqlite3
   database: <%= ENV.fetch("SQLITE_DATABASE_PATH", "/data/production.sqlite3") %>
-  pool: 3
+  pool: <%= Integer(ENV.fetch("DB_POOL", ENV.fetch("RAILS_MAX_THREADS", 1))) %>

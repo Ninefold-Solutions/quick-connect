@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :relatives, module: "contact", except: [:show, :new]
     resources :contact_activities, module: "contact", except: [:show, :new]
     resources :contact_events, module: "contact", except: [:show, :new]
-    resources :about, module: "contact", except: [:show, :new]
+    resources :about, module: "contact", except: [:show, :new, :create]
     resources :documents, module: "contact", except: [:show, :new]
     resources :links, module: "contact", except: [:show, :new, :index], as: "social"
     resources :labels, module: "contact", controller: "contact_labels", only: [:create, :destroy]
