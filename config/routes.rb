@@ -8,16 +8,15 @@ Rails.application.routes.draw do
 
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
-  resources :user
+  resources :user, except: [:new, :edit, :show, :create]
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
-  match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
   get "/report", to: "reports#index", as: "reports"
   scope "report" do
     get "/events", to: "report/events#index", as: "events_reports"
     get "/activities", to: "report/activities#index", as: "activities_reports"
   end
-  resources :contacts do
+  resources :contacts, except: [:show] do
     resources :notes, module: "contact", except: [:show, :new]
     resources :phone_calls, module: "contact", except: [:show, :new]
     resources :reminders, module: "contact", except: [:show, :new]
@@ -31,18 +30,15 @@ Rails.application.routes.draw do
     resources :labels, module: "contact", controller: "contact_labels", only: [:create, :destroy]
 
     collection do
-      get :form
       post :import
     end
     resources :gifts, module: "contact", except: [:show, :new]
-    resources :batches, module: "contact", path: "groups", except: [:show, :new, :update]
+    resources :batches, module: "contact", path: "groups", except: [:show, :new, :update, :edit]
     resources :debts, module: "contact", except: [:show, :new]
     resources :conversations, module: "contact", except: [:show, :new]
     resources :timeline, module: "contact", only: [:index]
   end
   get "favorites", to: "favorites#index", as: "favorites"
-  get "contacts/groups", to: "contacts#groups"
-  post "/status", to: "status#create", as: "statuses"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/search/contacts", to: "search#contacts"
   get "/search/contact", to: "search#contact"
@@ -52,8 +48,6 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   get "followups", to: "followups#index"
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
-  get "/batches/view/:id", to: "batches#view", as: "batch_view"
-  get "/batches/profile", to: "batches#profile", as: "batch_profile"
   scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
     get "/password", to: "user#password", as: "setting_password"
@@ -66,7 +60,6 @@ Rails.application.routes.draw do
   #dashboard
   get :events, controller: :dashboard
   get :tasks, controller: :dashboard
-  get :contacted, controller: :dashboard
   get :reminders, controller: :dashboard
 
   resources :batches, except: [:new], path: "groups" do
@@ -80,10 +73,9 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
-    match "/contact-sample.csv" => "import#export", via: :get, defaults: { format: :csv }
     get "/export", to: "export#index", as: "export_contacts"
     get "/import", to: "import#index", as: "import_contacts"
-    resources :users, except: [:show, :new] do
+    resources :users, except: [:show, :new, :edit, :update, :destroy] do
       get "/deactivate", to: "users#deactivate", as: "deactivate"
       get "/activate", to: "users#activate", as: "activate"
     end
