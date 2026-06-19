@@ -48,8 +48,9 @@ Rails.application.configure do
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
   # config.assume_ssl = true
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # In development Puma serves plain HTTP by default; forcing SSL can cause
+  # HTTPS requests to hit a non-SSL socket and trigger Puma parser errors.
+  config.force_ssl = false
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
@@ -90,12 +91,13 @@ Rails.application.configure do
 
   # config.action_mailer.default_url_options = { host: "connect.besttalent.io" }
 
-  config.default_url_options = { host: "connect.besttalent.io" }
-  
+  # Prefer 127.0.0.1 in development to avoid browser HSTS upgrades on localhost.
+  config.default_url_options = { host: "127.0.0.1", port: 3000 }
 
-  # Enable DNS rebinding protection and other `Host` header attacks.
+  # Allow common local development hosts.
   config.hosts = [
-    "connect.besttalent.io"     # Allow requests from the production domain
+    "localhost",
+    "127.0.0.1"
   ]
   # Skip DNS rebinding protection for the default health check endpoint.
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
