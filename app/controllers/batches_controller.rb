@@ -107,6 +107,6 @@ class BatchesController < BaseController
 
   def batch_params
     params.require(:batch).permit(:name, :website, :jobboard, :about, :bucket, :linkedin, :twitter, :country, :city,
-                                  :state, :address)
+                                  :state, :address, :timezone, :people_count)
   end
 end

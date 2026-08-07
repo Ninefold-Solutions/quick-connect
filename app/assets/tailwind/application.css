@@ -5,6 +5,7 @@
 @import "./buttons.css";
 @import "./pages.css";
 @import "./sidebar.css";
+@import "./text.css";
 
 @layer components {
   .icon-span {

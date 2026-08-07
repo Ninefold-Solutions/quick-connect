@@ -15,6 +15,7 @@ class Batch < ApplicationRecord
   has_and_belongs_to_many :contacts, touch: true
   normalizes :name, with: ->(value) { value&.strip }
   validates_presence_of :name
+  validates :people_count, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   has_many :events, class_name: 'Event', foreign_key: 'trackable', dependent: :destroy
 
   def self.query(params, includes = nil)

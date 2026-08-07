@@ -26,6 +26,13 @@
           <div><%= form.text_field :state, "State", required: true, placeholder: "FL" %></div>
 
           <div><%= form.text_field :country, "Country", placeholder: "USA" %></div>
+
+          <div><%= form.text_field :timezone, "Timezone", placeholder: "EST" %></div>
+
+          <div>
+            <label for="batch_people_count" class="block text-sm font-medium text-gray-900">People Count</label>
+            <%= form.number_field :people_count, min: 1, placeholder: "25", class: "form-text-field mt-1", id: "batch_people_count" %>
+          </div>
         </div>
 
         <div class="sm:col-span-2">
