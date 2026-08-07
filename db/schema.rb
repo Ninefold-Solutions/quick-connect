@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_072356) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_07_121000) do
   create_table "abouts", force: :cascade do |t|
     t.string "address", default: ""
     t.string "breif", default: ""
@@ -46,9 +46,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_072356) do
   end
 
   create_table "batches", force: :cascade do |t|
+    t.string "about"
     t.integer "account_id", null: false
+    t.string "address"
+    t.boolean "archived", default: false, null: false
+    t.integer "bucket", default: 0, null: false
+    t.string "city"
+    t.string "country"
     t.datetime "created_at", null: false
+    t.date "followup_after_changed_on"
+    t.string "jobboard"
+    t.string "linkedin"
     t.string "name"
+    t.string "state"
+    t.integer "touch_back_after", default: 0, null: false
+    t.date "touched_at"
+    t.string "twitter"
     t.datetime "updated_at", null: false
     t.string "website"
     t.index ["account_id"], name: "index_batches_on_account_id"
