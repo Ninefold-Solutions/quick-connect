@@ -50,9 +50,9 @@ class BatchesController < BaseController
     respond_to do |format|
       if @batch.update(batch_params)
         Event.where(trackable: @batch).touch_all
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, partial: "batches/batch", locals: { batch: @batch, message: nil }) }
+        format.turbo_stream { redirect_to batches_path(batch_id: @batch.id), notice: "Group was updated successfully." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, template: "batches/edit", locals: { batch: @batch, messages: @batch.errors.full_messages }) }
+        format.turbo_stream { redirect_to edit_batch_path(@batch), alert: "Group was not updated successfully." }
       end
     end
   end

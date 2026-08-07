@@ -1,7 +1,7 @@
 <section class="page-surface">
   <div class="page-form-container">
-    <h2 class="mb-4 text-2xl font-bold text-gray-900">Add a new Group</h2>
-    <%= tailwind_form_with(model: @batch, id: dom_id(@batch), url: batches_path) do |form| %>
+    <h2 class="mb-4 text-2xl font-bold text-gray-900">Edit Group</h2>
+    <%= tailwind_form_with(model: @batch, id: dom_id(@batch), url: batch_path(@batch), method: :patch) do |form| %>
       <%= render "shared/error_messages", resource: @batch %>
       <%= render "shared/form_messages", resource: @batch, message: local_assigns[:message] %>
       <div>
@@ -34,7 +34,7 @@
         <div><%= form.text_field :jobboard, "Job Board", placeholder: "Job Board  URL" %></div>
         </div>
       <button type="submit" class="btn-primary">
-        Add Group
+        Save Changes
       </button>
       <%= cancel_button %>
     <% end %>

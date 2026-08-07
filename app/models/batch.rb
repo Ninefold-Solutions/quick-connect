@@ -6,7 +6,8 @@ class Batch < ApplicationRecord
     broad_buying_window: 2,
     buying_window: 3,
     conversations: 5,
-    meetings: 6
+    meetings: 6,
+    contracts: 7,
   }, default: :archive
 
   validates_uniqueness_to_tenant :name, :case_sensitive => false
