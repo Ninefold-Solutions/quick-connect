@@ -3,13 +3,13 @@
     <div class="min-w-0 flex-1">
       <div class="flex items-center space-x-2">
         <a
-                  href="<%= batches_path(batch) %>"
-                    class="
-                      block w-full min-w-0 truncate bg-white cursor-pointer hover:underline text-sm font-medium text-gray-900
-                    "
-                    target="_top"
-                  >
+          href="<%= batch_path(batch) %>"
+          class="block w-full min-w-0 truncate bg-white cursor-pointer hover:underline text-sm font-medium text-gray-900"
+          target="_top"
+        >
           <%= batch.name %>
         </a>
       </div>
-    </li>
+    </div>
+  </div>
+</li>

@@ -1,41 +1,54 @@
 <section class="page-surface">
   <div class="page-form-container">
     <h2 class="mb-4 text-2xl font-bold text-gray-900">Add a new Group</h2>
+
     <%= tailwind_form_with(model: @batch, id: dom_id(@batch), url: batches_path) do |form| %>
       <%= render "shared/error_messages", resource: @batch %>
       <%= render "shared/form_messages", resource: @batch, message: local_assigns[:message] %>
+
       <div>
         <h2 class="mt-8 text-xl font-semibold leading-none text-gray-900 mb-4">Group Information</h2>
+
         <div class="grid gap-4 mb-4 md:gap-4 md:grid-cols-2 sm:mb-6 mt-4">
-          <div><%= form.text_field :name, "Name", required: true, placeholder: "Group Name", autofocus: true, autocomplete: "given-name" %></div>
-          
+          <div>
+            <%= form.text_field :name, "Name", required: true, placeholder: "Group Name", autofocus: true, autocomplete: "given-name" %>
+          </div>
+
           <div>
             <label for="batch_bucket" class="block text-sm font-medium text-gray-900">Bucket</label>
             <%= select_tag :bucket, options_for_select(Batch.buckets.keys.map { |key| [key.humanize.capitalize, key] }, @batch.bucket), class: "form-text-field mt-1", :name => "batch[bucket]", id: "batch_bucket" %>
           </div>
+
           <div><%= form.text_field :address, "Address", placeholder: "name@domain.com" %></div>
-            
+
           <div><%= form.text_field :city, "City", required: true, placeholder: "Miami" %></div>
-            
+
           <div><%= form.text_field :state, "State", required: true, placeholder: "FL" %></div>
-            
+
           <div><%= form.text_field :country, "Country", placeholder: "USA" %></div>
-          </div>
-        <div class="sm:col-span-2"><%= form.text_area :about, "Intro", placeholder: "Some personal details about group..", style: "height:120px" %></div>
         </div>
+
+        <div class="sm:col-span-2">
+          <%= form.text_area :about, "Intro", placeholder: "Some personal details about group..", style: "height:120px" %>
+        </div>
+      </div>
+
       <h2 class="page-section-title">Social Information</h2>
-      <div class="grid gap-4 mb-4 md:gap-4 md:grid-cols-2 sm:mb-6">          
+
+      <div class="grid gap-4 mb-4 md:gap-4 md:grid-cols-2 sm:mb-6">
         <div><%= form.text_field :linkedin, "Linkedin", placeholder: "Linkedin Profile URL" %></div>
-          
+
         <div><%= form.text_field :website, "Website", placeholder: "Portfolio URL" %></div>
-          
+
         <div><%= form.text_field :twitter, "Twitter", placeholder: "Twitter profile URL" %></div>
-          
+
         <div><%= form.text_field :jobboard, "Job Board", placeholder: "Job Board  URL" %></div>
-        </div>
+      </div>
+
       <button type="submit" class="btn-primary">
         Add Group
       </button>
+
       <%= cancel_button %>
     <% end %>
   </div>

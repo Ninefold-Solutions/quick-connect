@@ -1,0 +1,58 @@
+<% show_social = batch.linkedin.present? or batch.twitter.present? or batch.website.present? or batch.jobboard.present? %>
+
+<% if show_social %>
+  <dt class="mb-2 font-semibold leading-none text-gray-900 text-sm">Social</dt>
+  <dd class="inline-flex items-center mb-4 sm:mb-5">
+    <% if batch.jobboard.present? %>
+      <a
+        href="<%= batch.jobboard %>"
+        target="_blank"
+        data-tooltip-target="tooltip-jobboard"
+        class="icon-button"
+      >
+        <%= svg_icon("github-logo") %>
+        <span class="sr-only">Job Board</span>
+      </a>
+      <%= tooltip_component(id: "tooltip-jobboard", text: "Jobboard") %>
+    <% end %>
+
+    <% if batch.twitter.present? %>
+      <a
+        href="<%= batch.twitter %>"
+        target="_blank"
+        data-tooltip-target="tooltip-twitter"
+        class="icon-button"
+      >
+        <%= svg_icon("twitter-logo") %>
+        <span class="sr-only">Twitter</span>
+      </a>
+      <%= tooltip_component(id: "tooltip-twitter", text: "Twitter profile") %>
+    <% end %>
+
+    <% if batch.website.present? %>
+      <a
+        href="<%= batch.website %>"
+        target="_blank"
+        data-tooltip-target="tooltip-website"
+        class="icon-button"
+      >
+        <%= svg_icon("globe") %>
+        <span class="sr-only">Website</span>
+      </a>
+      <%= tooltip_component(id: "tooltip-website", text: "Website") %>
+    <% end %>
+
+    <% if batch.linkedin.present? %>
+      <a
+        href="<%= absolute_url(batch.linkedin) %>"
+        target="_blank"
+        data-tooltip-target="tooltip-linkedin"
+        class="icon-button"
+      >
+        <%= svg_icon("linkedin-logo") %>
+        <span class="sr-only">Linkedin</span>
+      </a>
+      <%= tooltip_component(id: "tooltip-linkedin", text: "Linkedin profile") %>
+    <% end %>
+  </dd>
+<% end %>

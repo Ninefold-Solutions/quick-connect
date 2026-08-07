@@ -1,0 +1,68 @@
+<div class="border-b bg-gray-50 border-gray-200 py-4 lg:pl-8 w-full lg:shrink-0 lg:border-b-0 border-r xl:pl-6">
+  <div id="readUserDrawerAdvanced" class="pr-4 bg-gray-50">
+    <div class="flex items-center mb-4 sm:mb-5">
+      <div>
+        <h4 id="drawer-label" class="flex items-center mb-1 text-lg font-semibold leading-none text-gray-900">
+          <%= batch.name %>
+          <a href="<%= edit_batch_path(batch) %>" data-tooltip-target="tooltip-edit" class="icon-button-muted"><%= action_svg_icon("profile-edit") %><span class="sr-only">Edit Group</span></a>
+
+          <%= tooltip_component(id: "tooltip-edit", text: "Edit Group") %>
+        </h4>
+
+        <% unless batch.address.nil? %>
+          <div class="meta-row">
+            <%= svg_icon("location-pin") %>
+
+            <p class="meta-text"><%= batch.address %></p>
+          </div>
+        <% end %>
+
+        <% unless batch.city.nil? %>
+          <div class="meta-row">
+            <%= svg_icon("location-pin") %>
+
+            <p class="meta-text"><%= batch.city %></p>
+          </div>
+        <% end %>
+
+        <% unless batch.state.nil? %>
+          <div class="meta-row">
+            <%= svg_icon("location-pin") %>
+
+            <p class="meta-text"><%= batch.state %></p>
+          </div>
+        <% end %>
+
+        <% unless batch.country.nil? %>
+          <div class="meta-row">
+            <%= svg_icon("location-pin") %>
+
+            <p class="meta-text"><%= batch.country %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <dl>
+      <% unless batch.about.blank? %>
+        <dt class="mb-2 text-sm font-medium leading-none text-gray-900">Biography</dt>
+        <dd class="mb-4 font-light text-gray-900 text-sm sm:mb-5">
+          <div
+            data-controller="read-more"
+            data-read-more-more-text-value="Read more ↓"
+            data-read-more-less-text-value="Read less ↑"
+          >
+            <p class="line-clamp" data-read-more-target="content">
+              <%= batch.about %>
+            </p>
+
+            <button data-action="read-more#toggle" class="text-blue-600">Read more ↓</button>
+          </div>
+        </dd>
+      <% end %>
+
+      <%= render partial: "social", locals: { batch: batch } %>
+      <%= render partial: "bucket", locals: { batch: batch } %>
+    </dl>
+  </div>
+</div>
