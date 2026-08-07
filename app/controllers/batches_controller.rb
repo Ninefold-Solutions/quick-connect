@@ -13,21 +13,13 @@ class BatchesController < BaseController
     @fourth = @batches_by_bucket['conversations'] || []
     @fifth = @batches_by_bucket['meetings'] || []
     @sixth = @batches_by_bucket['contracts'] || []
-
-    if params[:batch_id].present?
-      @batch = Batch.find(params[:batch_id])
-      @contacts = @batch.contacts.includes(:batches_contacts).where('contacts.archived=?',
-                                                                    false).order('batches_contacts.created_at DESC').uniq || []
-    end
-
-    return unless params[:batch_id].present? && params[:contact_id].present?
-
-    @contact = Contact.find(params[:contact_id])
   end
 
   def show
     authorize :batch
     @batch = Batch.find(params[:id])
+    @contacts = @batch.contacts.order(first_name: :asc)
+    @events = Event.where(eventable_id: @contacts.ids, eventable_type: 'Contact').order(created_at: :desc)
   end
 
   def new

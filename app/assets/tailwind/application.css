@@ -6,6 +6,7 @@
 @import "./pages.css";
 @import "./sidebar.css";
 @import "./text.css";
+@import "./navigation.css";
 
 @layer components {
   .icon-span {

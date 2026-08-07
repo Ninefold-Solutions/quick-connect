@@ -2,12 +2,48 @@
   <div class="sidebar-content-shell">
     <div class="sidebar-shell">
       <%= render partial: "info", locals: { batch: @batch } %>
+
+      <div class="border-t border-gray-200 p-4">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-500">Contacts</h2>
+          <span class="text-sm text-gray-500">(<%= @contacts.count %>)</span>
+        </div>
+      </div>
     </div>
 
     <div class="flex-1">
       <%= render partial: "batches/nav" %>
+
+      <ul class="mt-1 p-4">
+        <% @events.each do |event| %>
+          <% if lookup_context.template_exists?(event.action, "contact/timeline", true, formats: [:html]) %>
+            <% cache event do %>
+              <%= render partial: "dashboard/#{event.action}", locals: { event: event }, formats: [:html], layout: false %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
     </div>
 
-    <div class="sidebar-panel"></div>
+    <div class="sidebar-panel">
+      <% if @contacts.any? %>
+        <h2 class="text-sm font-semibold uppercase tracking-wider">Contacts</h2>
+
+        <ul class="mt-3 space-y-2">
+          <% @contacts.each do |contact| %>
+            <li>
+              <a
+                href="<%= contact_timeline_index_path(contact) %>"
+                class="flex items-center justify-between py-1 hover:underline"
+              >
+                <span class="truncate text-sm font-medium text-gray-900"><%= contact.decorate.display_name %></span>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="mt-3 text-sm text-gray-500">No contacts in this group yet.</p>
+      <% end %>
+    </div>
   </div>
 </div>
