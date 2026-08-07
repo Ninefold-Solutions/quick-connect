@@ -2,5 +2,10 @@
     "files.associations": {
         "\"*.html.erb\"": "\"erb\""
     },
-    "diffEditor.renderSideBySide": false
+    "diffEditor.renderSideBySide": false,
+    "rubyLsp.formatter": "rubocop",
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp",
+        "editor.formatOnSave": true
+    }
 }
