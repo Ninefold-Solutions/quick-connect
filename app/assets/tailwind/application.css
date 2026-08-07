@@ -2,7 +2,8 @@
 @plugin "@tailwindcss/forms";
 
 @import "./theme.css";
-@import "./btn.css";
+@import "./buttons.css";
+@import "./pages.css";
 
 @layer components {
   .icon-span {

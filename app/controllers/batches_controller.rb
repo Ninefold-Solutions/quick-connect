@@ -17,6 +17,11 @@ class BatchesController < BaseController
     render_partial("batches/batch", collection: @batches, cached: true) if stale?(@batches)
   end
 
+  def new 
+    authorize :batch  
+    @batch = Batch.new
+  end
+
   def edit
     authorize @batch
   end
@@ -87,6 +92,6 @@ class BatchesController < BaseController
   end
 
   def batch_params
-    params.require(:batch).permit(:name, :website)
+    params.require(:batch).permit(:name, :website, :jobboard, :about, :bucket, :linkedin, :twitter, :country, :city, :state, :address)
   end
 end

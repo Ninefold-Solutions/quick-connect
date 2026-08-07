@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   get :tasks, controller: :dashboard
   get :reminders, controller: :dashboard
 
-  resources :batches, except: [:new], path: "groups" do
+  resources :batches, path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
     post "/add/:id", to: "batches#add", as: "addcontact"
     delete "/remove/:id", to: "batches#remove", as: "removecontact"

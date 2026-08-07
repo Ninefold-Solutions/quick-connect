@@ -75,4 +75,10 @@ module ButtonHelper
 
     out.html_safe
   end
+
+    def cancel_button(path = :back, style = "btn-secondary")
+    out = link_to "Cancel", path, class: style
+    out.html_safe
+  end
+
 end
