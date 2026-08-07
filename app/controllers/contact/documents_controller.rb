@@ -10,15 +10,15 @@ class Contact::DocumentsController < Contact::BaseController
 
   def create
     authorize [@contact, Document]
-    @document = AddDocument.call(@contact, document_params, current_user).result
+    @document = AddDocument.call(@contact, document_params.merge(contact_id: params[:contact_id]), current_user).result
     respond_to do |format|
       if @document.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:documents, partial: "contact/documents/document", locals: { document: @document }) +
-                               turbo_stream.replace(Document.new, partial: "contact/documents/form", locals: { document: Document.new })
+          render turbo_stream: turbo_stream.prepend(:documents, partial: "contact/documents/document", locals: { document: @document, contact: @contact }) +
+                               turbo_stream.replace(Document.new, partial: "contact/documents/form", locals: { document: Document.new, contact: @contact })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Document.new, partial: "contact/documents/form", locals: { document: @document }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Document.new, partial: "contact/documents/form", locals: { document: @document, contact: @contact }) }
       end
     end
   end
