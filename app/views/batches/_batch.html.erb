@@ -1,27 +1,15 @@
-  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 <%= "bg-gray-200" if params[:batch_id].to_i == batch.id %>">
-    <div class="flex w-full">
-      <a
-        class="inline-flex w-11/12 hover:underline"
-        href="<%= batches_path(batch_id: batch.id) %>"
-        data-turbo-frame="_top"
-      >
-        <p class="w-11/12 text-sm font-medium text-gray-900"><%= batch.name %></p>
-      </a>
-
-      <div class="flex justify-end items-center space-x-1">
-        <%= edit_button("groups/#{batch.id}/edit") %>
-
+<li class="my-1 col-span-1 bg-white rounded border border-gray-200 divide-gray-200 shadow-xs">
+  <div class="flex w-full items-center justify-between space-x-6 p-2">
+    <div class="min-w-0 flex-1">
+      <div class="flex items-center space-x-2">
         <a
-          class="btn-inline-delete"
-          data-controller="confirmation"
-          data-turbo-frame="_top"
-          data-turbo-method="delete"
-          data-confirmation-message-value="Are you sure you want to delete this?"
-          data-action="confirmation#confirm"
-          href="groups/<%= batch.id %>"
-        >
-          Delete
+                  href="<%= batches_path(batch) %>"
+                    class="
+                      block w-full min-w-0 truncate bg-white cursor-pointer hover:underline text-sm font-medium text-gray-900
+                    "
+                    target="_top"
+                  >
+          <%= batch.name %>
         </a>
       </div>
-    </div>
-  </li>
+    </li>

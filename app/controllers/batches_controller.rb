@@ -3,7 +3,17 @@ class BatchesController < BaseController
 
   def index
     authorize :batch
-    @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: 100)
+    @visible_buckets = Batch.buckets.except("archive").keys
+    @batches = Batch.where.not(bucket: :archive).includes(:contacts).order(:name).to_a
+    @batches_by_bucket = @batches.group_by(&:bucket)
+
+    @first = @batches_by_bucket["dormant"] || []
+    @second = @batches_by_bucket["broad_buying_window"] || []
+    @third = @batches_by_bucket["buying_window"] || []
+    @fourth = @batches_by_bucket["conversations"] || []
+    @fifth = @batches_by_bucket["meetings"] || []
+    @sixth = @batches_by_bucket["contracts"] || []
+    
 
     if params[:batch_id].present?
       @batch = Batch.find(params[:batch_id])
@@ -14,12 +24,11 @@ class BatchesController < BaseController
       @contact = Contact.find(params[:contact_id])
     end
 
-    render_partial("batches/batch", collection: @batches, cached: true) if stale?(@batches)
   end
 
   def new 
     authorize :batch  
-    @batch = Batch.new
+    @batch = Batch.new(bucket: Batch.buckets.except("archive").keys.first)
   end
 
   def edit
@@ -39,8 +48,10 @@ class BatchesController < BaseController
       if @batch.save
         Event.create(user: current_user, action: "group", action_for_context: "created a group named", trackable: @batch)
         format.turbo_stream { redirect_to batches_path(batch_id: @batch.id), notice: "Group was created successfully." }
+        format.html { redirect_to batches_path(batch_id: @batch.id), notice: "Group was created successfully." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: @batch }) }
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -51,8 +62,10 @@ class BatchesController < BaseController
       if @batch.update(batch_params)
         Event.where(trackable: @batch).touch_all
         format.turbo_stream { redirect_to batches_path(batch_id: @batch.id), notice: "Group was updated successfully." }
+        format.html { redirect_to batches_path(batch_id: @batch.id), notice: "Group was updated successfully." }
       else
         format.turbo_stream { redirect_to edit_batch_path(@batch), alert: "Group was not updated successfully." }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
