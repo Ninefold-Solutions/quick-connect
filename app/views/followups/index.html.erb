@@ -7,12 +7,13 @@
         <%= form_with url: followups_path, method: :get, local: true, class: "flex items-end gap-2" do %>
           <div>
             <label for="followups_bucket" class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Bucket Filter</label>
+
             <%= select_tag :bucket,
               options_for_select([["All Buckets", ""]] + @bucket_options.map { |bucket| [bucket.humanize.titleize, bucket] }, @selected_bucket),
               id: "followups_bucket",
-              class: "form-text-field mt-1" %>
+              class: "form-text-field mt-1",
+              onchange: "this.form.requestSubmit()" %>
           </div>
-          <%= submit_tag "Apply", class: "btn-primary" %>
         <% end %>
 
         <% if @selected_bucket.present? %>

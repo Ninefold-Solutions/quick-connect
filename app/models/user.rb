@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  require "securerandom"
+  require 'securerandom'
 
   has_secure_password
 
@@ -14,8 +14,8 @@ class User < ApplicationRecord
 
   scope :available, -> { where(archived: false) }
   scope :for_current_account, -> { where(account: Current.account) }
-  enum :permission, [:true, :false]
-  enum :admin, [:false, :true], prefix: :true
+  enum :permission, %i[true false]
+  enum :admin, %i[false true], prefix: :true
   belongs_to :account, optional: true
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name, :email
@@ -33,11 +33,13 @@ class User < ApplicationRecord
   has_many :reminders, dependent: :destroy
 
   def upcoming_tasks
-    self.tasks.joins(:contact).where("contacts.archived=?", false).order(created_at: :desc).limit(10)
+    tasks.joins(:contact).where('contacts.archived=?', false).order(created_at: :desc).limit(10)
   end
 
   def upcoming_reminders
-    reminders = self.reminders.joins("INNER JOIN contacts ON contacts.id = reminders.contact_id").where("contacts.archived=?", false).to_a
+    reminders = self.reminders.joins('INNER JOIN contacts ON contacts.id = reminders.contact_id').where(
+      'contacts.archived=?', false
+    ).to_a
     upcoming_reminders = []
     reminders.each do |reminder|
       upcoming_reminders += reminder.upcoming
@@ -52,15 +54,17 @@ class User < ApplicationRecord
       follows = follows.joins(:batches).where(batches: { bucket: Batch.buckets[bucket] }).distinct
     end
 
-    follows = follows.where("contacts.touched_at <= ?", Date.today - 30.days)
+    follows = follows.where('contacts.touched_at <= ?', Date.today - 30.days)
     if follows.present?
-      sixth = follows.over_100_days.where("contacts.touched_at <= ?", Date.today - 100.days)
-      fifth = follows.ninety_days.where("contacts.touched_at <= ?", Date.today - 90.days) - sixth
-      fourth = follows.sixty_days.where("contacts.touched_at <= ?", Date.today - 60.days) - fifth - sixth
-      third = follows.thirty_days.where("contacts.touched_at <= ?", Date.today - 30.days) - fourth - fifth - sixth
-      second = follows.fifteen_days.where("contacts.touched_at <= ?", Date.today - 15.days) - third - fourth - fifth - sixth
-      first = follows.seven_days.where("contacts.touched_at <= ?", Date.today - 7.days) - second - third - fourth - fifth - sixth
+      sixth = follows.over_100_days.where('contacts.touched_at <= ?', Date.today - 100.days)
+      fifth = follows.ninety_days.where('contacts.touched_at <= ?', Date.today - 90.days) - sixth
+      fourth = follows.sixty_days.where('contacts.touched_at <= ?', Date.today - 60.days) - fifth - sixth
+      third = follows.thirty_days.where('contacts.touched_at <= ?', Date.today - 30.days) - fourth - fifth - sixth
+      second = follows.fifteen_days.where('contacts.touched_at <= ?',
+                                          Date.today - 15.days) - third - fourth - fifth - sixth
+      first = follows.seven_days.where('contacts.touched_at <= ?',
+                                       Date.today - 7.days) - second - third - fourth - fifth - sixth
     end
-    return first, second, third, fourth, fifth, sixth, follows
+    [first, second, third, fourth, fifth, sixth, follows]
   end
 end
