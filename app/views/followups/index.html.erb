@@ -1,13 +1,31 @@
 <main class="relative z-0 flex-1 overflow-x-hidden focus:outline-none bg-gray-50">
   <div class="min-h-full">
-    <div class="flex flex-wrap items-baseline px-6 py-4">
+    <div class="flex flex-wrap items-end justify-between gap-3 px-6 py-4">
       <h1 class="text-3xl font-bold leading-tight text-gray-900">Follow Ups</h1>
+
+      <div class="flex items-end gap-2">
+        <%= form_with url: followups_path, method: :get, local: true, class: "flex items-end gap-2" do %>
+          <div>
+            <label for="followups_bucket" class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Bucket Filter</label>
+            <%= select_tag :bucket,
+              options_for_select([["All Buckets", ""]] + @bucket_options.map { |bucket| [bucket.humanize.titleize, bucket] }, @selected_bucket),
+              id: "followups_bucket",
+              class: "form-text-field mt-1" %>
+          </div>
+          <%= submit_tag "Apply", class: "btn-primary" %>
+        <% end %>
+
+        <% if @selected_bucket.present? %>
+          <%= link_to "Clear Filter", followups_path, class: "btn-secondary", data: { turbo_frame: "_top" } %>
+        <% end %>
+      </div>
     </div>
+
     <div class="grid grid-cols-6 border-t px-1 border-gray-200">
       <%= render partial: "column", locals: { title: "In 7 days", contacts: @first, list_id: "first" } %>
-    
+
       <%= render partial: "column", locals: { title: "In 15 days", contacts: @second, list_id: "second" } %>
-  
+
       <%= render partial: "column", locals: { title: "In 30 days", contacts: @third, list_id: "third" } %>
       <%= render partial: "column", locals: { title: "In 60 days", contacts: @fourth, list_id: "fourth" } %>
       <%= render partial: "column", locals: { title: "In 90 days", contacts: @fifth, list_id: "fifth" } %>

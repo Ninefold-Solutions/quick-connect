@@ -45,8 +45,14 @@ class User < ApplicationRecord
     upcoming_reminders.sort_by { |r| r.third[:reminder] }
   end
 
-  def follow_ups
-    follows = Contact.available.tracked.includes(:contacts_labels).where("contacts.touched_at <= ?", Date.today - 30.days)
+  def follow_ups(bucket: nil)
+    follows = Contact.available.tracked.includes(:contacts_labels)
+
+    if bucket.present? && Batch.buckets.key?(bucket) && bucket != 'archive'
+      follows = follows.joins(:batches).where(batches: { bucket: Batch.buckets[bucket] }).distinct
+    end
+
+    follows = follows.where("contacts.touched_at <= ?", Date.today - 30.days)
     if follows.present?
       sixth = follows.over_100_days.where("contacts.touched_at <= ?", Date.today - 100.days)
       fifth = follows.ninety_days.where("contacts.touched_at <= ?", Date.today - 90.days) - sixth
