@@ -1,10 +1,12 @@
 <main class="relative z-0 flex-1 overflow-x-hidden focus:outline-none bg-gray-50">
   <div class="min-h-full">
-    <div class="flex flex-wrap items-baseline px-6 py-4">
+    <div class="flex flex-wrap items-baseline justify-between px-6 py-4 gap-3">
       <div class="flex flex-wrap items-baseline">
         <h1 class="text-3xl font-bold leading-tight text-gray-900">Groups</h1>
         <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @batches.count %>)</p>
       </div>
+
+      <%= link_to "Add New", new_batch_path, class: "btn-primary", data: { turbo_frame: "_top" } %>
     </div>
 
     <div class="grid grid-cols-6 border-t px-1 border-gray-200">
