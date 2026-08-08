@@ -1,11 +1,13 @@
 <div class="min-w-0 py-2 border-r border-gray-200 h-screen overflow-y-scroll overscroll-contain">
   <div class="relative">
-    <div class="flex flex-wrap items-baseline px-4 py-2">
+    <div class="flex flex-wrap items-baseline px-2 py-1">
       <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase"><%= title %></h3>
+
       <% if batches %>
         <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= batches.count %>)</p>
       <% end %>
     </div>
+
     <% if batches %>
       <nav class="flex-1" aria-label="Directory">
         <div class="relative h-full pb-44">

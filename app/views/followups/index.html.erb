@@ -9,7 +9,7 @@
             <label for="followups_bucket" class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Bucket Filter</label>
 
             <%= select_tag :bucket,
-              options_for_select([["All Buckets", ""]] + @bucket_options.map { |bucket| [bucket.humanize.titleize, bucket] }, @selected_bucket),
+              options_for_select([["All Buckets", ""]] + @bucket_options.map { |bucket| [@bucket_names[bucket], bucket] }, @selected_bucket),
               id: "followups_bucket",
               class: "form-text-field mt-1",
               onchange: "this.form.requestSubmit()" %>

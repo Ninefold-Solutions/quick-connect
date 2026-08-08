@@ -46,4 +46,8 @@ class AccountPolicy < Struct.new(:user, :account)
   def users?
     user.account.owner_id == user.id
   end
+
+  def show?
+    true
+  end
 end

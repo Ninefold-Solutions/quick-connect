@@ -16,6 +16,15 @@
     </a>
 
     <a
+      href="<%= account_group_buckets_path %>"
+      class="<%= current_page?(account_group_buckets_path) ? "selected" : "unselected" %>"
+    >
+      <%= ui_icon(:tag, classes: "svg-icon") %>
+
+      <span class="truncate"> Group Buckets </span>
+    </a>
+
+    <a
       href="<%= archived_contacts_path %>"
       class="<%= current_page?(archived_contacts_path) ? "selected" : "unselected" %>"
     >

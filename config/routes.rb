@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   namespace :account do
     resources :relations, except: %i[new show]
     resources :labels, except: %i[new show]
+    resource :group_buckets, only: %i[show update]
     resources :fields, except: %i[show new]
     resources :activities, except: %i[show new]
     resources :life_events, except: %i[show new]

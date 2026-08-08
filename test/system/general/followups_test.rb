@@ -90,11 +90,10 @@ class FollowupsTest < ApplicationSystemTestCase
 
   test 'user can filter followups by bucket and clear filter' do
     batch = batches(:one)
-    batch.update!(bucket: :dormant)
+    batch.update!(bucket: :bucket_1)
 
     visit page_url
-    select 'Dormant', from: 'followups_bucket'
-    click_on 'Apply'
+    select 'bucket_1', from: 'followups_bucket'
 
     assert_text contacts(:one).decorate.display_name
     assert_selector 'a', text: 'Clear Filter'

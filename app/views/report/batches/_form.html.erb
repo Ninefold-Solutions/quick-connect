@@ -11,7 +11,8 @@
             <main class="max-w-lg pt-4 pb-12 mx-auto space-y-4 lg:pb-16">
               <div>
                 <%= form.label :bucket, "Bucket", class: "block text-sm font-medium text-gray-700" %>
-                <%= select_tag :bucket, options_for_select(Batch.buckets.map { |k, v| [k.humanize.capitalize, k] }, (params["bucket"] unless params["bucket"].blank?)), class: "form-text-field", :name => "bucket", :prompt => "Select Bucket" %>
+                <% bucket_names = Batch.bucket_names_for(current_user.account) %>
+                <%= select_tag :bucket, options_for_select(Batch.buckets.keys.map { |key| [bucket_names[key], key] }, (params["bucket"] unless params["bucket"].blank?)), class: "form-text-field", :name => "bucket", :prompt => "Select Bucket" %>
               </div>
 
               <div class="flex justify-end mt-6 space-x-2">

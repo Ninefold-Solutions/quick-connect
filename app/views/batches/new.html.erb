@@ -16,7 +16,13 @@
 
           <div>
             <label for="batch_bucket" class="block text-sm font-medium text-gray-900">Bucket</label>
-            <%= select_tag :bucket, options_for_select(Batch.buckets.keys.map { |key| [key.humanize.capitalize, key] }, @batch.bucket), class: "form-text-field mt-1", :name => "batch[bucket]", id: "batch_bucket" %>
+            <% bucket_names = Batch.bucket_names_for(current_user.account) %>
+
+            <%= select_tag :bucket,
+              options_for_select(Batch.buckets.keys.map { |key| [bucket_names[key], key] }, @batch.bucket),
+              class: "form-text-field mt-1",
+              :name => "batch[bucket]",
+              id: "batch_bucket" %>
           </div>
 
           <div><%= form.text_field :address, "Address", placeholder: "name@domain.com" %></div>

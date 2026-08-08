@@ -3,16 +3,17 @@ class BatchesController < BaseController
 
   def index
     authorize :batch
+    @bucket_names = Batch.bucket_names_for(current_user.account)
     @visible_buckets = Batch.buckets.except('archive').keys
     @batches = Batch.where.not(bucket: :archive).includes(:contacts).order(:name).to_a
     @batches_by_bucket = @batches.group_by(&:bucket)
 
-    @first = @batches_by_bucket['dormant'] || []
-    @second = @batches_by_bucket['broad_buying_window'] || []
-    @third = @batches_by_bucket['buying_window'] || []
-    @fourth = @batches_by_bucket['conversations'] || []
-    @fifth = @batches_by_bucket['meetings'] || []
-    @sixth = @batches_by_bucket['contracts'] || []
+    @first = @batches_by_bucket['bucket_1'] || []
+    @second = @batches_by_bucket['bucket_2'] || []
+    @third = @batches_by_bucket['bucket_3'] || []
+    @fourth = @batches_by_bucket['bucket_4'] || []
+    @fifth = @batches_by_bucket['bucket_5'] || []
+    @sixth = @batches_by_bucket['bucket_6'] || []
   end
 
   def show

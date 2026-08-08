@@ -1,0 +1,36 @@
+<main class="pb-10 mx-auto max-w-7xl lg:py-12 lg:px-8 z-0">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <%= render "shared/account_menu" %>
+
+    <main class="max-w-3xl pb-12 lg:col-span-6">
+      <div class="p-6">
+        <h1 class="text-2xl font-bold text-gray-900">Group Buckets</h1>
+
+        <p class="mt-1 text-sm text-gray-600">Rename up to seven group buckets for your account.</p>
+
+        <%= form_with url: account_group_buckets_path, method: :patch, local: true, class: "mt-6 space-y-4" do %>
+          <% @bucket_keys.each_with_index do |bucket_key, index| %>
+            <div>
+              <label for="bucket_names_<%= bucket_key %>" class="block text-sm font-medium text-gray-900">
+                Bucket <%= index + 1 %>
+              </label>
+
+              <p class="text-xs text-gray-500 pb-1">System Key: <%= bucket_key.humanize.titleize %></p>
+
+              <%= text_field_tag "bucket_names[#{bucket_key}]",
+                @bucket_names[bucket_key],
+                id: "bucket_names_#{bucket_key}",
+                class: "form-text-field mt-1",
+                maxlength: 50,
+                placeholder: "Bucket #{index + 1}" %>
+            </div>
+          <% end %>
+
+          <div class="pt-2">
+            <%= submit_tag "Save Bucket Names", class: "btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </main>
+  </div>
+</main>

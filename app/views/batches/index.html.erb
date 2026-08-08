@@ -10,14 +10,14 @@
     </div>
 
     <div class="grid grid-cols-6 border-t px-1 border-gray-200">
-      <%= render partial: "column", locals: { title: "Dormant", batches: @first, list_id: "first" } %>
+      <%= render partial: "column", locals: { title: @bucket_names['bucket_1'], batches: @first, list_id: "first" } %>
 
-      <%= render partial: "column", locals: { title: "Broad Buying", batches: @second, list_id: "second" } %>
+      <%= render partial: "column", locals: { title: @bucket_names['bucket_2'], batches: @second, list_id: "second" } %>
 
-      <%= render partial: "column", locals: { title: "Buying Window", batches: @third, list_id: "third" } %>
-      <%= render partial: "column", locals: { title: "Conversations", batches: @fourth, list_id: "fourth" } %>
-      <%= render partial: "column", locals: { title: "Meetings", batches: @fifth, list_id: "fifth" } %>
-      <%= render partial: "column", locals: { title: "Contracts", batches: @sixth, list_id: "sixth" } %>
+      <%= render partial: "column", locals: { title: @bucket_names['bucket_3'], batches: @third, list_id: "third" } %>
+      <%= render partial: "column", locals: { title: @bucket_names['bucket_4'], batches: @fourth, list_id: "fourth" } %>
+      <%= render partial: "column", locals: { title: @bucket_names['bucket_5'], batches: @fifth, list_id: "fifth" } %>
+      <%= render partial: "column", locals: { title: @bucket_names['bucket_6'], batches: @sixth, list_id: "sixth" } %>
     </div>
   </div>
 </main>

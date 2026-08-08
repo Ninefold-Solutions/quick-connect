@@ -2,12 +2,12 @@ class Batch < ApplicationRecord
   acts_as_tenant :account
   enum :bucket, {
     archive: 0,
-    dormant: 1,
-    broad_buying_window: 2,
-    buying_window: 3,
-    conversations: 5,
-    meetings: 6,
-    contracts: 7
+    bucket_1: 1,
+    bucket_2: 2,
+    bucket_3: 3,
+    bucket_4: 4,
+    bucket_5: 5,
+    bucket_6: 6
   }, default: :archive
 
   validates_presence_of :name
@@ -21,6 +21,24 @@ class Batch < ApplicationRecord
 
   normalizes :name, with: ->(value) { value&.strip }
   normalizes :website, with: ->(value) { value&.strip }
+
+  def self.default_bucket_names
+    @default_bucket_names ||= begin
+      names = { 'archive' => 'Archive' }
+      non_archive_keys = buckets.keys - ['archive']
+
+      non_archive_keys.each_with_index do |bucket_key, index|
+        names[bucket_key] = "bucket_#{index + 1}"
+      end
+
+      names
+    end
+  end
+
+  def self.bucket_names_for(account)
+    overrides = Preference.group_bucket_names(account)
+    default_bucket_names.merge(overrides.slice(*buckets.keys))
+  end
 
   def self.query(params, includes = nil)
     return [] if params.empty?
