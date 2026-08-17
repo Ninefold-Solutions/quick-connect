@@ -4,9 +4,15 @@
       <div>
         <h4 id="drawer-label" class="flex items-center mb-1 text-lg font-semibold leading-none text-gray-900">
           <%= batch.name %>
-          <a href="<%= edit_batch_path(batch) %>" data-tooltip-target="tooltip-edit" class="icon-button-muted"><%= action_svg_icon("profile-edit") %><span class="sr-only">Edit Group</span></a>
 
-          <%= tooltip_component(id: "tooltip-edit", text: "Edit Group") %>
+          <a
+            href="<%= edit_batch_path(batch) %>"
+            data-controller="tooltip"
+            data-tooltip-content="Edit Group"
+            class="icon-button-muted"
+          >
+            <%= action_svg_icon("profile-edit") %><span class="sr-only">Edit Group</span>
+          </a>
         </h4>
 
         <% unless batch.address.nil? %>
