@@ -3,6 +3,19 @@
 <% if show_social %>
   <dt class="mb-2 font-semibold leading-none text-gray-900 text-sm">Social</dt>
   <dd class="flex items-center justify-start mb-4 sm:mb-5">
+    <% if batch.website.present? %>
+      <a
+        href="<%= absolute_url(batch.website) %>"
+        target="_blank"
+        data-controller="tooltip"
+        data-tooltip-content="Website"
+        class="icon-button"
+      >
+        <%= svg_icon("globe") %>
+        <span class="sr-only">Website</span>
+      </a>
+    <% end %>
+
     <% if batch.jobboard.present? %>
       <a
         href="<%= batch.jobboard %>"
@@ -11,7 +24,7 @@
         data-tooltip-content="Job Board"
         class="icon-button"
       >
-        <%= svg_icon("github-logo") %>
+        <%= svg_icon("graduation-cap") %>
         <span class="sr-only">Job Board</span>
       </a>
     <% end %>
@@ -29,18 +42,6 @@
       </a>
     <% end %>
 
-    <% if batch.website.present? %>
-      <a
-        href="<%= absolute_url(batch.website) %>"
-        target="_blank"
-        data-controller="tooltip"
-        data-tooltip-content="Website"
-        class="icon-button"
-      >
-        <%= svg_icon("globe") %>
-        <span class="sr-only">Website</span>
-      </a>
-    <% end %>
 
     <% if batch.linkedin.present? %>
       <a
