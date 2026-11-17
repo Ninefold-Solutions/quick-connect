@@ -31,7 +31,7 @@
 
     <% if batch.website.present? %>
       <a
-        href="<%= batch.website %>"
+        href="<%= absolute_url(batch.website) %>"
         target="_blank"
         data-controller="tooltip"
         data-tooltip-content="Website"
